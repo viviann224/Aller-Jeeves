@@ -1,3 +1,4 @@
+
 // Edamam API key: f0230ede31a4d5ec34b6d43a4d98c3e2
 // Edamam group ID: 8bee9814
 // foodtofork: dd38b57cf59482a6f6a4907bfa20c71f
@@ -33,3 +34,4 @@ var database = firebase.database();
 		
 // 	}
 // }
+
