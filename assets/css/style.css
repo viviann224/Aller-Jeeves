@@ -25,4 +25,11 @@
 }
 
 /*results.html================================*/
-
+.recipecards
+{
+	width: 18rem;
+	border: 2px solid #000;
+	display: inline-block;
+	margin: 5px;
+	align-items: center;
+}
