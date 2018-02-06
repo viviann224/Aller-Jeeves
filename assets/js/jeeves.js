@@ -1,15 +1,4 @@
 
-// Edamam API key: f0230ede31a4d5ec34b6d43a4d98c3e2
-// Edamam group ID: 8bee9814
-// foodtofork: dd38b57cf59482a6f6a4907bfa20c71f
-
-//Yummly
-//appID: 87e47442
-//keyID: 11e4aadcc3dddb10fa26ae2968e1ce03
-
-//get: http://api.yummly.com/v1/api/recipes?_app_id=app-id&_app_key=app-key&your _search_parameters
-//search: http://api.yummly.com/v1/api/recipes?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY&q=onion+soup
-console.log("I'm linked");
 
 // Initialize Firebase
 
