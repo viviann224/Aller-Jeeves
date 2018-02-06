@@ -1,9 +1,11 @@
+/*index.html================================*/
 .container
 {
 	margin-top:50px;
+	border: 5px solid #000;
 }
 
-.jumbotron
+.homejumbo
 {
 	max-height: 100%;
 	max-width: 100%;
@@ -12,5 +14,7 @@
 
 #foodsearch
 {
-	width: 45%;
+	width: 50%;
 }
+
+/*results.html================================*/
