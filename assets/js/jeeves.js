@@ -36,67 +36,143 @@ $('.convertSub').click(function(event) {
   var typeOutput = $('#typeOutput').val();
   convert(noInput, typeInput, typeOutput);
 });
+// List of diet/allergy
+// --------------------
+// 396^Dairy-Free
+// 393^Gluten-Free
+// 394^Peanut-Free
+// 400^Soy-Free
+// 397^Egg-Free
+// 401^Sulfite-Free
+// 395^Tree Nut-Free
+// 390^Pescetarian
+// 386^Vegan
+// 403^Paleo
+// 387^Lacto-ovo vegetarian
+
 
 //creates an array of recipe id's that matches with the user input
-function foodToForkURL(userinput)
-{
-  //yummily key
-  var apiKey="11e4aadcc3dddb10fa26ae2968e1ce03";
-  //yumily app id
-  var appid="87e47442";
-  //url creation
-  var myURL="http://api.yummly.com/v1/api/recipes?_app_id="+appid+"&_app_key="+apiKey+"&q="+userinput;
-  //creates an empty array to store recipe title
-   var myTitle= [];
-   var myRecURL= [];
-   var myRecImg =[];
-   //variable to hold the recipe name in lowercase
-    var lowerCheck;
-    //string to change imge
-    var temp;
+var recipeArray = [];
+// create initial array for titles of recipes
+var titleArray = [];
+// create initial array for image_urls
+var imageArray = [];
 
-    
-    //calling the ajax class to pass the url, and the
-    //GET method to return the myObj object
-    $.ajax({
-      url:myURL,
-      method:"GET"
-    }).then(function(myObj)
-    {
-        //creates size variable for each search
-        var size =myObj.matches.length;
-        for(var x=0; x<size; x++)
-        {
-          //fix case sensitivity to compare with title
-          lowerCheck= myObj.matches[x].id.toLowerCase()
-          console.log(lowerCheck);
-          console.log(lowerCheck.includes(userinput));
-          //if title contains user input create an array to store the recipe, image, and url
-          if(lowerCheck.includes(userinput))
-          {
-            //make title array
-            myTitle.push(myObj.matches[x].id);
-            //make url array
-            myRecURL.push("https://www.yummly.com/recipe/"+myObj.matches[x].id);
-            //makes resized image from image object 
-            temp= JSON.stringify(myObj.matches[x].imageUrlsBySize[90]);
-            console.log(typeof(temp));
-            temp=temp.replace("s90", "s500");
-            console.log("change size: "+temp);
-            //stores a string of url address
-            myRecImg.push(temp);
-            $(".container").append("<img src="+myRecImg[x]+" id='yumImg'>;");
-          }
+var ingredArray = [];
 
-        }
-        console.log(myTitle);
-        console.log(myRecURL);
-        console.log(myRecImg);
-    });
-}
+var restrictArray = [];
 
-//once get userinput with the associated array of recipe id's get the ingredient list
-function foodToForkDisplayRec(userinput, arrayRec) 
-{}
+var imgStr;
+// create a varaible to store the amount of recipes returned from api
+var count = 0;
 
-// var arrayRecId= foodToForkURL("chicken");
+var restrictString = "&allowedAllergy[]=";
+
+var dietString = "&allowedDiet[]=";
+
+var allergyRequest = "";
+
+var dietRequest = "";
+
+
+// when a check button is clicked and it has the allergy class, add to allergyRequest.
+$(".foodOptions").on("click", ".allergy", function(){
+  var restrict = $(this).val().trim();
+  allergyRequest += (restrictString + restrict);
+  console.log("allergy", allergyRequest);
+
+});
+
+// when a check button is clicked and it has the diet class, add to dietRequest.
+$(".foodOptions").on("click", ".diet", function(){
+  var restrict = $(this).val().trim();
+  dietRequest += (dietString + restrict);
+  console.log("diet", dietRequest);
+});
+
+
+// call function when submit button is pressed
+$("#inputBtn").on("click", function(event){
+  // prevent page refresh when submit is pressed
+  event.preventDefault();  
+  // create initial array for recipe_ids
+  recipeArray = [];
+  // create initial array for titles of recipes
+  titleArray = [];
+  // create initial array for image_urls
+  imageArray = [];
+
+  ingredArray =[];
+
+  imgStr;
+  // create a varaible to store the amount of recipes returned from api
+  count = 0;
+
+
+  $(".outputArea").empty();
+
+//  // grab user's input value and store in new variable
+  var userInput = $("#foodSearch").val().trim();
+  console.log(userInput);
+
+  // website url for ajax to pull from
+  var myURL="http://api.yummly.com/v1/api/recipes?_app_id=87e47442&_app_key=11e4aadcc3dddb10fa26ae2968e1ce03&q=" + userInput + allergyRequest + dietRequest;
+
+  console.log(myURL);
+
+   //calling the ajax class to pass the url, and the
+   //GET method to return the myObj object
+  $.ajax({
+     url:myURL,
+     method:"GET"
+  //once myObj object returns, pass in myObj to the next function
+  }).then(function(myObj){
+
+    var newObj = myObj.matches;
+    console.log(newObj);
+
+
+    // set the count value to the count property in the object
+    count = newObj.length;
+
+    // initiate a for loop to store recipe_id property and image_url property into their arrays
+    for (var i = 0; i < count; i++) {
+      recipeArray.push(newObj[i].id);
+      imageArray.push(newObj[i].imageUrlsBySize[90]);
+      ingredArray.push(newObj[i].ingredients);
+      titleArray.push(newObj[i].recipeName);
+    }
+    console.log(ingredArray);
+
+    // create a for-loop to pull, resize, and reassign photos in the image array
+    for (var j = 0; j < imageArray.length; j++){
+      imgStr = imageArray[j];
+      //part of the image src that specifies the size of the image
+      imgStr = imgStr.replace("s90", "s500");
+      imageArray.splice(j, 1, imgStr)
+    }
+
+    console.log(imageArray);
+
+    // initiate another for loop to display image properties
+    for (var i = 0; i < imageArray.length; i++) {
+      // var newContainer = $("<div class='container'");
+      var newCard = $("<div class='card' style='width: 18rem;'>");
+      var newImage = $("<img class='card-img-top'>");
+      var cardBody = $("<div class='card-body'>");
+      var cardTitle = $("<h5 class='card-title'>");
+
+      // newCard.attr("style", "width: 18rem");
+      cardTitle.text(titleArray[i]);
+      newImage.attr("src", imageArray[i]);
+      
+      cardBody.append(cardTitle);
+      
+      newCard.append(newImage);
+      
+      newCard.append(cardBody);
+      // newContainer.append(newCard);
+      $(".outputArea").append(newCard);
+    }
+  });
+});
