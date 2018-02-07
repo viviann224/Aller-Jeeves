@@ -1,0 +1,35 @@
+/*--------Color Palette---------*/
+/*dirty martini: #7F7F40*/
+/*You Zen Me: #C3D2A2*/
+/*inside banana: #FEFBE0*/
+/*coffee-4: #CFB7A1*/
+/*strawberry rose: #CB837F*/
+
+/*index.html================================*/
+.container
+{
+	margin-top:50px;
+	border: 5px solid #000;
+}
+
+.homejumbo
+{
+	max-height: 100%;
+	max-width: 100%;
+	align-items: center;
+
+}
+#foodsearch
+{
+	width: 50%;
+}
+
+/*results.html================================*/
+.recipecards
+{
+	width: 18rem;
+	border: 2px solid #000;
+	display: inline-block;
+	margin: 5px;
+	align-items: center;
+}
