@@ -12,7 +12,8 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-//convert ajax request
+
+// conversion table logic
 function convert (a, b, c) {
   console.log(a, b, c)
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -28,7 +29,6 @@ function convert (a, b, c) {
   })
 };
 
-//requires button with class convertSub
 $('.convertSub').click(function(event) {
   event.preventDefault();
   var noInput = $('#noInput').val();
