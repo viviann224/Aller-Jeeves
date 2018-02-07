@@ -19,9 +19,27 @@
 	align-items: center;
 
 }
-#foodsearch
-{
+#foodsearch {
 	width: 50%;
+}
+
+.outputArea{
+	text-align: center;
+}
+
+.card{
+	display:inline-block;
+	margin: 10px;
+}
+
+.card > img{
+	max-height: 100%;
+}
+
+.card-body{
+  overflow: auto;
+  height: 100px;
+  padding: 8px;
 }
 
 /*results.html================================*/
