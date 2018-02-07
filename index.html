@@ -88,6 +88,30 @@
 		</div>
 	</div>
 
+	<!-- conversion form -->
+	<form class="conversionTable">
+		<h2>Conversion Table</h2>
+		<p>Recipe says</p>
+		<input type="number" name="number" id="noInput">
+		<select id="typeInput">
+			<option value="gallons">Gallons</option>
+			<option value="cups">Cups</option>
+			<option value="ounces">Ounces</option>
+			<option value="tbsp">Tablespoons</option>
+			<option value="tsp">Teaspoons</option>
+		</select>
+		<br>
+		<p>But you need to convert it to</p>
+		<select id="typeOutput">
+			<option value="gallons">Gallons</option>
+			<option value="cups">Cups</option>
+			<option value="ounces">Ounces</option>
+			<option value="tbsp">Tablespoons</option>
+			<option value="tsp">Teaspoons</option>
+		</select><br>
+		<button class="convertSub" type="submit">Submit</button>
+		<div class="results"></div>
+	</form>
 
 	
 	<footer></footer>
