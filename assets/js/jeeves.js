@@ -12,8 +12,54 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+//=======anime animation====
+var boxEnterTimeline = anime.timeline({
+  autoplay: true
+})
+var boxExitTimeline = anime.timeline({
+  autoplay: false
+})
+var easing = "linear";
 
-// conversion table logic
+function killSlate () {
+    $('.slate').css('display', 'none')
+};
+
+boxEnterTimeline
+  .add({
+    targets: "#title",
+    duration: 1000,
+    opacity: "1",
+    easing
+  })
+
+boxExitTimeline
+  .add({
+    targets: "#initBox",
+    // width: 0,
+    opacity: "0",
+    translateX: 200,
+    duration: 750,
+    easing
+  })
+  .add({    
+    targets: ".slate",
+    duration: 1000,
+    height: 0,
+    // opacity: 0,
+    easing
+  }).add({
+    targets: ".slate",
+    duration: 10,
+    translateY: 10000
+  });
+  
+$(".initSub").click(function(event) {
+  event.preventDefault();
+  boxExitTimeline.play();
+})
+
+// ========conversion table logic====
 function convert (a, b, c) {
   console.log(a, b, c)
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -36,6 +82,7 @@ $('.convertSub').click(function(event) {
   var typeOutput = $('#typeOutput').val();
   convert(noInput, typeInput, typeOutput);
 });
+
 // List of diet/allergy
 // --------------------
 // 396^Dairy-Free
@@ -176,3 +223,55 @@ $("#inputBtn").on("click", function(event){
     }
   });
 });
+
+
+// ============USER AUTHENTICATION============================
+  var uiConfig = {
+    signInSuccessUrl: "http://pmmiv.com/CodersBayTesting",
+    signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ],
+    // Terms of service url.
+    tosUrl: '<your-tos-url>'
+  };
+
+  // Initialize the FirebaseUI Widget using Firebase.
+  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+  // The start method will wait until the DOM is loaded.
+  ui.start('#firebaseui-auth-container', uiConfig);
+  
+ initApp = function() {
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var uid = user.uid;
+            var phoneNumber = user.phoneNumber;
+            var providerData = user.providerData;
+            user.getIdToken().then(function(accessToken) {
+              document.getElementById('sign-in-status').textContent = 'Signed in';
+              document.getElementById('sign-in').textContent = 'Sign out';
+              document.getElementById('account-details').textContent = JSON.stringify({
+                displayName: displayName,
+                uid: uid,
+              }, null, '  ');
+            });
+          } else {
+            // User is signed out.
+            document.getElementById('sign-in-status').textContent = 'Signed out';
+            document.getElementById('sign-in').textContent = 'Sign in';
+            document.getElementById('account-details').textContent = 'null';
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      };
+
+      window.addEventListener('load', function() {
+        initApp()
+      });
