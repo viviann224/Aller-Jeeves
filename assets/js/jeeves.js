@@ -1,5 +1,3 @@
-
-
 // Initialize Firebase
 
 var config = {
@@ -15,15 +13,29 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
-// function edamamQuery () {
-//  $.ajax({
-//      url: queryURL,
-//      method: "GET"
-//  }).then(function(argument)) {
+// conversion table logic
+function convert (a, b, c) {
+  console.log(a, b, c)
+  var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  var builtString = "https://neutrinoapi.com/convert?from-value="+a+"&from-type="+b+"&to-type="+c+"&userId=PMMIV&apiKey=lxAaqP7fkM6ZjKHg0fnvmkF192s1vmihtuGtY381Ls6xHsNs";
+  console.log(builtString);
+  $.get(proxyUrl + builtString, function(response) {
+    console.log(response);
+    var noOutput = response.result
+    $('.results').text(a + " " + b + " = " + noOutput + " " + c);
+  }).fail(function(error){
+    console.log(error);
+    $('.results').text("I'm sorry. We may have exceeded our conversion limit today.");
+  })
+};
 
-//  }
-// }
-//creates url query
+$('.convertSub').click(function(event) {
+  event.preventDefault();
+  var noInput = $('#noInput').val();
+  var typeInput = $('#typeInput').val();
+  var typeOutput = $('#typeOutput').val();
+  convert(noInput, typeInput, typeOutput);
+});
 
 //creates an array of recipe id's that matches with the user input
 function foodToForkURL(userinput)
@@ -85,12 +97,6 @@ function foodToForkURL(userinput)
 
 //once get userinput with the associated array of recipe id's get the ingredient list
 function foodToForkDisplayRec(userinput, arrayRec) 
-{
-   
-}
+{}
 
-var arrayRecId= foodToForkURL("chicken");
-//console.log(arrayRecId);
-
-
-//foodToForkDisplayRec("chicken", arrayRecId);
+// var arrayRecId= foodToForkURL("chicken");
