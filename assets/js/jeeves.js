@@ -190,7 +190,7 @@ $("#inputBtn").on("click", function(event) {
   console.log(userInput);
 
   // website url for ajax to pull from
-  var myURL="http://api.yummly.com/v1/api/recipes?_app_id=87e47442&_app_key=11e4aadcc3dddb10fa26ae2968e1ce03&q=" + userInput + allergyRequest + dietRequest + "&maxResult=12";
+  var myURL="https://api.yummly.com/v1/api/recipes?_app_id=87e47442&_app_key=11e4aadcc3dddb10fa26ae2968e1ce03&q=" + userInput + allergyRequest + dietRequest + "&maxResult=12";
 
   console.log(myURL);
 
