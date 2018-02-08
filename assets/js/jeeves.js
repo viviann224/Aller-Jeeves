@@ -146,8 +146,7 @@ $(".foodOptions").on("click", ".diet", function(){
 */
 
 // call function when submit button is pressed
-$("#inputBtn").on("click", function(event)
-{
+$("#inputBtn").on("click", function(event) {
   // prevent page refresh when submit is pressed
   event.preventDefault();  
   // create initial array for recipe_ids
@@ -158,16 +157,13 @@ $("#inputBtn").on("click", function(event)
   imageArray = [];
 
   ingredArray =[];
-
-  imgStr;
   // create a varaible to store the amount of recipes returned from api
   count = 0;
 
 
   //version 2 of the checkbox
   //this is to create the filter for the specific diet
-  $("input[class=diet]:checked").each(function() 
-  {
+  $("input[class=diet]:checked").each(function() {
     //once the user clicks on the submit button, go ahead and check what
     //input has been clicked and concat each diet together
     var restrict = $(this).val().trim();
@@ -194,7 +190,7 @@ $("#inputBtn").on("click", function(event)
   console.log(userInput);
 
   // website url for ajax to pull from
-  var myURL="http://api.yummly.com/v1/api/recipes?_app_id=87e47442&_app_key=11e4aadcc3dddb10fa26ae2968e1ce03&q=" + userInput + allergyRequest + dietRequest;
+  var myURL="http://api.yummly.com/v1/api/recipes?_app_id=87e47442&_app_key=11e4aadcc3dddb10fa26ae2968e1ce03&q=" + userInput + allergyRequest + dietRequest + "&maxResult=12";
 
   console.log(myURL);
 
@@ -223,35 +219,57 @@ $("#inputBtn").on("click", function(event)
     console.log(ingredArray);
 
     // create a for-loop to pull, resize, and reassign photos in the image array
-    for (var j = 0; j < imageArray.length; j++){
-      imgStr = imageArray[j];
-      //part of the image src that specifies the size of the image
-      imgStr = imgStr.replace("s90", "s500");
-      imageArray.splice(j, 1, imgStr)
+    for (var j = 0; j < imageArray.length; j++) {
+      imageArray[j] = imageArray[j].toString().replace("s90", "s500");
     }
+    // for (var i = 0; i < ingredArray.length; i++) {
+    //   ingredArray[i].forEach(function(item){
+    //   console.log(item);
+    //   })
+    // };
+
 
     console.log(imageArray);
-
+    $("#outputArea").on("click", "front")
     // initiate another for loop to display image properties
     for (var i = 0; i < imageArray.length; i++) 
     {
       // var newContainer = $("<div class='container'");
       var newCard = $("<div class='card' style='width: 18rem;'>");
+      var cardFront = $("<div class='front'>")
       var newImage = $("<img class='card-img-top'>");
       var cardBody = $("<div class='card-body'>");
       var cardTitle = $("<h5 class='card-title'>");
+      var cardBack = $("<div class='back'>");
+      var cardList = $("<ul class='listOfIngred'>");
+      var listItem = $("<li class='item'>");
+      
+      ingredArray[i].forEach(function(item){
+        var store = listItem.text(item);
+        $(".listOfIngred").append(store);
+        console.log(cardList);
+        
+      });
+      
+      cardBack.append(listItem);
+      
+      console.log(cardBack);
 
-      // newCard.attr("style", "width: 18rem");
       cardTitle.text(titleArray[i]);
+      
       newImage.attr("src", imageArray[i]);
       
       cardBody.append(cardTitle);
 
       newCard.append("<button class='btn bookmark'><i class='fas fa-utensils'></i></button>")
       
-      newCard.append(newImage);
+      cardFront.append(newImage);
       
-      newCard.append(cardBody);
+      cardFront.append(cardBody);
+
+      newCard.append(cardFront);
+      
+      newCard.append(cardBack);
       // newContainer.append(newCard);
       $(".outputArea").append(newCard);
     }
