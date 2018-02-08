@@ -7,10 +7,11 @@
 <!--_______________________RESET____________________________-->
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
-
 <!--_______________________BOOTSTRAP________________________-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<!--_______________________Google Fonts______________________________-->
+	<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Catamaran" rel="stylesheet">
 <!--_______________________CSS______________________________-->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <!--____________________Font Awesome________________________-->
@@ -94,7 +95,11 @@
 			</form>
 			<h2 class="navbar-brand">Aller-Jeeves</h2>
 			<div class="navbar-right">
-			  <button class="btn my-2 my-sm-0"  data-toggle="modal" data-target="#exampleModal">Sign In</button>
+				<span id="sign-in-status"></span>
+				<span id="account-details"></span>
+			  <button class="btn my-2 my-sm-0"  data-toggle="modal" data-target="#exampleModal">
+				<span id="sign-in"></span>
+			</button>
 			  <button class="btn my-2 my-sm-0" id="signOut">Sign Out</button>
 			</div>
 
@@ -149,20 +154,26 @@
 					<p>The recipe says</p>
 					<input type="number" name="number" id="noInput">
 					<select id="typeInput">
-						<option value="gallons">Gallons</option>
-						<option value="cups">Cups</option>
-						<option value="ounces">Ounces</option>
-						<option value="tbsp">Tablespoons</option>
-						<option value="tsp">Teaspoons</option>
+						<option value="Gallons">Gallons</option>
+						<option value="Cups">Cups</option>
+						<option value="Ounces">Ounces</option>
+						<option value="Pints">Pints</option>
+						<option value="Quarts">Quarts</option>
+						<option value="Tbsps">Tablespoons</option>
+						<option value="tsps">Teaspoons</option>
+						<option value="Pounds">Pounds</option>
 					</select>
 					<br>
 					<p>But you need to convert it to</p>
 					<select id="typeOutput">
-						<option value="gallons">Gallons</option>
-						<option value="cups">Cups</option>
-						<option value="ounces">Ounces</option>
-						<option value="tbsp">Tablespoons</option>
-						<option value="tsp">Teaspoons</option>
+						<option value="Gallons">Gallons</option>
+						<option value="Cups">Cups</option>
+						<option value="Ounces">Ounces</option>
+						<option value="Pints">Pints</option>
+						<option value="Quarts">Quarts</option>
+						<option value="Tbsps">Tablespoons</option>
+						<option value="tsps">Teaspoons</option>
+						<option value="Pounds">Pounds</option>
 					</select>
 					<button class="btn convertSub" type="submit">Convert</button>
 					<div class="results"></div>
