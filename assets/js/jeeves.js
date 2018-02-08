@@ -12,8 +12,54 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+//=======anime animation====
+var boxEnterTimeline = anime.timeline({
+  autoplay: true
+})
+var boxExitTimeline = anime.timeline({
+  autoplay: false
+})
+var easing = "linear";
 
-// conversion table logic
+function killSlate () {
+    $('.slate').css('display', 'none')
+};
+
+boxEnterTimeline
+  .add({
+    targets: "#title",
+    duration: 1000,
+    opacity: "1",
+    easing
+  })
+
+boxExitTimeline
+  .add({
+    targets: "#initBox",
+    // width: 0,
+    opacity: "0",
+    translateX: 200,
+    duration: 750,
+    easing
+  })
+  .add({    
+    targets: ".slate",
+    duration: 1000,
+    height: 0,
+    // opacity: 0,
+    easing
+  }).add({
+    targets: ".slate",
+    duration: 10,
+    translateY: -10000
+  });
+  
+$(".initSub").click(function(event) {
+  event.preventDefault();
+  boxExitTimeline.play();
+})
+
+// ========conversion table logic====
 function convert (a, b, c) {
   console.log(a, b, c)
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -36,6 +82,7 @@ $('.convertSub').click(function(event) {
   var typeOutput = $('#typeOutput').val();
   convert(noInput, typeInput, typeOutput);
 });
+
 // List of diet/allergy
 // --------------------
 // 396^Dairy-Free
@@ -73,10 +120,19 @@ var dietString = "&allowedDiet[]=";
 var allergyRequest = "";
 
 var dietRequest = "";
+var isUnClickedAll=false;
+var isUnClickedDiet=false;
 
+//went ahead and comment out v1 of the checkbox for the allergy and diet
+//got the checkbox for the submit button to work
 
+/*
 // when a check button is clicked and it has the allergy class, add to allergyRequest.
-$(".foodOptions").on("click", ".allergy", function(){
+$(".foodOptions").on("click", ".allergy", function()
+{
+$.each($("input:checked")
+
+
   var restrict = $(this).val().trim();
   allergyRequest += (restrictString + restrict);
   console.log("allergy", allergyRequest);
@@ -89,10 +145,11 @@ $(".foodOptions").on("click", ".diet", function(){
   dietRequest += (dietString + restrict);
   console.log("diet", dietRequest);
 });
-
+*/
 
 // call function when submit button is pressed
-$("#inputBtn").on("click", function(event){
+$("#inputBtn").on("click", function(event)
+{
   // prevent page refresh when submit is pressed
   event.preventDefault();  
   // create initial array for recipe_ids
@@ -107,6 +164,29 @@ $("#inputBtn").on("click", function(event){
   imgStr;
   // create a varaible to store the amount of recipes returned from api
   count = 0;
+
+
+  //version 2 of the checkbox
+  //this is to create the filter for the specific diet
+  $("input[class=diet]:checked").each(function() 
+  {
+    //once the user clicks on the submit button, go ahead and check what
+    //input has been clicked and concat each diet together
+    var restrict = $(this).val().trim();
+    dietRequest += (dietString + restrict);
+    console.log("diet", dietRequest);
+   });
+
+  //this is to create the filter for the specific allergy
+  $("input[class=allergy]:checked").each(function() 
+  {
+    //once the user clicks on the submit button, go ahead and check what
+    //input has been clicked and concat each allergy together
+    var restrict = $(this).val().trim();
+    allergyRequest += (restrictString + restrict);
+    console.log("allergy", allergyRequest);
+  });
+
 
 
   $(".outputArea").empty();
@@ -155,7 +235,8 @@ $("#inputBtn").on("click", function(event){
     console.log(imageArray);
 
     // initiate another for loop to display image properties
-    for (var i = 0; i < imageArray.length; i++) {
+    for (var i = 0; i < imageArray.length; i++) 
+    {
       // var newContainer = $("<div class='container'");
       var newCard = $("<div class='card' style='width: 18rem;'>");
       var newImage = $("<img class='card-img-top'>");
@@ -176,3 +257,63 @@ $("#inputBtn").on("click", function(event){
     }
   });
 });
+
+
+// ============USER AUTHENTICATION============================
+  var uiConfig = {
+    signInSuccessUrl: "http://pmmiv.com/CodersBayTesting",
+    signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ],
+    // Terms of service url.
+    tosUrl: '<your-tos-url>'
+  };
+
+  // Initialize the FirebaseUI Widget using Firebase.
+  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+  // The start method will wait until the DOM is loaded.
+  ui.start('#firebaseui-auth-container', uiConfig);
+  
+ initApp = function() {
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var uid = user.uid;
+            var phoneNumber = user.phoneNumber;
+            var providerData = user.providerData;
+            user.getIdToken().then(function(accessToken) {
+              document.getElementById('sign-in-status').textContent = 'Signed in';
+              document.getElementById('sign-in').textContent = 'Sign out';
+              document.getElementById('account-details').textContent = JSON.stringify({
+                displayName: displayName,
+                uid: uid,
+              }, null, '  ');
+            });
+          } else {
+            // User is signed out.
+            document.getElementById('sign-in-status').textContent = 'Signed out';
+            document.getElementById('sign-in').textContent = 'Sign in';
+            document.getElementById('account-details').textContent = 'null';
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      };
+
+      window.addEventListener('load', function() {
+        initApp()
+      });
+
+$('#signOut').click(function(){
+  firebase.auth().signOut().then(function() {
+    console.log('Signed Out');
+  }, function(error) {
+    console.error('Sign Out Error', error);
+  });
+})

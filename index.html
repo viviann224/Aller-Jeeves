@@ -13,110 +13,184 @@
 
 <!--_______________________CSS______________________________-->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<!--____________________Font Awesome________________________-->
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+
 </head>
 <body>
-	<div class="container top">
-		<div class="jumbotron" id="homeJumbo">
-			<h1 class="display-4">Aller-Jeeves</h1>
-			<hr class="my-4">
-			<p>Here are a set of intructions that tell you how to use our app</p>
-			<p class="lead">
-			<input type="text" id="foodSearch" name="search" placeholder="What do you want to eat...">
-			<br>
-			<button class="btn btn-outline-secondary"  id="inputBtn" type="submit">Search</button>
-			</p>
-			<div class="row">
-				<div class="col-lg-6">
-					<fieldset class="foodOptions">
-						<legend>Dietary Restrictions</legend>
-						<div>
-							<input class="allergy" type="checkbox" id="dairy" name="interest" value="396^Dairy-Free">
-							<label for="dairy">Dairy-Free</label>
+	<div class="slate">
+		<div class="container top" id="initBox">
+			<div class="jumbotron" id="homeJumbo">
+				<h1 class="display-4" id="title">Aller-Jeeves</h1>
+				<hr class="my-4">
+				<h4>Can I help you find a recipe?</h4>
+				<input type="text" id="foodSearch" name="search" placeholder="I'll be having...">
+				
+				<button class="btn btn-outline-secondary initSub"  id="inputBtn" type="submit">Search</button>
+				<fieldset class="foodOptions">
+					<legend>Do you have any dietary Restrictions?</legend>
+					<div class="row">
+						<div class="col-sm-6">
+							<div>
+								<input class="allergy" type="checkbox" id="dairy" name="interest" value="396^Dairy-Free">
+								<label for="dairy">Dairy-Free</label>
+							</div>
+							<div>
+								<input class="allergy" type="checkbox" id="gluten" name="interest" value="393^Gluten-Free">
+								<label for="gluten">Gluten-Free</label>
+							</div>
+							<div>
+								<input class="allergy" type="checkbox" id="peanuts" name="interest" value="394^Peanut-Free">
+								<label for="peanuts">Peanut-Free</label>
+							</div>
+							<div>
+								<input class="diet" type="checkbox" id="veggie" name="interest" value="387^Lacto-ovo vegetarian">
+								<label for="veggie">Vegetarian</label>
+							</div>
+							<div>
+								<input class="diet" type="checkbox" id="vegan" name="interest" value="386^Vegan">
+								<label for="vegan">Vegan</label>
+							</div>
+							<div>
+								<input class="allergy" type="checkbox" id="soy" name="interest" value="400^Soy-Free">
+								<label for="soy">Soy-Free</label>
+							</div>
 						</div>
-						<div>
-							<input class="allergy" type="checkbox" id="gluten" name="interest" value="393^Gluten-Free">
-							<label for="gluten">Gluten-Free</label>
+						<div class="col-sm-6">
+							<div>
+								<input class="allergy" type="checkbox" id="egg" name="interest" value="397^Egg-Free">
+								<label for="egg">Egg-Free</label>
+							</div>
+							<div>
+								<input class="allergy" type="checkbox" id="sulfite" name="interest" value="401^Sulfite-Free">
+								<label for="sulfite">Sulfite-Free</label>
+							</div>
+							<div>
+								<input class="allergy" type="checkbox" id="treeNut" name="interest" value="395^Tree Nut-Free">
+								<label for="treeNut">Tree Nut-Free</label>
+							</div>
+							<div>
+								<input class="diet" type="checkbox" id="pescetarian" name="interest" value="390^Pescetarian">
+								<label for="pescetarian">Pescetarian</label>
+							</div>
+							<div>
+								<input class="diet" type="checkbox" id="paleo" name="interest" value="403^Paleo">
+								<label for="paleo">Paleo</label>
+							</div>
 						</div>
-						<div>
-							<input class="allergy" type="checkbox" id="peanuts" name="interest" value="394^Peanut-Free">
-							<label for="peanuts">Peanut-Free</label>
-						</div>
-						<div>
-							<input class="diet" type="checkbox" id="veggie" name="interest" value="387^Lacto-ovo vegetarian">
-							<label for="veggie">Vegetarian</label>
-						</div>
-						<div>
-							<input class="diet" type="checkbox" id="vegan" name="interest" value="386^Vegan">
-							<label for="vegan">Vegan</label>
-						</div>
-						<div>
-							<input class="allergy" type="checkbox" id="soy" name="interest" value="400^Soy-Free">
-							<label for="soy">Soy-Free</label>
-						</div>
-						<div>
-							<input class="allergy" type="checkbox" id="egg" name="interest" value="397^Egg-Free">
-							<label for="egg">Egg-Free</label>
-						</div>
-						<div>
-							<input class="allergy" type="checkbox" id="sulfite" name="interest" value="401^Sulfite-Free">
-							<label for="sulfite">Sulfite-Free</label>
-						</div>
-						<div>
-							<input class="allergy" type="checkbox" id="treeNut" name="interest" value="395^Tree Nut-Free">
-							<label for="treeNut">Tree Nut-Free</label>
-						</div>
-						<div>
-							<input class="diet" type="checkbox" id="pescetarian" name="interest" value="390^Pescetarian">
-							<label for="pescetarian">Pescetarian</label>
-						</div>
-						<div>
-							<input class="diet" type="checkbox" id="paleo" name="interest" value="403^Paleo">
-							<label for="paleo">Paleo</label>
-						</div>
-					</fieldset>
-				</div>
- 			</div>
+	 				</div>
+				</fieldset>
+			</div>
 		</div>
 	</div>
-	<div class="container outputArea">
-		
+
+	<header class="container-fluid">		
+		<nav class="navbar">
+			<form class="form-inline">
+				<input class="form-control mr-sm-2" type="text" placeholder="What else can I get you?">
+			  	<button class="btn my-2 my-sm-0"><i class="fas fa-sort-down"></i></button>
+			    <button class="btn my-2 my-sm-0" type="submit">Search</button>
+			</form>
+			<h2 class="navbar-brand">Aller-Jeeves</h2>
+			<div class="navbar-right">
+			  <button class="btn my-2 my-sm-0"  data-toggle="modal" data-target="#exampleModal">Sign In</button>
+			  <button class="btn my-2 my-sm-0" id="signOut">Sign Out</button>
+			</div>
+
+
+		  <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> -->
+		    <!-- <span class="navbar-toggler-icon"></span> -->
+		  <!-- </button> -->
+<!-- 			  <div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Features</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Pricing</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link disabled" href="#">Disabled</a>
+		      </li>
+		    </ul>
+		  </div>
+		</nav> -->
+	</header>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Sign In to Bookmark your Recipes</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      		<div id="firebaseui-auth-container"></div>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
-	<form class="conversionTable">
-		<h2>Conversion Table</h2>
-		<p>Recipe says</p>
-		<input type="number" name="number" id="noInput">
-		<select id="typeInput">
-			<option value="gallons">Gallons</option>
-			<option value="cups">Cups</option>
-			<option value="ounces">Ounces</option>
-			<option value="tbsp">Tablespoons</option>
-			<option value="tsp">Teaspoons</option>
-		</select>
-		<br>
-		<p>But you need to convert it to</p>
-		<select id="typeOutput">
-			<option value="gallons">Gallons</option>
-			<option value="cups">Cups</option>
-			<option value="ounces">Ounces</option>
-			<option value="tbsp">Tablespoons</option>
-			<option value="tsp">Teaspoons</option>
-		</select><br>
-		<button class="convertSub" type="submit">Submit</button>
-		<div class="results"></div>
-	</form>
+	<div class="container" id="mainBody">
+		<div class="row">
+			<div class="col-md-9 outputArea">
+				
+			</div>
+			<div class="col-md-3"> 
+				<form class="conversionTable">
+					<h2>Conversion Table</h2>
+					<p>The recipe says</p>
+					<input type="number" name="number" id="noInput">
+					<select id="typeInput">
+						<option value="gallons">Gallons</option>
+						<option value="cups">Cups</option>
+						<option value="ounces">Ounces</option>
+						<option value="tbsp">Tablespoons</option>
+						<option value="tsp">Teaspoons</option>
+					</select>
+					<br>
+					<p>But you need to convert it to</p>
+					<select id="typeOutput">
+						<option value="gallons">Gallons</option>
+						<option value="cups">Cups</option>
+						<option value="ounces">Ounces</option>
+						<option value="tbsp">Tablespoons</option>
+						<option value="tsp">Teaspoons</option>
+					</select>
+					<button class="btn convertSub" type="submit">Convert</button>
+					<div class="results"></div>
+				</form>
+			</div>
+		</div>
+		
+	</div>
 	
 	<footer></footer>
+
 	<!--_______________________Bootstrap jQuery_________________-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>	
 	<!--_______________________jQuery___________________________-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- __________Firebase CSS CDN____________________-->
+  	<script src="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.js"></script>
+  	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.css" />
+
 	<!--_______________________Firebase___________________________-->
 	<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+
 	<!--_______________________Anime JS_________________-->
 	<script src="assets/js/anime.min.js"></script>
+
 	<!--_______________________javaScript_______________________-->
 	<script type="text/javascript" src="assets/js/jeeves.js"></script>
 
