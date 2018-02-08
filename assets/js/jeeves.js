@@ -21,9 +21,7 @@ var boxExitTimeline = anime.timeline({
 })
 var easing = "linear";
 
-function killSlate () {
-    $('.slate').css('display', 'none')
-};
+var uSignIn ;
 
 boxEnterTimeline
   .add({
@@ -248,6 +246,8 @@ $("#inputBtn").on("click", function(event)
       newImage.attr("src", imageArray[i]);
       
       cardBody.append(cardTitle);
+
+      newCard.append("<button class='btn bookmark'><i class='fas fa-utensils'></i></button>")
       
       newCard.append(newImage);
       
@@ -281,6 +281,7 @@ $("#inputBtn").on("click", function(event)
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             // User is signed in.
+            uSignIn = true;
             var displayName = user.displayName;
             var email = user.email;
             var emailVerified = user.emailVerified;
@@ -298,6 +299,7 @@ $("#inputBtn").on("click", function(event)
             });
           } else {
             // User is signed out.
+            uSignIn = false;
             document.getElementById('sign-in-status').textContent = 'Signed out';
             document.getElementById('sign-in').textContent = 'Sign In';
             document.getElementById('account-details').textContent = 'null';
@@ -318,3 +320,15 @@ $('#signOut').click(function(){
     console.error('Sign Out Error', error);
   });
 })
+
+// bookmarking cards
+$(document).on('click', '.bookmark', function () {
+  // event.preventDefault();
+  if (uSignIn) {
+    database.ref("/users/" + user.uid).push({
+      success: "You successfully pushed something to an individual user's bookmark" 
+    })
+    alert("bookmarked!");
+  } else {
+    alert("Sign in to bookmark recipes!");
+}})
