@@ -28,7 +28,7 @@ hr
 	color: #CB4E61;
 	padding: 5px;
 	border-radius: 10px;
-	border: 5px dashed #CFB7A1;
+	border: 5px double #CFB7A1;
 	font-size: 1.7rem;
 	width: 510px;
 	text-align: center;
@@ -92,7 +92,7 @@ p
 	margin-top:50px;
 	background-color: #FEFBE0;
 	text-align: center;
-	border: 10px dashed #CFB7A1;
+	border: 10px double #CFB7A1;
 }
 
 
@@ -147,9 +147,9 @@ p
 }
 
 
-.card:hover {
+/*.card:hover {
   transform: rotateY(180deg);
-}
+}*/
 
 .cardBack {
   background: #eaeaed;
