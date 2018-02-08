@@ -107,6 +107,16 @@ select {
 	font-weight: bold;
 }
 
+#title {
+	opacity: 0;
+}
+
+.slate {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: #C3D2A2;
+}
 /*results.html================================*/
 .recipecards
 {

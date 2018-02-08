@@ -51,7 +51,7 @@ boxExitTimeline
   }).add({
     targets: ".slate",
     duration: 10,
-    translateY: 10000
+    translateY: -10000
   });
   
 $(".initSub").click(function(event) {
@@ -309,3 +309,11 @@ $("#inputBtn").on("click", function(event)
       window.addEventListener('load', function() {
         initApp()
       });
+
+$('#signOut').click(function(){
+  firebase.auth().signOut().then(function() {
+    console.log('Signed Out');
+  }, function(error) {
+    console.error('Sign Out Error', error);
+  });
+})
