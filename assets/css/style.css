@@ -24,6 +24,10 @@
 	width: 50%;
 }
 
+#title {
+	opacity: 0;
+}
+
 .slate {
   position: absolute;
   height: 100vh;

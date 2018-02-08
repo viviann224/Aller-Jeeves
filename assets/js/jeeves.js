@@ -12,19 +12,27 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var basicTimeline = anime.timeline({
-  autoplay: false
-});
+var boxEnterTimeline = anime.timeline({
+  autoplay: true
+})
 
-var boxTimeline = anime.timeline({
+var boxExitTimeline = anime.timeline({
   autoplay: false
 })
 
 var easing = "linear";
 
-boxTimeline
+boxEnterTimeline
   .add({
-    targets: ".container",
+    targets: "#title",
+    duration: 1000,
+    opacity: "1",
+    easing
+  })
+
+boxExitTimeline
+  .add({
+    targets: "#initBox",
     // width: 0,
     opacity: "0",
     duration: 500,
@@ -38,9 +46,9 @@ boxTimeline
     easing
   });
 
-$("#intSub").click(function(event) {
+$("#initSub").click(function(event) {
   event.preventDefault();
-  boxTimeline.play();
+  boxExitTimeline.play();
 })
 
 // conversion table logic
