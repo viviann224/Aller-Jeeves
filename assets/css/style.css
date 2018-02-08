@@ -147,9 +147,15 @@ p
 }
 
 
-/*.card:hover {
-  transform: rotateY(180deg);
-}*/
+.bookmark {
+	margin-top: 5px;
+	margin-bottom: -40px;
+	padding: 4px 6px 1px 6px;
+	position: relative;
+	float: right;
+	right: 5px;
+	border-radius: 2px;
+}
 
 .cardBack {
   background: #eaeaed;
