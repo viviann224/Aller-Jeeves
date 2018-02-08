@@ -51,7 +51,7 @@ boxExitTimeline
   }).add({
     targets: ".slate",
     duration: 10,
-    translateY: 10000
+    translateY: -10000
   });
   
 $(".initSub").click(function(event) {
