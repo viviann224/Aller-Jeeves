@@ -7,10 +7,11 @@
 <!--_______________________RESET____________________________-->
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
-
 <!--_______________________BOOTSTRAP________________________-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<!--_______________________Google Fonts______________________________-->
+	<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Catamaran" rel="stylesheet">
 <!--_______________________CSS______________________________-->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <!--____________________Font Awesome________________________-->
@@ -87,16 +88,20 @@
 
 	<header class="container-fluid">		
 		<nav class="navbar">
-			<div class="navbar-right">
-			  <button class="btn my-2 my-sm-0"  data-toggle="modal" data-target="#exampleModal">Sign In</button>
-			  <button class="btn my-2 my-sm-0" id="signOut">Sign Out</button>
-			</div>
-			<h2 class="navbar-brand">Aller-Jeeves</h2>
 			<form class="form-inline">
 				<input class="form-control mr-sm-2" type="text" placeholder="What else can I get you?">
 			  	<button class="btn my-2 my-sm-0"><i class="fas fa-sort-down"></i></button>
 			    <button class="btn my-2 my-sm-0" type="submit">Search</button>
 			</form>
+			<h2 class="navbar-brand">Aller-Jeeves</h2>
+			<div class="navbar-right">
+				<span id="sign-in-status"></span>
+				<span id="account-details"></span>
+			  <button class="btn my-2 my-sm-0"  data-toggle="modal" data-target="#exampleModal">
+				<span id="sign-in"></span>
+			</button>
+			  <button class="btn my-2 my-sm-0" id="signOut">Sign Out</button>
+			</div>
 
 
 		  <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> -->
@@ -126,14 +131,13 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">Sign In to Bookmark your Recipes</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	      		<p>Google and email authentication options go here. We will have to authorize our domain to access our firebase, but I don't currently know what that is.</p>
-	          	<div id="firebaseui-auth-container"></div>
+	      		<div id="firebaseui-auth-container"></div>
 	      </div>
 	    </div>
 	  </div>
@@ -150,20 +154,26 @@
 					<p>The recipe says</p>
 					<input type="number" name="number" id="noInput">
 					<select id="typeInput">
-						<option value="gallons">Gallons</option>
-						<option value="cups">Cups</option>
-						<option value="ounces">Ounces</option>
-						<option value="tbsp">Tablespoons</option>
-						<option value="tsp">Teaspoons</option>
+						<option value="Gallons">Gallons</option>
+						<option value="Cups">Cups</option>
+						<option value="Ounces">Ounces</option>
+						<option value="Pints">Pints</option>
+						<option value="Quarts">Quarts</option>
+						<option value="Tbsps">Tablespoons</option>
+						<option value="tsps">Teaspoons</option>
+						<option value="Pounds">Pounds</option>
 					</select>
 					<br>
 					<p>But you need to convert it to</p>
 					<select id="typeOutput">
-						<option value="gallons">Gallons</option>
-						<option value="cups">Cups</option>
-						<option value="ounces">Ounces</option>
-						<option value="tbsp">Tablespoons</option>
-						<option value="tsp">Teaspoons</option>
+						<option value="Gallons">Gallons</option>
+						<option value="Cups">Cups</option>
+						<option value="Ounces">Ounces</option>
+						<option value="Pints">Pints</option>
+						<option value="Quarts">Quarts</option>
+						<option value="Tbsps">Tablespoons</option>
+						<option value="tsps">Teaspoons</option>
+						<option value="Pounds">Pounds</option>
 					</select>
 					<button class="btn convertSub" type="submit">Convert</button>
 					<div class="results"></div>
@@ -172,7 +182,6 @@
 		</div>
 		
 	</div>
-
 	
 	<footer></footer>
 
@@ -182,10 +191,17 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- __________Firebase CSS CDN____________________-->
+  	<script src="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.js"></script>
+  	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.css" />
+
 	<!--_______________________Firebase___________________________-->
 	<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+
 	<!--_______________________Anime JS_________________-->
 	<script src="assets/js/anime.min.js"></script>
+
 	<!--_______________________javaScript_______________________-->
 	<script type="text/javascript" src="assets/js/jeeves.js"></script>
 
