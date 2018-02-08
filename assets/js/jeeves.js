@@ -268,7 +268,8 @@ $("#inputBtn").on("click", function(event)
       firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
     // Terms of service url.
-    tosUrl: '<your-tos-url>'
+    tosUrl: '<your-tos-url>',
+    signInFlow: 'popup'
   };
 
   // Initialize the FirebaseUI Widget using Firebase.
