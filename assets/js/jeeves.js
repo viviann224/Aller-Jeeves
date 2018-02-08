@@ -23,6 +23,9 @@ var easing = "linear";
 
 var uSignIn ;
 
+var actUser ;
+
+
 boxEnterTimeline
   .add({
     targets: "#title",
@@ -297,6 +300,7 @@ $("#inputBtn").on("click", function(event) {
   
  initApp = function() {
         firebase.auth().onAuthStateChanged(function(user) {
+          actUser = user
           if (user) {
             // User is signed in.
             uSignIn = true;
@@ -343,9 +347,10 @@ $('#signOut').click(function(){
 $(document).on('click', '.bookmark', function () {
   // event.preventDefault();
   if (uSignIn) {
-    database.ref("/users/" + user.uid).push({
-      success: "You successfully pushed something to an individual user's bookmark" 
-    })
+    console.log(actUser);
+    // database.ref("/users/").push({
+      // success: "You successfully pushed something to an individual user's bookmark" 
+    // })
     alert("bookmarked!");
   } else {
     alert("Sign in to bookmark recipes!");
