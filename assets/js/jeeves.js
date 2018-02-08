@@ -261,7 +261,7 @@ $("#inputBtn").on("click", function(event)
 
 // ============USER AUTHENTICATION============================
   var uiConfig = {
-    signInSuccessUrl: "http://pmmiv.com/CodersBayTesting",
+    signInSuccessUrl: "https://kcarter92.github.io/projectOne/",
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -289,7 +289,7 @@ $("#inputBtn").on("click", function(event)
             var providerData = user.providerData;
             user.getIdToken().then(function(accessToken) {
               document.getElementById('sign-in-status').textContent = 'Signed in';
-              document.getElementById('sign-in').textContent = 'Sign out';
+              document.getElementById('sign-in').textContent = 'Sign Out';
               document.getElementById('account-details').textContent = JSON.stringify({
                 displayName: displayName,
                 uid: uid,
@@ -298,7 +298,7 @@ $("#inputBtn").on("click", function(event)
           } else {
             // User is signed out.
             document.getElementById('sign-in-status').textContent = 'Signed out';
-            document.getElementById('sign-in').textContent = 'Sign in';
+            document.getElementById('sign-in').textContent = 'Sign In';
             document.getElementById('account-details').textContent = 'null';
           }
         }, function(error) {
