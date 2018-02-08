@@ -120,10 +120,19 @@ var dietString = "&allowedDiet[]=";
 var allergyRequest = "";
 
 var dietRequest = "";
+var isUnClickedAll=false;
+var isUnClickedDiet=false;
 
+//went ahead and comment out v1 of the checkbox for the allergy and diet
+//got the checkbox for the submit button to work
 
+/*
 // when a check button is clicked and it has the allergy class, add to allergyRequest.
-$(".foodOptions").on("click", ".allergy", function(){
+$(".foodOptions").on("click", ".allergy", function()
+{
+$.each($("input:checked")
+
+
   var restrict = $(this).val().trim();
   allergyRequest += (restrictString + restrict);
   console.log("allergy", allergyRequest);
@@ -136,10 +145,11 @@ $(".foodOptions").on("click", ".diet", function(){
   dietRequest += (dietString + restrict);
   console.log("diet", dietRequest);
 });
-
+*/
 
 // call function when submit button is pressed
-$("#inputBtn").on("click", function(event){
+$("#inputBtn").on("click", function(event)
+{
   // prevent page refresh when submit is pressed
   event.preventDefault();  
   // create initial array for recipe_ids
@@ -154,6 +164,29 @@ $("#inputBtn").on("click", function(event){
   imgStr;
   // create a varaible to store the amount of recipes returned from api
   count = 0;
+
+
+  //version 2 of the checkbox
+  //this is to create the filter for the specific diet
+  $("input[class=diet]:checked").each(function() 
+  {
+    //once the user clicks on the submit button, go ahead and check what
+    //input has been clicked and concat each diet together
+    var restrict = $(this).val().trim();
+    dietRequest += (dietString + restrict);
+    console.log("diet", dietRequest);
+   });
+
+  //this is to create the filter for the specific allergy
+  $("input[class=allergy]:checked").each(function() 
+  {
+    //once the user clicks on the submit button, go ahead and check what
+    //input has been clicked and concat each allergy together
+    var restrict = $(this).val().trim();
+    allergyRequest += (restrictString + restrict);
+    console.log("allergy", allergyRequest);
+  });
+
 
 
   $(".outputArea").empty();
@@ -202,7 +235,8 @@ $("#inputBtn").on("click", function(event){
     console.log(imageArray);
 
     // initiate another for loop to display image properties
-    for (var i = 0; i < imageArray.length; i++) {
+    for (var i = 0; i < imageArray.length; i++) 
+    {
       // var newContainer = $("<div class='container'");
       var newCard = $("<div class='card' style='width: 18rem;'>");
       var newImage = $("<img class='card-img-top'>");
