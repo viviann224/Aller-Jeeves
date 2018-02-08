@@ -23,6 +23,8 @@ var easing = "linear";
 
 var uSignIn ;
 
+var actUser = {};
+
 boxEnterTimeline
   .add({
     targets: "#title",
@@ -279,7 +281,7 @@ $("#inputBtn").on("click", function(event) {
 
 // ============USER AUTHENTICATION============================
   var uiConfig = {
-    signInSuccessUrl: "https://kcarter92.github.io/projectOne/",
+    // signInSuccessUrl: "https://kcarter92.github.io/projectOne/"
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -297,6 +299,7 @@ $("#inputBtn").on("click", function(event) {
   
  initApp = function() {
         firebase.auth().onAuthStateChanged(function(user) {
+          actUser = user;
           if (user) {
             // User is signed in.
             uSignIn = true;
@@ -310,17 +313,12 @@ $("#inputBtn").on("click", function(event) {
             user.getIdToken().then(function(accessToken) {
               document.getElementById('sign-in-status').textContent = 'Signed in';
               document.getElementById('sign-in').textContent = 'Sign Out';
-              document.getElementById('account-details').textContent = JSON.stringify({
-                displayName: displayName,
-                uid: uid,
-              }, null, '  ');
             });
           } else {
             // User is signed out.
             uSignIn = false;
             document.getElementById('sign-in-status').textContent = 'Signed out';
             document.getElementById('sign-in').textContent = 'Sign In';
-            document.getElementById('account-details').textContent = 'null';
           }
         }, function(error) {
           console.log(error);
@@ -343,10 +341,20 @@ $('#signOut').click(function(){
 $(document).on('click', '.bookmark', function () {
   // event.preventDefault();
   if (uSignIn) {
-    database.ref("/users/" + user.uid).push({
+    database.ref("/users/" + actUser.uid).push({
       success: "You successfully pushed something to an individual user's bookmark" 
     })
     alert("bookmarked!");
   } else {
     alert("Sign in to bookmark recipes!");
 }})
+
+$('#signInBtn').click(function(event){
+  event.preventDefault()
+  if (uSignIn) {
+    $('#exampleModal').css('display', 'none')
+    firebase.auth().signOut().then(function() {
+    console.log('Signed Out');
+  }) } else {
+    $('#exampleModal').css('display', 'block')
+  }})
