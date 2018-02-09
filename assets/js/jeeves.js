@@ -268,7 +268,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
               var store = listItem.text(item);
               $(".listOfIngred").append(store);
               //console.log(cardList);
-              
             });
 
             
@@ -378,6 +377,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
         initApp()
       });
 
+// sign out button
 $('#signOut').click(function(){
   firebase.auth().signOut().then(function() {
     console.log('Signed Out');
