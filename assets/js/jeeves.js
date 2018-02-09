@@ -318,7 +318,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
 
 // ============USER AUTHENTICATION============================
   var uiConfig = {
-    signInSuccessUrl: false;
+    signInSuccessUrl: false,
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
