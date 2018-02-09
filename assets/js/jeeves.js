@@ -281,7 +281,7 @@ $("#inputBtn").on("click", function(event) {
 
 // ============USER AUTHENTICATION============================
   var uiConfig = {
-    // signInSuccessUrl: "https://kcarter92.github.io/projectOne/"
+    signInSuccessUrl: false;
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -299,6 +299,15 @@ $("#inputBtn").on("click", function(event) {
   
  initApp = function() {
         firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // show sign out
+            $('#signInBtn').css("display", "none");
+            $('#signOut').css("display", "inline");
+          } else {
+            // show sign in
+            $('#signOut').css("display", "none");
+            $('#signInBtn').css("display", "inline");
+          }
           actUser = user;
           if (user) {
             // User is signed in.
@@ -312,13 +321,11 @@ $("#inputBtn").on("click", function(event) {
             var providerData = user.providerData;
             user.getIdToken().then(function(accessToken) {
               document.getElementById('sign-in-status').textContent = 'Signed in';
-              document.getElementById('sign-in').textContent = 'Sign Out';
             });
           } else {
             // User is signed out.
             uSignIn = false;
             document.getElementById('sign-in-status').textContent = 'Signed out';
-            document.getElementById('sign-in').textContent = 'Sign In';
           }
         }, function(error) {
           console.log(error);
@@ -348,13 +355,3 @@ $(document).on('click', '.bookmark', function () {
   } else {
     alert("Sign in to bookmark recipes!");
 }})
-
-$('#signInBtn').click(function(event){
-  event.preventDefault()
-  if (uSignIn) {
-    $('#exampleModal').css('display', 'none')
-    firebase.auth().signOut().then(function() {
-    console.log('Signed Out');
-  }) } else {
-    $('#exampleModal').css('display', 'block')
-  }})
