@@ -107,8 +107,9 @@ var imageArray = [];
 
 var ingredArray = [];
 
-var recipeIngred = [];
+var restrictArray = [];
 
+var imgStr;
 // create a varaible to store the amount of recipes returned from api
 var count = 0;
 
@@ -131,14 +132,10 @@ var isUnClickedDiet=false;
 $(".foodOptions").on("click", ".allergy", function()
 {
 $.each($("input:checked")
-
-
   var restrict = $(this).val().trim();
   allergyRequest += (restrictString + restrict);
   console.log("allergy", allergyRequest);
-
 });
-
 // when a check button is clicked and it has the diet class, add to dietRequest.
 $(".foodOptions").on("click", ".diet", function(){
   var restrict = $(this).val().trim();
@@ -148,55 +145,60 @@ $(".foodOptions").on("click", ".diet", function(){
 */
 
 // call function when submit button is pressed
-$("#inputBtn, .inputBtn2").on("click", function(event) {
-  // prevent page refresh when submit is pressed
-  event.preventDefault();  
+$("#inputBtn, .inputBtn2").on("click", function(event)
+ {
+    // prevent page refresh when submit is pressed
+    event.preventDefault();  
 
-  // create initial array for recipe_ids
-  recipeArray = [];
-  // create initial array for titles of recipes
-  titleArray = [];
-  // create initial array for image_urls
-  imageArray = [];
+    // create initial array for recipe_ids
+    recipeArray = [];
+    // create initial array for titles of recipes
+    titleArray = [];
+    // create initial array for image_urls
+    imageArray = [];
 
-  ingredArray =[];
-  // create a varaible to store the amount of recipes returned from api
-  count = 0;
+    ingredArray =[];
+    // create a varaible to store the amount of recipes returned from api
+    count = 0;
 
 
     //version 2 of the checkbox
     //this is to create the filter for the specific diet
-  $("input[class=diet]:checked").each(function() {
-    //once the user clicks on the submit button, go ahead and check what
-    //input has been clicked and concat each diet together
-    var restrict = $(this).val().trim();
-    dietRequest += (dietString + restrict);
-    console.log("diet", dietRequest);
-   });
+    $("input[class=diet]:checked").each(function() 
+    {
+      //once the user clicks on the submit button, go ahead and check what
+      //input has been clicked and concat each diet together
+      var restrict = $(this).val().trim();
+      dietRequest += (dietString + restrict);
+      console.log("diet", dietRequest);
+     });
 
-  //this is to create the filter for the specific allergy
-  $("input[class=allergy]:checked").each(function() {
-    //once the user clicks on the submit button, go ahead and check what
-    //input has been clicked and concat each allergy together
-    var restrict = $(this).val().trim();
-    allergyRequest += (restrictString + restrict);
-    console.log("allergy", allergyRequest);
-  });
+    //this is to create the filter for the specific allergy
+    $("input[class=allergy]:checked").each(function() 
+    {
+      //once the user clicks on the submit button, go ahead and check what
+      //input has been clicked and concat each allergy together
+      var restrict = $(this).val().trim();
+      allergyRequest += (restrictString + restrict);
+      console.log("allergy", allergyRequest);
+    });
 
   //for each food search user input
-  $("input[id=foodSearch]:input").each(function(){
+  $("input[id=foodSearch]:input").each(function()
+  {
     //clears out userinput
-    $(".foodSearch").val('');
+   $(".foodSearch").val('');
    //clears out each search
-    $(".card").empty();
-    console.log("emptying out the card");
+   $(".card").empty();
+   console.log("emptying out the card");
     // grab user's input value and store in new variable
     var userInput = $(this).val().trim();
     //clears out click option of food search
     console.log(userInput);
 
     //if the user input is not empty
-    if(userInput!=""){
+    if(userInput!="")
+    {
       //go ahead and clear out the results to have a new search query
       $(".outputArea").empty();
 
@@ -208,29 +210,31 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
       //calling the ajax class to pass the url, and the
       //GET method to return the myObj object
       $.ajax({
-        url:myURL,
-        method:"GET"
+           url:myURL,
+           method:"GET"
         //once myObj object returns, pass in myObj to the next function
-      }).then(function(myObj) {
+        }).then(function(myObj)
+        {
 
-        var newObj = myObj.matches;
-        console.log(newObj);
+          var newObj = myObj.matches;
+          console.log(newObj);
 
           // set the count value to the count property in the object
-        count = newObj.length;
+          count = newObj.length;
 
-
-        // initiate a for loop to store recipe_id property and image_url property into their arrays
-        for (var i = 0; i < count; i++) {
-          recipeArray.push(newObj[i].id);
-          imageArray.push(newObj[i].imageUrlsBySize[90]);
-          ingredArray.push(newObj[i].ingredients);
-          titleArray.push(newObj[i].recipeName);
-        }
-        console.log(ingredArray);
+          // initiate a for loop to store recipe_id property and image_url property into their arrays
+          for (var i = 0; i < count; i++) 
+          {
+            recipeArray.push(newObj[i].id);
+            imageArray.push(newObj[i].imageUrlsBySize[90]);
+            ingredArray.push(newObj[i].ingredients);
+            titleArray.push(newObj[i].recipeName);
+          }
+          console.log(ingredArray);
 
           // create a for-loop to pull, resize, and reassign photos in the image array
-          for (var j = 0; j < imageArray.length; j++) {
+          for (var j = 0; j < imageArray.length; j++) 
+          {
             imageArray[j] = imageArray[j].toString().replace("s90", "s500");
           }
           // for (var i = 0; i < ingredArray.length; i++) {
@@ -255,7 +259,8 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
             var cardList = $("<ul class='listOfIngred'>");
             var listItem = $("<li class='item'>");
             
-            ingredArray[i].forEach(function(item) {
+            ingredArray[i].forEach(function(item)
+            {
               var store = listItem.text(item);
               $(".listOfIngred").append(store);
               //console.log(cardList);
@@ -285,69 +290,25 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
             $(".outputArea").append(newCard);
           }
 
-
-          // create a for-loop to pull, resize, and reassign photos in the image array
-        for (var j = 0; j < imageArray.length; j++) {
-          imageArray[j] = imageArray[j].toString().replace("s90", "s500");
-        }
-
-    // $("#outputArea").on("click", "front")
-    // initiate another for loop to display image properties
-        for (var i = 0; i < imageArray.length; i++) {
-          // var newContainer = $("<div class='container'");
-          var newCard = $("<div class='card' style='width: 18rem;'>");
-          var cardFront = $("<div class='front'>")
-          var newImage = $("<img class='cardImage'>");
-          var cardBody = $("<div class='cardBody'>");
-          var cardTitle = $("<h5 class='cardTitle'>");
-          var cardBack = $("<div class='back'>");
-          var cardList = $("<ul class='listOfIngred'>");
-          
-          ingredArray[i].forEach(function(item){
-            recipeIngred.push(item);
-          });
-          recipeIngred.forEach(function(innerItem){
-            cardList.append("<li class='listItem'>" + innerItem);
-          })
-          recipeIngred = [];
-          
-          cardBack.append(cardList);
-          
-          cardTitle.text(titleArray[i]);
-          
-          newImage.attr("src", imageArray[i]);
-          
-          cardBody.append(cardTitle);
-
-          newCard.append("<button class='btn bookmark'><i class='fas fa-utensils'></i></button>");
-          
-          cardFront.append(newImage);
-          
-          cardFront.append(cardBody);
-
-          newCard.append(cardFront);
-          
-          newCard.append(cardBack);
-          // newContainer.append(newCard);
-          $(".outputArea").append(newCard);
-        }
-  });
-  console.log("finished iteration");
-  console.log("end of input");
-  }
+        console.log("finished iteration");
+     
+       
+      });
+        console.log("end of input");
+      }
       //clears out the user input
-  $(".outputArea").empty();
+      $(".outputArea").empty();
       //clears out userinput
-  $(".foodSearch").val('');
+       $(".foodSearch").val('');
        //clears out first userinput
-  $("#foodSearch").val('');
+        $("#foodSearch").val('');
         //need code to reset the checkbox / radio box
-      //$("input[class=diet]:checkbox").reset();
-      //$("input[class=allergy]:checkbox").reset();
-      //$("input[class=allergy]:checkbox").removeAttr("checked");
-});   //$("input[class=diet]:checkbox").removeAttr("checked");
+        //$("input[class=diet]:checkbox").reset();
+        //$("input[class=allergy]:checkbox").reset();
+        //$("input[class=allergy]:checkbox").removeAttr("checked");
+});    // $("input[class=diet]:checkbox").removeAttr("checked");
    
-
+});
 
 
 // ============USER AUTHENTICATION============================

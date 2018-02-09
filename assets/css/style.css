@@ -82,6 +82,10 @@ p
 	margin: 0;
 }
 
+.outputArea 
+{
+	margin-top: 0px;
+}
 
 .jumbotron 
 {
@@ -117,7 +121,6 @@ p
 .outputArea
 {
 	text-align: center;
-	margin-top: 0px;
 }
 
 .card
@@ -136,7 +139,7 @@ p
 	max-height: 100%;
 }
 
-.cardBody
+.card-body
 {
   overflow: auto;
   height: 100px;
@@ -153,7 +156,7 @@ p
 	border-radius: 2px;
 }
 
-.back {
+.cardBack {
   background: #eaeaed;
   color: #0087cc;
   line-height: 150px;
@@ -176,4 +179,3 @@ p
 	font-weight: bold;
 	font-family: 'Berkshire Swash', cursive;
 }
-
