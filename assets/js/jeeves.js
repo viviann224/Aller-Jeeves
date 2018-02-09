@@ -268,7 +268,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
               var store = listItem.text(item);
               $(".listOfIngred").append(store);
               //console.log(cardList);
-              
             });
 
             
@@ -318,7 +317,11 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
 
 // ============USER AUTHENTICATION============================
   var uiConfig = {
-    signInSuccessUrl: false,
+    callbacks: {
+      signInSuccess: function(){
+        return false
+      }
+    },
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -336,6 +339,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
   
  initApp = function() {
         firebase.auth().onAuthStateChanged(function(user) {
+          actUser = user
           if (user) {
             // show sign out
             $('#signInBtn').css("display", "none");
@@ -373,6 +377,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
         initApp()
       });
 
+// sign out button
 $('#signOut').click(function(){
   firebase.auth().signOut().then(function() {
     console.log('Signed Out');
