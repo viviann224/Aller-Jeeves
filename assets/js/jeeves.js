@@ -107,9 +107,8 @@ var imageArray = [];
 
 var ingredArray = [];
 
-var restrictArray = [];
+var recipeIngred = [];
 
-var imgStr;
 // create a varaible to store the amount of recipes returned from api
 var count = 0;
 
@@ -239,31 +238,29 @@ $("#inputBtn").on("click", function(event) {
       // var newContainer = $("<div class='container'");
       var newCard = $("<div class='card' style='width: 18rem;'>");
       var cardFront = $("<div class='front'>")
-      var newImage = $("<img class='card-img-top'>");
-      var cardBody = $("<div class='card-body'>");
-      var cardTitle = $("<h5 class='card-title'>");
+      var newImage = $("<img class='cardImage'>");
+      var cardBody = $("<div class='cardBody'>");
+      var cardTitle = $("<h5 class='cardTitle'>");
       var cardBack = $("<div class='back'>");
       var cardList = $("<ul class='listOfIngred'>");
-      var listItem = $("<li class='item'>");
       
       ingredArray[i].forEach(function(item){
-        var store = listItem.text(item);
-        $(".listOfIngred").append(store);
-        console.log(cardList);
-        
+        recipeIngred.push(item);
       });
+      recipeIngred.forEach(function(innerItem){
+        cardList.append("<li class='listItem'>" + innerItem);
+      })
+      recipeIngred = [];
       
-      cardBack.append(listItem);
+      cardBack.append(cardList);
       
-      console.log(cardBack);
-
       cardTitle.text(titleArray[i]);
       
       newImage.attr("src", imageArray[i]);
       
       cardBody.append(cardTitle);
 
-      newCard.append("<button class='btn bookmark'><i class='fas fa-utensils'></i></button>")
+      newCard.append("<button class='btn bookmark'><i class='fas fa-utensils'></i></button>");
       
       cardFront.append(newImage);
       
@@ -281,7 +278,7 @@ $("#inputBtn").on("click", function(event) {
 
 // ============USER AUTHENTICATION============================
   var uiConfig = {
-    signInSuccessUrl: false;
+    signInSuccessUrl: false,
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
