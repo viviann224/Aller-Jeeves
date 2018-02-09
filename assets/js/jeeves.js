@@ -23,8 +23,7 @@ var easing = "linear";
 
 var uSignIn ;
 
-var actUser ;
-
+var actUser = {};
 
 boxEnterTimeline
   .add({
@@ -282,7 +281,7 @@ $("#inputBtn").on("click", function(event) {
 
 // ============USER AUTHENTICATION============================
   var uiConfig = {
-    signInSuccessUrl: "https://kcarter92.github.io/projectOne/",
+    signInSuccessUrl: false;
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -302,6 +301,16 @@ $("#inputBtn").on("click", function(event) {
         firebase.auth().onAuthStateChanged(function(user) {
           actUser = user
           if (user) {
+            // show sign out
+            $('#signInBtn').css("display", "none");
+            $('#signOut').css("display", "inline");
+          } else {
+            // show sign in
+            $('#signOut').css("display", "none");
+            $('#signInBtn').css("display", "inline");
+          }
+          actUser = user;
+          if (user) {
             // User is signed in.
             uSignIn = true;
             var displayName = user.displayName;
@@ -313,18 +322,11 @@ $("#inputBtn").on("click", function(event) {
             var providerData = user.providerData;
             user.getIdToken().then(function(accessToken) {
               document.getElementById('sign-in-status').textContent = 'Signed in';
-              document.getElementById('sign-in').textContent = 'Sign Out';
-              document.getElementById('account-details').textContent = JSON.stringify({
-                displayName: displayName,
-                uid: uid,
-              }, null, '  ');
             });
           } else {
             // User is signed out.
             uSignIn = false;
             document.getElementById('sign-in-status').textContent = 'Signed out';
-            document.getElementById('sign-in').textContent = 'Sign In';
-            document.getElementById('account-details').textContent = 'null';
           }
         }, function(error) {
           console.log(error);
@@ -347,10 +349,9 @@ $('#signOut').click(function(){
 $(document).on('click', '.bookmark', function () {
   // event.preventDefault();
   if (uSignIn) {
-    console.log(actUser);
-    // database.ref("/users/").push({
-      // success: "You successfully pushed something to an individual user's bookmark" 
-    // })
+    database.ref("/users/" + actUser.uid).push({
+      success: "You successfully pushed something to an individual user's bookmark" 
+    })
     alert("bookmarked!");
   } else {
     alert("Sign in to bookmark recipes!");
