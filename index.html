@@ -28,7 +28,7 @@
 				<h4>Can I help you find a recipe?</h4>
 				<input type="text" id="foodSearch" name="search" placeholder="I'll be having...">
 				
-				<button class="btn btn-outline-secondary initSub"  id="inputBtn" type="submit">Search</button>
+				<button class="btn btn-outline-secondary initSub"  id="inputBtn" class="inputBtn1" type="submit">Search</button>
 				<fieldset class="foodOptions">
 					<legend>Do you have any dietary Restrictions?</legend>
 					<div class="row">
@@ -89,9 +89,53 @@
 	<header class="container-fluid">		
 		<nav class="navbar">
 			<form class="form-inline">
-				<input class="form-control mr-sm-2" type="text" placeholder="What else can I get you?">
-			  	<button class="btn my-2 my-sm-0"><i class="fas fa-sort-down"></i></button>
-			    <button class="btn my-2 my-sm-0" type="submit">Search</button>
+				<input class="form-control mr-sm-2" type="text" id="foodSearch" placeholder="What else can I get you?">
+				<!--
+			  	<button class="btn my-2 my-sm-0"><i class="fas fa-sort-down"></i></button> -->
+			  	<fieldset class="foodOptions">
+					<legend>Do you have any dietary Restrictions?</legend>
+					<div class="row">
+						
+							
+								<input class="allergy" type="checkbox" id="dairy" name="interest" value="396^Dairy-Free">
+								<label for="dairy">Dairy-Free</label>
+							
+								<input class="allergy" type="checkbox" id="gluten" name="interest" value="393^Gluten-Free">
+								<label for="gluten">Gluten-Free</label>
+							
+								<input class="allergy" type="checkbox" id="peanuts" name="interest" value="394^Peanut-Free">
+								<label for="peanuts">Peanut-Free</label>
+							
+								<input class="diet" type="checkbox" id="veggie" name="interest" value="387^Lacto-ovo vegetarian">
+								<label for="veggie">Vegetarian</label>
+							
+								<input class="diet" type="checkbox" id="vegan" name="interest" value="386^Vegan">
+								<label for="vegan">Vegan</label>
+							
+								<input class="allergy" type="checkbox" id="soy" name="interest" value="400^Soy-Free">
+								<label for="soy">Soy-Free</label>
+							
+					
+							
+								<input class="allergy" type="checkbox" id="egg" name="interest" value="397^Egg-Free">
+								<label for="egg">Egg-Free</label>
+							
+								<input class="allergy" type="checkbox" id="sulfite" name="interest" value="401^Sulfite-Free">
+								<label for="sulfite">Sulfite-Free</label>
+							
+								<input class="allergy" type="checkbox" id="treeNut" name="interest" value="395^Tree Nut-Free">
+								<label for="treeNut">Tree Nut-Free</label>
+							
+								<input class="diet" type="checkbox" id="pescetarian" name="interest" value="390^Pescetarian">
+								<label for="pescetarian">Pescetarian</label>
+							
+								<input class="diet" type="checkbox" id="paleo" name="interest" value="403^Paleo">
+								<label for="paleo">Paleo</label>
+							
+						
+	 				</div>
+				</fieldset>
+			    <button class="btn my-2 my-sm-0" class="inputBtn2" id="inputBtn" type="submit">Search</button>
 			</form>
 			<h2 class="navbar-brand">Aller-Jeeves</h2>
 			<div class="navbar-right">
