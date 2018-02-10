@@ -108,8 +108,6 @@ var imageArray = [];
 var ingredArray = [];
 
 var recipeIngred = [];
-
-var imgStr;
 // create a varaible to store the amount of recipes returned from api
 var count = 0;
 
@@ -229,52 +227,47 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
         for (var j = 0; j < imageArray.length; j++) {
           imageArray[j] = imageArray[j].toString().replace("s90", "s500");
         }
-          // for (var i = 0; i < ingredArray.length; i++) {
-          //   ingredArray[i].forEach(function(item){
-          //   console.log(item);
-          //   })
-          // };
-
 
         console.log(imageArray);
-        // $("#outputArea").on("click", "front")
+        $("#outputArea").on("click", "front")
         // initiate another for loop to display image properties
         for (var i = 0; i < imageArray.length; i++) {
-          // var cardContainer = $("<div class='cardContainer'");
-          var newCard = $("<div class='card'>");
-          var cardFront = $("<div class='front'>")
-          var newImage = $("<img class='cardImage'>");
-          var cardBody = $("<div class='cardBody'>");
-          var cardTitle = $("<h5 class='cardTitle'>");
+          var newCard = $("<div class='cardContainer'>");
+          var cardBody = $("<div class='card'>");
+          
+          var cardFront = $("<div class='front'>");
+          var cardImage = $("<img class='cardImage'>");
+          var cardTitle = $("<h5 class='cardTitle'>"); 
+          
           var cardBack = $("<div class='back'>");
-          var cardList = $("<ul class='ingredList'>");
+          var cardList = $("<div class='ingredList'>");
           
           ingredArray[i].forEach(function(item){
             recipeIngred.push(item);
           });
           recipeIngred.forEach(function(innerItem){
-            cardList.append("<li class='listItem'>" + innerItem);
+            cardList.append("<h6 class='listItem'>" + innerItem);
+            console.log(i, innerItem);
           })
-          recipeIngred = [];
-
-          cardBack.append(cardList);
           
+          cardBack.append(cardList);
+
+          cardBody.append("<button class='btn bookmark'><i class='fas fa-utensils'></i></button>");
+
           cardTitle.text(titleArray[i]);
           
-          newImage.attr("src", imageArray[i]);
+          cardImage.attr("src", imageArray[i]);
           
-          cardBody.append(cardTitle);
+          cardFront.append(cardImage);
+          
+          cardFront.append(cardTitle);
+                    
+          cardBody.append(cardFront);
+          
+          cardBody.append(cardBack);
 
-          newCard.append("<button class='btn bookmark'><i class='fas fa-utensils'></i></button>")
-          
-          cardFront.append(newImage);
-          
-          cardFront.append(cardBody);
+          newCard.append(cardBody);
 
-          newCard.append(cardFront);
-          
-          newCard.append(cardBack);
-          // newContainer.append(newCard);
           $(".outputArea").append(newCard);
         }
 
@@ -298,6 +291,10 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
    
 });
 
+$(".outputArea").on("click", ".card", function(){
+  console.log("flip it");
+  $(this).toggleClass("flip");
+})
 
 // ============USER AUTHENTICATION============================
   var uiConfig = {
