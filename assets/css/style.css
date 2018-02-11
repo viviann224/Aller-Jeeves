@@ -44,8 +44,12 @@ hr {
 .pos-f-t
 {
 	background-color: #a4b67e;
-	 border-radius:  0px  0px 15px 15px ;
-	 box-shadow: 0 0 3px #3c6426;
+	border-radius:  0px  0px 15px 15px ;
+	box-shadow: 0 0 3px black;
+	text-shadow: 0 0 3px gray;
+	color:#3c6426;
+
+
 
 
 }
