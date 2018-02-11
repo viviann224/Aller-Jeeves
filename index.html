@@ -28,9 +28,13 @@
 				<h1 class="display-4" id="title">Aller-Jeeves</h1>
 				<hr class="my-4">
 				<h4>Can I help you find a recipe?</h4>
-				<input type="text" id="foodSearch" name="search" placeholder="I'll be having...">
+		
+			
+				<input type="text" id="foodSearch" class=" firstSearch" name="search" placeholder="I'll be having...">
 				
 				<button class="btn btn-outline-secondary initSub"  id="inputBtn" class="inputBtn1" type="submit">Search</button>
+			
+		
 				<fieldset class="foodOptions">
 					<legend>Do you have any dietary Restrictions?</legend>
 					<div class="row">
@@ -92,19 +96,19 @@
 		<!--hidden dropdown -->
 		<div class="pos-f-t">
   <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-      <h4 class="text-white">Collapsed content</h4>
+    <div class="p-4 navbarContent">
+      <h4 class="text-white"><h2>Can I help you find a recipe?</h2></h4>
       <!--make drop down styling muted -->
       <span class="text-muted">
       <fieldset class="foodOptions2 dropdown" id="hiddenFood">
       <div class="header container">
       	
-        <h2>Can I help you find a recipe?</h2>
+        
         <div class="row">
-        <div clas="col-9">
-        <input class="form-control mr-sm-2" type="text" id="foodSearch" placeholder="What else can I get you?"> 
+        <div clas="col-md-9">
+        <input class="form-control mr-sm-2" type="text" id="foodSearch" placeholder="Anything else?"> 
     </div>
-    <div class="col-3">
+    <div class="col-md-3">
         <button class="btn my-2 my-sm-0" class="inputBtn2" id="inputBtn" type="submit">Search</button>
     </div>
 </div>
@@ -112,7 +116,7 @@
       <div class="row">
         <legend><h3>Do you have any dietary Restrictions?</h3></legend>
       
-        <div class="col">
+        <div class="col dietStyle">
           
           <input class="allergy" type="checkbox" id="dairy" name="interest" value="396^Dairy-Free">
                 <label for="dairy">Dairy-Free</label>
@@ -127,7 +131,7 @@
                 <label for="veggie">Vegetarian</label>
 
         </div>
-        <div class="col">
+        <div class="col dietStyle">
       
           <input class="diet" type="checkbox" id="vegan" name="interest" value="386^Vegan">
                 <label for="vegan">Vegan</label>
@@ -141,7 +145,7 @@
                 <input class="allergy" type="checkbox" id="sulfite" name="interest" value="401^Sulfite-Free">
                 <label for="sulfite">Sulfite-Free</label>
         </div>
-        <div class="col">
+        <div class="col dietStyle">
       
 
                 <input class="allergy" type="checkbox" id="treeNut" name="interest" value="395^Tree Nut-Free">
@@ -160,7 +164,7 @@
   </span>
     </div>
   </div>
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark rounded-left">
   	<!--button to toggle hide or show -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span> Lets Find another one! 

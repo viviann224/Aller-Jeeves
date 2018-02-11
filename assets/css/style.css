@@ -21,20 +21,45 @@ hr {
 }
 
 /*drop down styling */
+.navbarContent
+{
+	margin:0px;
+	padding:0px;
+}
+.navbar-toggler
+{
+	box-shadow: 0 0 3px #ffffff;
+}
+
+.navbar-toggler-icon
+{
+	color:white;
+
+}
+.allergy:hover, .diet:hover
+{
+	   background-color: pink;
+}
 
 .pos-f-t
 {
-	background-color: green;
+	background-color: #a4b67e;
+	 border-radius:  0px  0px 15px 15px ;
+	 box-shadow: 0 0 3px #3c6426;
+
+
 }
-.foodOptions2
+.foodOptions
 {
 	margin: 0px 0px;
+	width:100%;
 }
+
 #foodSearch {
 	padding: 5px 3px;
-	width: 100%;
+	width: 70%;
 }
-.navbar-brand {
+.navbar-bra {
 	background-color: #FEFBE0;
 	color: #CB4E61;
 	padding: 5px;
@@ -52,13 +77,35 @@ hr {
     color: white;
     text-align: center;
 }
+/*overall content on dropdown*/
+#navbarToggleExternalContent
+{
+	background-color: #a4b67e;
+
+}
 
 .dropdown {
     float: left;
     overflow: hidden;
-    background-color: blue;
+    background-color: ;
     width:100%;
-    padding-left:20px;
+    padding:20px;
+    top:10px;
+}
+.container
+{
+	margin0px;
+	width: 100%;
+}
+
+.dropdown-content .header {
+    background: blue;
+    padding: 16px;
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 legend
@@ -113,16 +160,27 @@ p {
 }
 
 
-#foodSearch {
-	padding: 5px 3px;
-	width: 40%;
+
+.firstSearch
+{
+	width:100%;
+	background-color: 
 }
 
-.foodOptions {
-	margin: 5px 380px;
+.foodOptions2 {
+	margin: -30px 0px 0px 20px;
+	width: 100%;
 }
 
+#search
 
+{
+	text-align: center;
+	width: 100%;
+	background-color: yellow;
+	 padding-right:20%;
+	 padding-left: 20%;
+}
 
 
 
