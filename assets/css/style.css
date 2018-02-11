@@ -10,20 +10,17 @@ font-family: 'Catamaran', sans-serif; (not for headers)
 font-family: 'Berkshire Swash', cursive; (for headers*/
 
 /*index.html================================*/
-body 
-{
+body {
 	background-color: #FEFBE0; 
 	color: #CB4E61;
 	font-family: 'Catamaran', sans-serif;
 }
 
-hr
-{
+hr {
 	margin-top: 5px;
 }
 
-.navbar-brand 
-{
+.navbar-brand {
 	background-color: #FEFBE0;
 	color: #CB4E61;
 	padding: 5px;
@@ -36,59 +33,45 @@ hr
 }
 
 
-header 
-{
+header {
 	background-color: #C3D2A2;
 }
 
-@media (min-width: 1200px) 
-{
-	#mainBody 
-	{
+@media (min-width: 1200px) {
+	#mainBody {
 		max-width: 1300px;
 	} 	
 }
 
-.conversionTable 
-{
+.conversionTable {
 	margin: 10px; 
 	padding: 10px;
 	background-color: #fff;
 	border-radius: 10px;
 }
 
-select 
-{
+select {
 	padding-top: 2px;
 	padding-bottom: 3px;
 }
 
-#noInput 
-{
+#noInput {
 	max-width: 50px;
 	padding-left: 5px;
 }
 
-.btn
-{
+.btn {
 	border-color: #CB4E61;
 	background-color: #Fff;
 	color: #CB4E61;
 	border-radius: 1px;
 }
 
-p
-{
+p {
 	margin: 0;
 }
 
-.outputArea 
-{
-	margin-top: 0px;
-}
-
-.jumbotron 
-{
+.jumbotron {
 	margin-top:50px;
 	background-color: #FEFBE0;
 	text-align: center;
@@ -96,76 +79,25 @@ p
 }
 
 
-#foodSearch 
-{
+#foodSearch {
 	padding: 5px 3px;
 	width: 40%;
 }
 
-.foodOptions
-{
+.foodOptions {
 	margin: 5px 380px;
 }
 
-.col-sm-6
-{
+.col-sm-6 {
 	text-align: left;
 }
 
-.allergy, .diet
-{
+.allergy, .diet {
 	float: center;
 	margin-right: 5px;
 }
 
-.outputArea
-{
-	text-align: center;
-}
-
-.card
-{
-	display:inline-block;
-	margin: 10px;
-	transform-style: preserve-3d;
-	transition: all 1s ease-in-out;
-	backface-visibility: hidden;
-	border-radius: 6px;
-	overflow: hidden;
-}
-
-.card > img
-{
-	max-height: 100%;
-}
-
-.card-body
-{
-  overflow: auto;
-  height: 100px;
-  padding: 8px;
-}
-
-.bookmark {
-	margin-top: 5px;
-	margin-bottom: -40px;
-	padding: 4px 6px 1px 6px;
-	position: relative;
-	float: right;
-	right: 5px;
-	border-radius: 2px;
-}
-
-.cardBack {
-  background: #eaeaed;
-  color: #0087cc;
-  line-height: 150px;
-  text-align: center;
-  transform: rotateY(180deg);
-}
-
-.slate 
-{
+.slate {
 	position: absolute;
 	width: 100vw;
 	height: 100vh;
@@ -173,10 +105,63 @@ p
 	z-index: 100;
 }
 
-#title 
-{
+#title {
 	opacity: 0;
 	font-weight: bold;
 	font-family: 'Berkshire Swash', cursive;
 }
 
+.outputArea{
+	text-align: center;
+	margin: 0 auto;
+	display
+}
+
+.cardContainer{
+	perspective: 700;
+}
+
+.card {
+	text-align: center;
+	display: inline-block;
+	float: left;
+	margin: 10px 5px;
+	position: relative;
+	width: 280px;
+	height: 350px;
+	transform-style: preserve-3d;
+	transition: all 1s ease;
+	border-radius: 6px;
+}
+
+.cardImage {
+	max-width: 100%;
+	padding: 5px;
+}
+
+.front, .back {
+	background-color: #eaeaed;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+  color: #0087cc;
+  text-align: center;
+  backface-visibility: hidden;
+}
+
+.back{
+  transform: rotateY(180deg);
+}
+
+.flip {
+	transform: rotateY(180deg);
+}
+
+.bookmark {
+	margin-top: 5px;
+	padding: 4px 6px 1px 6px;
+	position: absolute;
+	right: 5px;
+	border-radius: 2px;
+	z-index: 100;
+}
