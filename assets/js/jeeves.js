@@ -1,3 +1,4 @@
+
 // Initialize Firebase
 
 var config = {
