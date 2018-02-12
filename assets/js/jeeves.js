@@ -178,76 +178,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     console.log("allergy", allergyRequest);
   });
 
-<<<<<<< HEAD
-
-
-  $(".outputArea").empty();
-
-//  // grab user's input value and store in new variable
-  var userInput = $("#foodSearch").val().trim();
-  console.log(userInput);
-
-  // website url for ajax to pull from
-  var myURL="https://api.yummly.com/v1/api/recipes?_app_id=87e47442&_app_key=11e4aadcc3dddb10fa26ae2968e1ce03&q=" + userInput + allergyRequest + dietRequest + "&maxResult=12";
-
-  console.log(myURL);
-
-   //calling the ajax class to pass the url, and the
-   //GET method to return the myObj object
-  $.ajax({
-     url:myURL,
-     method:"GET"
-  //once myObj object returns, pass in myObj to the next function
-  }).then(function(myObj){
-
-    var newObj = myObj.matches;
-    console.log(newObj);
-
-
-    // set the count value to the count property in the object
-    count = newObj.length;
-
-    // initiate a for loop to store recipe_id property and image_url property into their arrays
-    for (var i = 0; i < count; i++) {
-      recipeArray.push(newObj[i].id);
-      imageArray.push(newObj[i].imageUrlsBySize[90]);
-      ingredArray.push(newObj[i].ingredients);
-      titleArray.push(newObj[i].recipeName);
-    }
-    console.log(ingredArray);
-
-    // create a for-loop to pull, resize, and reassign photos in the image array
-    for (var j = 0; j < imageArray.length; j++) {
-      imageArray[j] = imageArray[j].toString().replace("s90", "s500");
-    }
-    // for (var i = 0; i < ingredArray.length; i++) {
-    //   ingredArray[i].forEach(function(item){
-    //   console.log(item);
-    //   })
-    // };
-
-
-    console.log(imageArray);
-    $("#outputArea").on("click", "front")
-    // initiate another for loop to display image properties
-    for (var i = 0; i < imageArray.length; i++) 
-    {
-      // var newContainer = $("<div class='container'");
-      var newCard = $("<div class='card' style='width: 18rem;'>");
-      var cardFront = $("<div class='front'>")
-      var newImage = $("<img class='card-img-top'>");
-      var cardBody = $("<div class='card-body'>");
-      var cardTitle = $("<h5 class='card-title'>");
-      var cardBack = $("<div class='back'>");
-      var cardList = $("<ul class='listOfIngred'>");
-      var listItem = $("<li class='item'>");
-      
-      ingredArray[i].forEach(function(item){
-        var store = listItem.text(item);
-        $(".listOfIngred").append(store);
-        console.log(cardList);
-        
-=======
   //for each food search user input
   $("input[id=foodSearch]:input").each(function() {
     //clears out userinput
@@ -344,7 +274,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
         console.log("finished iteration");
      
        
-
       });
         console.log("end of input");
       }
