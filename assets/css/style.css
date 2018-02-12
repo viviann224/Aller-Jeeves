@@ -21,6 +21,43 @@ hr {
 }
 
 /*drop down styling */
+input[id=foodSearch]
+{
+	background-color: #f5edab;
+	padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border: 2px solid #d3b346;
+}
+/*submit button styling*/
+button[class=inputBtn2], button[id=inputBtn]
+{
+	background-color: #f5edab;
+	padding: 5px 5px;
+    box-sizing: border-box;
+    border: none;
+    border: 2px solid #d3b346;
+}
+/* When checkbox checked, add blue background */
+.container input:checked ~ .checkmark
+ {
+    background-color: #264813;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after 
+{
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after 
+{
+    display: block;
+}
+
 .navbarContent
 {
 	margin:0px;
@@ -34,13 +71,9 @@ hr {
 .navbar-toggler-icon
 {
 	color:white;
-
-}
-.allergy:hover, .diet:hover
-{
-	   background-color: pink;
 }
 
+/*content inside the navbar*/
 .pos-f-t
 {
 	background-color: #a4b67e;
@@ -48,22 +81,20 @@ hr {
 	box-shadow: 0 0 3px black;
 	text-shadow: 0 0 3px gray;
 	color:#3c6426;
-
-
-
-
 }
+/*styling for the user input textbox*/
 .foodOptions
 {
 	margin: 0px 0px;
 	width:100%;
 }
-
-#foodSearch {
+/*styling for the user input textbox (2nd textbox) for the navbar*/
+#foodSearch 
+{
 	padding: 5px 3px;
-	width: 70%;
 }
-.navbar-bra {
+.navbar-bra 
+{
 	background-color: #FEFBE0;
 	color: #CB4E61;
 	padding: 5px;
@@ -85,7 +116,6 @@ hr {
 #navbarToggleExternalContent
 {
 	background-color: #a4b67e;
-
 }
 
 .dropdown {
@@ -102,20 +132,25 @@ hr {
 	width: 100%;
 }
 
-.dropdown-content .header {
+.dropdown-content .header 
+{
     background: blue;
     padding: 16px;
     color: white;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content 
+{
     display: block;
-}
 
+}
+/*section to the drop down and styling for the dietary restrictions*/
 legend
 {
+	margin:5px;
 	width 75%;
 }
+/*end of nav bar / food submission styling*/
 
 
 header {
@@ -167,7 +202,7 @@ p {
 
 .firstSearch
 {
-	width:100%;
+	width:70%;
 	background-color: 
 }
 

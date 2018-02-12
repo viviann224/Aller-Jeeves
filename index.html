@@ -17,9 +17,6 @@
 <!--____________________Font Awesome________________________-->
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
-
-
-
 </head>
 <body>
 	<div class="slate">
@@ -28,12 +25,9 @@
 				<h1 class="display-4" id="title">Aller-Jeeves</h1>
 				<hr class="my-4">
 				<h4>Can I help you find a recipe?</h4>
-		
-			
 				<input type="text" id="foodSearch" class=" firstSearch" name="search" placeholder="I'll be having...">
 				
 				<button class="btn btn-outline-secondary initSub"  id="inputBtn" class="inputBtn1" type="submit">Search</button>
-			
 		
 				<fieldset class="foodOptions">
 					<legend>Do you have any dietary Restrictions?</legend>
@@ -93,11 +87,11 @@
 	</div>
 
 	<header class="container-fluid">
-		<!--hidden dropdown -->
-		<div class="pos-f-t">
-  <div class="collapse" id="navbarToggleExternalContent">
+	<!--hidden dropdown -->
+	<div class="pos-f-t">
+  	<div class="collapse" id="navbarToggleExternalContent">
     <div class="p-4 navbarContent">
-      <h4 class="text-white"><h2>Can I help you find a recipe?</h2></h4>
+     <h4 class="text-white"><h2>Can I help you find a recipe?</h2></h4>
       <!--make drop down styling muted -->
       <span class="text-muted">
       <fieldset class="foodOptions2 dropdown" id="hiddenFood">
@@ -172,119 +166,6 @@
   </nav>
 </div>
 
-<!--
-		<div class="navbar">
-  <div class="dropdown">
-    <button class="dropbtn">Anything Else? 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <fieldset class="foodOptions">
-      <div class="header">
-        <h2>Can I help you find a recipe?</h2>
-        <input class="form-control mr-sm-2" type="text" id="foodSearch" placeholder="What else can I get you?"> <button class="btn my-2 my-sm-0" class="inputBtn2" id="inputBtn" type="submit">Search</button>
-      </div>   
-      <div class="row">
-        <legend><h3>Do you have any dietary Restrictions?</h3></legend>
-        <div class="column">
-          
-          <input class="allergy" type="checkbox" id="dairy" name="interest" value="396^Dairy-Free">
-                <label for="dairy">Dairy-Free</label>
-              <br>
-                <input class="allergy" type="checkbox" id="gluten" name="interest" value="393^Gluten-Free">
-                <label for="gluten">Gluten-Free</label>
-                 <br>
-                <input class="allergy" type="checkbox" id="peanuts" name="interest" value="394^Peanut-Free">
-                <label for="peanuts">Peanut-Free</label>
-                <br>
-                <input class="diet" type="checkbox" id="veggie" name="interest" value="387^Lacto-ovo vegetarian">
-                <label for="veggie">Vegetarian</label>
-
-        </div>
-        <div class="column">
-      
-          <input class="diet" type="checkbox" id="vegan" name="interest" value="386^Vegan">
-                <label for="vegan">Vegan</label>
-              <br>
-                <input class="allergy" type="checkbox" id="soy" name="interest" value="400^Soy-Free">
-                <label for="soy">Soy-Free</label>
-              <br>
-                <input class="allergy" type="checkbox" id="egg" name="interest" value="397^Egg-Free">
-                <label for="egg">Egg-Free</label>
-                <br>
-                <input class="allergy" type="checkbox" id="sulfite" name="interest" value="401^Sulfite-Free">
-                <label for="sulfite">Sulfite-Free</label>
-        </div>
-        <div class="column">
-      
-
-                <input class="allergy" type="checkbox" id="treeNut" name="interest" value="395^Tree Nut-Free">
-                <label for="treeNut">Tree Nut-Free</label>
-              <br>
-                <input class="diet" type="checkbox" id="pescetarian" name="interest" value="390^Pescetarian">
-                <label for="pescetarian">Pescetarian</label>
-              <br>
-                <input class="diet" type="checkbox" id="paleo" name="interest" value="403^Paleo">
-                <label for="paleo">Paleo</label>
-        </div>
-      </div>
-      </fieldset>
-    </div>
-  </div> 
-</div>
--->
-	<!--		
-		<nav class="navbar">
-			<form class="form-inline">
-				<input class="form-control mr-sm-2" type="text" id="foodSearch" placeholder="What else can I get you?">
-				
-			  	<button class="btn my-2 my-sm-0"><i class="fas fa-sort-down"></i></button>
-			  	<fieldset class="foodOptions">
-					<legend>Do you have any dietary Restrictions?</legend>
-					<div class="row">
-						
-							
-								<input class="allergy" type="checkbox" id="dairy" name="interest" value="396^Dairy-Free">
-								<label for="dairy">Dairy-Free</label>
-							
-								<input class="allergy" type="checkbox" id="gluten" name="interest" value="393^Gluten-Free">
-								<label for="gluten">Gluten-Free</label>
-							
-								<input class="allergy" type="checkbox" id="peanuts" name="interest" value="394^Peanut-Free">
-								<label for="peanuts">Peanut-Free</label>
-							
-								<input class="diet" type="checkbox" id="veggie" name="interest" value="387^Lacto-ovo vegetarian">
-								<label for="veggie">Vegetarian</label>
-							
-								<input class="diet" type="checkbox" id="vegan" name="interest" value="386^Vegan">
-								<label for="vegan">Vegan</label>
-							
-								<input class="allergy" type="checkbox" id="soy" name="interest" value="400^Soy-Free">
-								<label for="soy">Soy-Free</label>
-							
-					
-							
-								<input class="allergy" type="checkbox" id="egg" name="interest" value="397^Egg-Free">
-								<label for="egg">Egg-Free</label>
-							
-								<input class="allergy" type="checkbox" id="sulfite" name="interest" value="401^Sulfite-Free">
-								<label for="sulfite">Sulfite-Free</label>
-							
-								<input class="allergy" type="checkbox" id="treeNut" name="interest" value="395^Tree Nut-Free">
-								<label for="treeNut">Tree Nut-Free</label>
-							
-								<input class="diet" type="checkbox" id="pescetarian" name="interest" value="390^Pescetarian">
-								<label for="pescetarian">Pescetarian</label>
-							
-								<input class="diet" type="checkbox" id="paleo" name="interest" value="403^Paleo">
-								<label for="paleo">Paleo</label>
-							
-						
-	 				</div>
-				</fieldset>
-			    <button class="btn my-2 my-sm-0" class="inputBtn2" id="inputBtn" type="submit">Search</button>
-			</form>
-		-->
 			<h2 class="navbar-brand">Aller-Jeeves</h2>
 			<div class="navbar-right">
 				<span id="sign-in-status"></span>
