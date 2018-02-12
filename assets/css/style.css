@@ -153,13 +153,13 @@ p {
 	display
 }
 
-/*.btn.outSource{
+.btn.outSource{
 	border-color: #CB4E61;
 	background-color: #Fff;
 	color: #CB4E61;
 	border-radius: 1px;
 }
-*/
+
 p.listItem{
 	text-transform: capitalize;
 }
@@ -266,4 +266,8 @@ input[type=checkbox]
 .listItem{
 	padding-top: 10px;
 	padding-left: 5px;
+}
+
+.cardTitle{
+	padding: 1px;
 }
