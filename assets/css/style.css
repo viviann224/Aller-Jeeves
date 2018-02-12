@@ -93,19 +93,11 @@ select {
 }
 
 .btn {
-	border-color: #CB4E61;
 	background-color: #FEFBE0;
 	color: #CB4E61;
 	border-radius: 5px;
 	border: 2px solid #CB4E61;
 	font-weight: bold;
-}
-
-.btn:hover{
-	background-color: #CB4E61;
-	color: #fff;
-	border-color: #CB4E61;
-	border-radius: 1px;
 }
 
 p {
@@ -154,14 +146,6 @@ p {
 	font-weight: bold;
 	font-family: 'Berkshire Swash', cursive;
 }
-.bookmark {
-	margin-top: 5px;
-	padding: 4px 6px 1px 6px;
-	position: absolute;
-	right: 5px;
-	border-radius: 2px;
-	z-index: 100;
-}
 
 .outputArea{
 	text-align: center;
@@ -169,35 +153,22 @@ p {
 	display
 }
 
-<<<<<<< HEAD
-.btn.outSource{
-=======
 /*.btn.outSource{
->>>>>>> 5f8e504421b8455533af55ebac74d9fc3a96cf87
 	border-color: #CB4E61;
 	background-color: #Fff;
 	color: #CB4E61;
 	border-radius: 1px;
 }
-<<<<<<< HEAD
-
-=======
 */
->>>>>>> 5f8e504421b8455533af55ebac74d9fc3a96cf87
 p.listItem{
 	text-transform: capitalize;
 }
 
 .cardContainer{
 	perspective: 700px;
-<<<<<<< HEAD
-  -webkit-perspective: 700px;
-   -moz-perspective: 700px;
-=======
 	-webkit-perspective: 700px;
 	-moz-perspective: 700px;
 
->>>>>>> 5f8e504421b8455533af55ebac74d9fc3a96cf87
 }
 
 .card {
@@ -225,38 +196,21 @@ p.listItem{
 	position: absolute;
 	width: 100%;
 	height: 100%;
-<<<<<<< HEAD
-  color: #CB4E61;
-  text-align: center;
-  backface-visibility: hidden;
-=======
 	color: #FEFBE0;
 	text-align: center;
 	backface-visibility: hidden;
 	border-radius: 1px;
->>>>>>> 5f8e504421b8455533af55ebac74d9fc3a96cf87
 }
 
 .back{
   transform: rotateY(180deg);
-<<<<<<< HEAD
-	-webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  overflow: scroll;
-=======
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
->>>>>>> 5f8e504421b8455533af55ebac74d9fc3a96cf87
 }
 
 .flip {
 	transform: rotateY(180deg);
 	-webkit-transform: rotateY(180deg);
-<<<<<<< HEAD
-  -moz-transform: rotateY(180deg);
-}
-
-=======
 	-moz-transform: rotateY(180deg);
 }
 .dropdown-menu.show{
@@ -313,4 +267,3 @@ input[type=checkbox]
 	padding-top: 10px;
 	padding-left: 5px;
 }
->>>>>>> 5f8e504421b8455533af55ebac74d9fc3a96cf87
