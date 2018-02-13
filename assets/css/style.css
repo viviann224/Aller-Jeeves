@@ -7,7 +7,7 @@
 
 /*----------FONTS-----------
 font-family: 'Catamaran', sans-serif; (not for headers)
-font-family: 'Berkshire Swash', cursive; (for headers*/
+font-family: 'Berkshire Swash', cursive; (for headers)*/
 
 /*index.html================================*/
 body {
@@ -18,6 +18,7 @@ body {
 
 hr {
 	margin-top: 5px;
+	border: 0.5px solid #CB4E61;
 }
 
 /*drop down styling */
@@ -99,9 +100,10 @@ button[class=inputBtn2], button[id=inputBtn]
 	color: #CB4E61;
 	padding: 5px;
 	border-radius: 10px;
-	border: 5px dashed #CFB7A1;
-	font-size: 1.7rem;
-	width: 90%;
+
+	border: 5px double #CFB7A1;
+	font-size: 2.5rem;
+	width: 941px;
 	text-align: center;
 	font-family: 'Berkshire Swash', cursive;
 }
@@ -153,6 +155,26 @@ legend
 /*end of nav bar / food submission styling*/
 
 
+.btn:active, .btn-outline-secondary:hover, .btn-secondary:hover, .btn-outline-secondary:active, .btn-secondary:active {
+    color: #FEFBE0;
+    background-color: #CB2E61;
+    border-color: #C3D2A2;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    color: #FEFBE0;
+    background-color: #CB2E61;
+    border-color: #C3D2A2;
+}
+
+
+label
+{
+	position: relative;
+	margin-left: 25px;
+}
+
+
 header {
 	background-color: #C3D2A2;
 }
@@ -166,25 +188,37 @@ header {
 .conversionTable {
 	margin: 10px; 
 	padding: 10px;
-	background-color: #fff;
+	background-color: #FEFBE0;
 	border-radius: 10px;
+	border: 1.5px dashed #CFB7A1;
 }
 
 select {
 	padding-top: 2px;
 	padding-bottom: 3px;
+	background-color: #FEFBE0;
+	color: #CB4E61;
+	border-radius: 5px;
+	border: 2px solid #CB4E61;
+	font-weight: bold;
+	height: 100%;
+
 }
 
 #noInput {
-	max-width: 50px;
+	max-width: 80px;
 	padding-left: 5px;
+	border: 1.5px solid #CB4E61;
+	height: 38px;
+	border-radius: 5px;
 }
 
 .btn {
-	border-color: #CB4E61;
-	background-color: #Fff;
+	background-color: #FEFBE0;
 	color: #CB4E61;
-	border-radius: 1px;
+	border-radius: 5px;
+	border: 2px solid #CB4E61;
+	font-weight: bold;
 }
 
 p {
@@ -195,30 +229,22 @@ p {
 	margin-top:50px;
 	background-color: #FEFBE0;
 	text-align: center;
-	border: 10px dashed #CFB7A1;
+	border: 13px double #CFB7A1;
 }
 
 
 
-.firstSearch
-{
-	width:70%;
-	background-color: 
+#foodSearch {
+	padding: 5px 3px;
+	width: 234px;
+    border: 1.5px solid #CB4E61;
+    border-radius: 5px;
+    height: 100%;
 }
 
-.foodOptions2 {
-	margin: -30px 0px 0px 20px;
-	width: 100%;
-}
+.foodOptions {
+	margin: 5px 375px;
 
-#search
-
-{
-	text-align: center;
-	width: 100%;
-	background-color: yellow;
-	 padding-right:20%;
-	 padding-left: 20%;
 }
 
 
@@ -228,8 +254,9 @@ p {
 }
 
 .allergy, .diet {
-	float: center;
+	float: left;
 	margin-right: 5px;
+	margin-top: 4px;
 }
 
 .slate {
@@ -252,21 +279,37 @@ p {
 	display
 }
 
+.btn.outSource{
+	border-color: #CB4E61;
+	color: #CB4E61;
+	border-radius: 1px;
+	margin-top: 10px;
+}
+
+p.listItem{
+	text-transform: capitalize;
+}
+
 .cardContainer{
-	perspective: 700;
+	perspective: 700px;
+	-webkit-perspective: 700px;
+	-moz-perspective: 700px;
+
 }
 
 .card {
 	text-align: center;
 	display: inline-block;
 	float: left;
-	margin: 10px 5px;
+	margin: 10px 17px;
 	position: relative;
 	width: 280px;
 	height: 350px;
 	transform-style: preserve-3d;
 	transition: all 1s ease;
 	border-radius: 6px;
+	border: 2.0px solid #C3D2A2;
+	box-shadow:  0 4px 12px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .cardImage {
@@ -275,21 +318,61 @@ p {
 }
 
 .front, .back {
-	background-color: #eaeaed;
+	background-color: #CFB7A1;
 	position: absolute;
 	width: 100%;
 	height: 100%;
-  color: #0087cc;
-  text-align: center;
-  backface-visibility: hidden;
+	color: #FEFBE0;
+	text-align: center;
+	backface-visibility: hidden;
+	border-radius: 1px;
 }
 
 .back{
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
 }
 
 .flip {
 	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+}
+.dropdown-menu.show{
+	display: inline;
+	font-size: 15px;
+	background: #FEFBE0;
+	color: #CB4E61;
+	border: 2px solid #CFB7A1;
+	box-shadow:  0 4px 12px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+input[type=checkbox]
+{
+	position: absolute;
+}
+
+.dropDownLabel{
+	width: 100px;
+	position: relative;
+	justify-content: left !important;
+	margin-left: 25px;
+	position: inherit;
+}
+
+.dropDownLine{
+	margin: 5px;
+}
+
+.col-sm-12
+{
+	padding: 5px;
+	float: left;
+}
+
+.dropdown-toggle {
+	width: 157px;
 }
 
 .bookmark {
@@ -299,4 +382,19 @@ p {
 	right: 5px;
 	border-radius: 2px;
 	z-index: 100;
+	background: #fff;
+	color: #CB4E61;
+}
+
+.ingredList{
+	position: absolute;
+	max-height: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	text-align: left;
+}
+
+.listItem{
+	padding-top: 10px;
+	padding-left: 5px;
 }
