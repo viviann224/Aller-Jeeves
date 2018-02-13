@@ -251,7 +251,7 @@ input[type=checkbox]
 	width: 157px;
 }
 
-.bookmark {
+.bookmark, .bookmarkRem {
 	margin-top: 5px;
 	padding: 4px 6px 1px 6px;
 	position: absolute;
