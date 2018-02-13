@@ -17,6 +17,7 @@
 <!--____________________Font Awesome________________________-->
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
+
 </head>
 <body>
 	<div class="slate">
@@ -25,10 +26,9 @@
 				<h1 class="display-4" id="title">Aller-Jeeves</h1>
 				<hr class="my-4">
 				<h4>Can I help you find a recipe?</h4>
-				<input type="text" id="foodSearch" class=" firstSearch" name="search" placeholder="I'll be having...">
+				<input type="text" id="foodSearch" name="search" placeholder="I'll be having...">
 				
 				<button class="btn btn-outline-secondary initSub"  id="inputBtn" class="inputBtn1" type="submit">Search</button>
-		
 				<fieldset class="foodOptions">
 					<legend>Do you have any dietary restrictions?</legend>
 					<div class="row">
@@ -86,7 +86,68 @@
 		</div>
 	</div>
 
-
+	<header class="container-fluid">		
+		<nav class="navbar">
+			<form class="form-inline">
+				<input class="form-control mr-sm-2" type="text" id="foodSearch" placeholder="What else can I get you?">
+				<!--
+			  	<button class="btn my-2 my-sm-0"><i class="fas fa-sort-down"></i></button> -->
+			  	<div class="dropdown">
+				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Dropdown button
+				  </button>
+				<div class="dropdown-menu">
+			  		<div class="col-sm-12">
+				  		<fieldset>
+							<input class="allergy" type="checkbox" id="dairy" name="interest" value="396^Dairy-Free">
+							<label class="dropDownLabel" for="dairy">Dairy-Free</label>
+							<hr class="dropDownLine">
+						
+							<input class="allergy" type="checkbox" id="gluten" name="interest" value="393^Gluten-Free">
+							<label class="dropDownLabel" for="gluten">Gluten-Free</label>
+							<hr class="dropDownLine">
+						
+							<input class="allergy" type="checkbox" id="peanuts" name="interest" value="394^Peanut-Free">
+							<label class="dropDownLabel" for="peanuts">Peanut-Free</label>
+							<hr class="dropDownLine">
+						
+							<input class="diet" type="checkbox" id="veggie" name="interest" value="387^Lacto-ovo vegetarian">
+							<label class="dropDownLabel" for="veggie">Vegetarian</label>
+							<hr class="dropDownLine">
+						
+							<input class="diet" type="checkbox" id="vegan" name="interest" value="386^Vegan">
+							<label class="dropDownLabel" for="vegan">Vegan</label>
+							<hr class="dropDownLine">
+						
+							<input class="allergy" type="checkbox" id="soy" name="interest" value="400^Soy-Free">
+							<label class="dropDownLabel" for="soy">Soy-Free</label>
+							<hr class="dropDownLine">			
+						
+							<input class="allergy" type="checkbox" id="egg" name="interest" value="397^Egg-Free">
+							<label class="dropDownLabel" for="egg">Egg-Free</label>
+							<hr class="dropDownLine">
+						
+							<input class="allergy" type="checkbox" id="sulfite" name="interest" value="401^Sulfite-Free">
+							<label class="dropDownLabel" for="sulfite">Sulfite-Free</label>
+							<hr class="dropDownLine">
+						
+							<input class="allergy" type="checkbox" id="treeNut" name="interest" value="395^Tree Nut-Free">
+							<label class="dropDownLabel" for="treeNut">Tree Nut-Free</label>
+							<hr class="dropDownLine">
+						
+							<input class="diet" type="checkbox" id="pescetarian" name="interest" value="390^Pescetarian">
+							<label class="dropDownLabel" for="pescetarian">Pescetarian</label>
+							<hr class="dropDownLine">
+						
+							<input class="diet" type="checkbox" id="paleo" name="interest" value="403^Paleo">
+							<label class="dropDownLabel" for="paleo">Paleo</label>
+							<hr class="dropDownLine">
+						</fieldset>
+					</div>
+				</div>
+			</div>
+			    <button class="btn my-2 my-sm-0" class="inputBtn2" id="inputBtn" type="submit">Search</button>
+			</form>
 			<h2 class="navbar-brand">Aller-Jeeves</h2>
 			<div class="navbar-right">
 				<span id="sign-in-status"></span>

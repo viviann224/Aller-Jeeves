@@ -1,4 +1,3 @@
-
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyDzH6GmH4AivIfB6ukE5sxHQ6vSPFOlfVQ",
@@ -121,6 +120,8 @@ var dietRequest = "";
 var isUnClickedAll = false;
 var isUnClickedDiet = false;
 var recipeSource = "http://www.yummly.com/recipe/";
+//created is submitted to only account submission for each new request
+var isSubmit=false;
 
 //went ahead and comment out v1 of the checkbox for the allergy and diet
 //got the checkbox for the submit button to work
@@ -143,7 +144,8 @@ $(".foodOptions").on("click", ".diet", function(){
 */
 
 // call function when submit button is pressed
-$("#inputBtn, .inputBtn2").on("click", function(event) {
+$("#inputBtn, .inputBtn2").on("click", function(event) 
+{
   // prevent page refresh when submit is pressed
   event.preventDefault();
 
@@ -189,8 +191,10 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     //clears out click option of food search
     console.log(userInput);
 
-    //if the user input is not empty
-    if (userInput != "") {
+    //if the user input is not empty or this is a new submission request
+    if (!isSubmit || userInput!="") {
+      //set the submission to true/ yes
+      isSubmit=true
       //go ahead and clear out the results to have a new search query
       $(".outputArea").empty();
 
