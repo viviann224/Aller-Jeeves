@@ -251,7 +251,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
           recipeLink.attr("href", recipeArray[i]);
 
-          recipeLink.text("Ingredients");
+          recipeLink.text("Click Me For Full List n' Intructions");
 
           cardBack.append(recipeLink);
 
