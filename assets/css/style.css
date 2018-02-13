@@ -120,6 +120,14 @@ p {
     height: 100%;
 }
 
+#mainSearch {
+	padding: 5px 3px;
+	width: 40%;
+    border: 1.5px solid #CB4E61;
+    border-radius: 5px;
+    height: 100%;
+}
+
 .foodOptions {
 	margin: 5px 375px;
 }
