@@ -24,8 +24,6 @@ var uSignIn;
 
 var actUser = {};
 
-var actCards = [];
-
 boxEnterTimeline
   .add({
     targets: "#title",
@@ -62,9 +60,12 @@ $(".initSub").click(function(event) {
 
 // ========conversion table logic====
 function convert(a, b, c) {
+  console.log(a, b, c)
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   var builtString = "https://neutrinoapi.com/convert?from-value=" + a + "&from-type=" + b + "&to-type=" + c + "&userId=PMMIV&apiKey=lxAaqP7fkM6ZjKHg0fnvmkF192s1vmihtuGtY381Ls6xHsNs";
+  console.log(builtString);
   $.get(proxyUrl + builtString, function(response) {
+    console.log(response);
     var noOutput = response.result
     $('.results').text(a + " " + b + " = " + noOutput + " " + c);
   }).fail(function(error) {
@@ -97,7 +98,6 @@ $('.convertSub').click(function(event) {
 
 //creates an array of recipe id's that matches with the user input
 var recipeArray = [];
-var idArray = [];
 // create initial array for titles of recipes
 var titleArray = [];
 // create initial array for image_urls
@@ -145,8 +145,7 @@ $(".foodOptions").on("click", ".diet", function(){
 $("#inputBtn, .inputBtn2").on("click", function(event) {
   // prevent page refresh when submit is pressed
   event.preventDefault();
-  idArray = [];
-  actCards = [];
+
   // create initial array for recipe_ids
   recipeArray = [];
   // create initial array for titles of recipes
@@ -216,7 +215,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
         // initiate a for loop to store recipe_id property and image_url property into their arrays
         for (var i = 0; i < count; i++) {
           recipeArray.push(recipeSource + newObj[i].id);
-          idArray.push(newObj[i].id);
           imageArray.push(newObj[i].imageUrlsBySize[90]);
           ingredArray.push(newObj[i].ingredients);
           titleArray.push(newObj[i].recipeName);
@@ -259,10 +257,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
           cardBack.append(cardList);
 
-          //not sure if I use this
-          cardBody.attr("data-id", idArray[i]);
-
-          cardBody.append("<button class='btn bookmark' data-cardNo="+i+"><i class='fas fa-utensils'></i></button>");
+          cardBody.append("<button class='btn bookmark'><i class='fas fa-utensils'></i></button>");
 
           cardTitle.text(titleArray[i]);
 
@@ -279,8 +274,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
           newCard.append(cardBody);
 
           $(".outputArea").append(newCard);
-
-          actCards.push(newCard[0].outerHTML);
         }
 
         console.log("finished iteration");
@@ -335,12 +328,10 @@ initApp = function() {
     if (user) {
       // show sign out
       $('#signInBtn').css("display", "none");
-      $('#bkmkBtn').css("display", "none");
       $('#signOut').css("display", "inline");
     } else {
       // show sign in
       $('#signOut').css("display", "none");
-      $('#bkmkBtn').css("display", "inline");
       $('#signInBtn').css("display", "inline");
     }
     actUser = user;
@@ -381,53 +372,14 @@ $('#signOut').click(function() {
 })
 
 // bookmarking cards
-$(document).on('click', '.bookmark', function () {
+$(document).on('click', '.bookmark', function() {
   // event.preventDefault();
-  // console.log(this.dataset.cardno);
-  var storeCard = actCards[this.dataset.cardno];
-  var storeId = idArray[this.dataset.cardno];
   if (uSignIn) {
     database.ref("/users/" + actUser.uid).push({
-      storeCard: storeCard,
-      storeId: storeId
-      // success: "You successfully pushed something to an individual user's bookmark" 
+      success: "You successfully pushed something to an individual user's bookmark"
     })
     alert("bookmarked!");
   } else {
     alert("Sign in to bookmark recipes!");
-}})
-
-$('#bkmkBtn').click(function(){
-  $('.outputArea').empty();
-  database.ref("/users/" + actUser.uid).on('value', function(dataSnapshot){
-  console.log(dataSnapshot.val());
-  var newBkmkCards = dataSnapshot.val();
-    for (var key in newBkmkCards) {
-        if (newBkmkCards.hasOwnProperty(key)) {
-            console.log(newBkmkCards[key].storeId);
-            
-            var newCard = $(newBkmkCards[key].storeCard);
-            newCard.append("<button class='btn bookmarkRem' data-id="+newBkmkCards[key].storeId+"><i class='fas fa-times'></i></button>");
-            $(".outputArea").append(newCard);
-            $(".bookmark").css("display", "none");
-        }
-    }
-  });  
-})
-
-function dbRemove (id) {
-  database.ref("/users/" + actUser.uid + "/"+ id).remove();
-}
-
-$(document).on('click', '.bookmarkRem', function(){
-  var thisId = this.dataset.id;
-  database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
-    var newBkmkCards = dataSnapshot.val();
-    for (var key in newBkmkCards) {
-      if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-        dbRemove(key);
-      }
-    }
-  });
-  $('.outputArea').empty();
+  }
 })
