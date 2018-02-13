@@ -219,6 +219,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
         // initiate a for loop to store recipe_id property and image_url property into their arrays
         for (var i = 0; i < count; i++) {
           recipeArray.push(recipeSource + newObj[i].id);
+          idArray.push(newObj[i].id);
           imageArray.push(newObj[i].imageUrlsBySize[90]);
           ingredArray.push(newObj[i].ingredients);
           titleArray.push(newObj[i].recipeName);
