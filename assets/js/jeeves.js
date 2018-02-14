@@ -386,16 +386,25 @@ $('#signOut').click(function() {
 $(document).on('click', '.bookmark', function () {
     var thisId = this.dataset.id;
     var storeCard = actCards[this.dataset.cardno];
-  if (lookBookmark){
-    console.log(thisId)
+    var bookmarks = [];
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
       var newBkmkCards = dataSnapshot.val();
       for (var key in newBkmkCards) {
-        if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-          dbRemove(key);
+        if (newBkmkCards.hasOwnProperty(key)) {
+          bookmarks.push(newBkmkCards[key].storeId)
         }
       }
     });
+    if bookmarks.contains(thisId) {
+      dbRemove(key);
+      return
+    } else {
+      bookmark(thisId, storeCard);
+    }
+})
+
+function bookmark (thisId, storeCard) {
+  if (lookBookmark){
     bmPrint();
   } else {
     if (uSignIn) {
@@ -408,7 +417,7 @@ $(document).on('click', '.bookmark', function () {
       alert("Sign in to bookmark recipes!");
     }
   }
-})
+}
 
 $('#bkmkBtn').click(function(){
   lookBookmark = true;
