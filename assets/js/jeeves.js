@@ -104,7 +104,7 @@ var recipeArray = [];
 var titleArray = [];
 // create initial array for image_urls
 var imageArray = [];
-
+var actCards = [];
 var ingredArray = [];
 
 var recipeIngred = [];
@@ -382,7 +382,6 @@ $('#signOut').click(function() {
   });
 })
 
-    var bookmarks = [];
 // bookmarking cards
 $(document).on('click', '.bookmark', function () {
   if (lookBookmark){
@@ -400,16 +399,7 @@ $(document).on('click', '.bookmark', function () {
   } else {
     var storeCard = actCards[this.dataset.cardno];
     var storeId = idArray[this.dataset.cardno];
-    database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
-      var newBkmkCards = dataSnapshot.val();
-      for (var key in newBkmkCards) {
-        if (newBkmkCards.hasOwnProperty(key)) {
-          bookmarks.push(newBkmkCards[key].storeId);
-        }
-      }
-    });
-    console.log(bookmarks);
-    if (uSignIn && !bookmarks.includes(storeId)) {
+    if (uSignIn) {
       database.ref("/users/" + actUser.uid).push({
         storeCard: storeCard,
         storeId: storeId
