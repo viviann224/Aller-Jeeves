@@ -104,7 +104,6 @@ var recipeArray = [];
 var titleArray = [];
 // create initial array for image_urls
 var imageArray = [];
-var actCards = [];
 var ingredArray = [];
 
 var recipeIngred = [];
@@ -152,6 +151,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
   // create initial array for recipe_ids
   recipeArray = [];
   idArray = [];
+  actCards = [];
   // create initial array for titles of recipes
   titleArray = [];
   // create initial array for image_urls
