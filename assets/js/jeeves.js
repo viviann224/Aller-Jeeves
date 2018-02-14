@@ -34,14 +34,14 @@ var lookBookmark = false;
 bookmarkTimeline
   .add({
     targets: "#bkmkBtn",
-    duration: 250,
+    duration: 400,
     backgroundColor: "#CB4E61",
     textColor: "#FEFBE0",
     easing
   })
   .add({
     targets: "#bkmkBtn",
-    duration: 250,
+    duration: 400,
     backgroundColor: "#FEFBE0",
     textColor: "#CB4E61",
     easing
