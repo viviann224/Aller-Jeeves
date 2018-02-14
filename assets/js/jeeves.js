@@ -67,7 +67,6 @@ boxExitTimeline
     targets: ".slate",
     duration: 1000,
     height: 0,
-    offset: '-=800',
     easing
   }).add({
     targets: ".slate",
@@ -403,7 +402,6 @@ $('#signOut').click(function() {
 
 //user clicks a book mark
 $(document).on('click', '.bookmark', function () {
-  bookmarkTimeline.restart
   var thisId = this.dataset.id;
   var storeCard = actCards[this.dataset.cardno];
   if (!uSignIn) {
@@ -423,6 +421,7 @@ $(document).on('click', '.bookmark', function () {
         });
       });
       bookmarkTimeline.play();
+      bookmarkTimeline.reverse();
     } else {
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
         var newBkmkCards = dataSnapshot.val();
