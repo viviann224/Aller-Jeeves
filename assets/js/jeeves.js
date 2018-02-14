@@ -408,6 +408,7 @@ $(document).on('click', '.bookmark', function () {
         }
       }
     });
+    console.log(bookmarks);
     if (uSignIn && !bookmarks.includes(storeId)) {
       database.ref("/users/" + actUser.uid).push({
         storeCard: storeCard,
