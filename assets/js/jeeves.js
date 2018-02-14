@@ -424,7 +424,7 @@ $(document).on('click', '.bookmark', function () {
       bmPrint();
     }
   }
-};
+});
 
 
 // var bookmarks = [];
