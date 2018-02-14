@@ -34,18 +34,18 @@ var lookBookmark = false;
 bookmarkTimeline
   .add({
     targets: "#bkmkBtn",
-    duration: 300,
+    duration: 250,
     backgroundColor: "#CB4E61",
     textColor: "#FEFBE0",
     easing
   })
-  // .add({
-  //   targets: "#bkmkBtn",
-  //   duration: 250,
-  //   backgroundColor: "#FEFBE0",
-  //   textColor: "#CB4E61",
-  //   easing
-  // })
+  .add({
+    targets: "#bkmkBtn",
+    duration: 250,
+    backgroundColor: "#FEFBE0",
+    textColor: "#CB4E61",
+    easing
+  })
 
 boxEnterTimeline
   .add({
