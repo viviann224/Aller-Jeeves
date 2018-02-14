@@ -401,12 +401,13 @@ $(document).on('click', '.bookmark', function () {
     var storeId = idArray[this.dataset.cardno];
     if (uSignIn) {
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
-      var newBkmkCards = dataSnapshot.val();
-      for (var key in newBkmkCards) {
-        if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-          dbRemove(key);
+        var newBkmkCards = dataSnapshot.val();
+        for (var key in newBkmkCards) {
+          if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
+            dbRemove(key);
+          }
         }
-      }
+      });
       database.ref("/users/" + actUser.uid).push({
         storeCard: storeCard,
         storeId: storeId
