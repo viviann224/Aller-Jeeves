@@ -382,11 +382,11 @@ $('#signOut').click(function() {
   });
 })
 
+var bookmarks = [];
 // bookmarking cards
 $(document).on('click', '.bookmark', function () {
     var thisId = this.dataset.id;
     var storeCard = actCards[this.dataset.cardno];
-    var bookmarks = [];
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
       var newBkmkCards = dataSnapshot.val();
       for (var key in newBkmkCards) {
@@ -405,6 +405,7 @@ $(document).on('click', '.bookmark', function () {
 
 function bookmark (thisId, storeCard) {
   if (lookBookmark){
+    bookmarks = [];
     bmPrint();
   } else {
     if (uSignIn) {
