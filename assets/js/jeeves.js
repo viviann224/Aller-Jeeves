@@ -406,11 +406,11 @@ $(document).on('click', '.bookmark', function () {
             //I might need to return or remove key
           };
         }
-      })
-      //add it to firebase
-        database.ref("/users/" + actUser.uid).push({
-        storeCard: storeCard,
-        storeId: thisId
+          //add it to firebase
+          database.ref("/users/" + actUser.uid).push({
+          storeCard: storeCard,
+          storeId: thisId
+        });
       });
     } else {
       //remove it
