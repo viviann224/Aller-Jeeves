@@ -395,7 +395,7 @@ $(document).on('click', '.bookmark', function () {
         }
       }
     });
-    $('.outputArea').empty();
+    bmPrint();
   } else {
     if (uSignIn) {
       database.ref("/users/" + actUser.uid).push({
@@ -412,6 +412,10 @@ $(document).on('click', '.bookmark', function () {
 $('#bkmkBtn').click(function(){
   lookBookmark = true;
   $('.outputArea').empty();
+  bmPrint() 
+})
+
+function bmPrint {
   database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
   var newBkmkCards = dataSnapshot.val();
     for (var key in newBkmkCards) {
@@ -421,8 +425,8 @@ $('#bkmkBtn').click(function(){
             $(".bookmark").html("<i class='fas fa-times'></i>");
         }
     }
-  });  
-})
+  }); 
+}
 
 function dbRemove (id) {
   database.ref("/users/" + actUser.uid + "/"+ id).remove();
