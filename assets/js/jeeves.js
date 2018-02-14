@@ -391,7 +391,7 @@ $(document).on('click', '.bookmark', function () {
       var newBkmkCards = dataSnapshot.val();
       console.log()
       for (var key in newBkmkCards) {
-        if (newBkmkCards.hasOwnProperty(key) && bookmarks.includes(thisId)) {
+        if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
           dbRemove(key);
           bookmarks.push(newBkmkCards[key].storeId);
         }
