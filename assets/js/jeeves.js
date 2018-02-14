@@ -402,6 +402,7 @@ $(document).on('click', '.bookmark', function () {
             //That's already bookmarked
             alert("That's already bookmarked.")
             dbRemove(key);
+            return
             //I might need to return or remove key
           };
         }
