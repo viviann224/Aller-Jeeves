@@ -338,13 +338,13 @@ initApp = function() {
       $('#signInBtn').css("display", "none");
       $('#bkmkBtn').css("display", "inline");
       $('#signOut').css("display", "inline");
-      $('.modal-body').html("<div id='firebaseui-auth-container'></div>")
+      $('.modal-body').html("<p>You're signed in!</p>")
     } else {
       // show sign in
       $('#signOut').css("display", "none");
       $('#bkmkBtn').css("display", "none");
       $('#signInBtn').css("display", "inline");
-      $('.modal-body').html("<p>You're signed in!</p>")
+      $('.modal-body').html("<div id='firebaseui-auth-container'></div>")
 
     }
     actUser = user;
