@@ -411,11 +411,11 @@ $(document).on('click', '.bookmark', function () {
 
 $('#bkmkBtn').click(function(){
   lookBookmark = true;
-  $('.outputArea').empty();
   bmPrint() 
 })
 
 function bmPrint () {
+  $('.outputArea').empty();
   database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
   var newBkmkCards = dataSnapshot.val();
     for (var key in newBkmkCards) {
