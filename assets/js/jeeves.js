@@ -403,7 +403,7 @@ $('#signOut').click(function() {
 
 //user clicks a book mark
 $(document).on('click', '.bookmark', function () {
-  bookmarkTimeline.pause
+  bookmarkTimeline.restart
   var thisId = this.dataset.id;
   var storeCard = actCards[this.dataset.cardno];
   if (!uSignIn) {
@@ -422,8 +422,7 @@ $(document).on('click', '.bookmark', function () {
           storeId: thisId
         });
       });
-      // bookmarkTimeline.play();
-      bookmarkTimeline.restart
+      bookmarkTimeline.play();
     } else {
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
         var newBkmkCards = dataSnapshot.val();
