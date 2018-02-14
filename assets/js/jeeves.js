@@ -384,30 +384,22 @@ $('#signOut').click(function() {
 
 // bookmarking cards
 $(document).on('click', '.bookmark', function () {
-  if (lookBookmark){
-    var thisId = this.dataset.id;
-    console.log(thisId)
-    database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
-      var newBkmkCards = dataSnapshot.val();
-      for (var key in newBkmkCards) {
-        if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-          dbRemove(key);
-        }
+  var thisId = this.dataset.id;
+  database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
+    var newBkmkCards = dataSnapshot.val();
+    for (var key in newBkmkCards) {
+      if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
+        dbRemove(key);
       }
-    });
+    }
+  });
+  if (lookBookmark){
+    console.log(thisId)
     $('.outputArea').empty();
   } else {
     var storeCard = actCards[this.dataset.cardno];
     var storeId = idArray[this.dataset.cardno];
     if (uSignIn) {
-      database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
-        var newBkmkCards = dataSnapshot.val();
-        for (var key in newBkmkCards) {
-          if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-            dbRemove(key);
-          }
-        }
-      });
       database.ref("/users/" + actUser.uid).push({
         storeCard: storeCard,
         storeId: storeId
