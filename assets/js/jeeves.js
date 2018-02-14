@@ -401,13 +401,13 @@ $(document).on('click', '.bookmark', function () {
           if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
             //That's already bookmarked
             alert("That's already bookmarked.")
-            dbRemove(key);
+            // dbRemove(key);
             return
             //I might need to return or remove key
           };
         }
-          //add it to firebase
-          database.ref("/users/" + actUser.uid).push({
+        //add it to firebase
+        database.ref("/users/" + actUser.uid).push({
           storeCard: storeCard,
           storeId: thisId
         });
@@ -421,9 +421,9 @@ $(document).on('click', '.bookmark', function () {
             dbRemove(key);
           }
         }
+        //reprint the page
+        bmPrint();
       })
-      //reprint the page
-      bmPrint();
     }
   }
 });
