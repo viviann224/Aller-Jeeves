@@ -159,6 +159,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
   ingredArray = [];
   // create a varaible to store the amount of recipes returned from api
   count = 0;
+  var userinput="";
 
   //version 2 of the checkbox
   //this is to create the filter for the specific diet
@@ -181,18 +182,29 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
 
   //for each food search user input
   $("input[id=foodSearch]:input").each(function() {
+
     //clears out userinput
     $(".foodSearch").val('');
+
+   
     //clears out each search
     $(".card").empty();
+
     console.log("emptying out the card");
     // grab user's input value and store in new variable
-    var userInput = $(this).val().trim();
+    userInput = $(this).val().trim();
     //clears out click option of food search
     console.log(userInput);
+    if($(".search2").val()!="" && $(".search1").val()=="")
+        {
+          console.log("second click"+ isSubmit);
+          //isSubmit=false;
+        }
+
 
     //if the user input is not empty or this is a new submission request
-    if (!isSubmit || userInput!="") {
+    if (!isSubmit) 
+    {
       //set the submission to true/ yes
       isSubmit=true
       //go ahead and clear out the results to have a new search query
@@ -280,11 +292,19 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
 
           $(".outputArea").append(newCard);
         }
-
+        //once first iteration finishes check if both 
+        //user input is empty if empty reset for new submission
         console.log("finished iteration");
+         if($(".search2").val()=="" && userInput=="")
+        {
+          console.log("second click"+ isSubmit);
+          isSubmit=false;
+        }
+        
 
       });
       console.log("end of input");
+
     }
     //clears out the user input
     $(".outputArea").empty();
@@ -292,11 +312,20 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
     $(".foodSearch").val('');
     //clears out first userinput
     $("#foodSearch").val('');
+    if($(".search1").val()!="" && $(".search2").val()!="")
+        {
+          console.log("second click"+ isSubmit);
+          isSubmit=false;
+
+        }
+
+
     //need code to reset the checkbox / radio box
     //$("input[class=diet]:checkbox").reset();
     //$("input[class=allergy]:checkbox").reset();
     //$("input[class=allergy]:checkbox").removeAttr("checked");
   }); // $("input[class=diet]:checkbox").removeAttr("checked");
+
 
 });
 
