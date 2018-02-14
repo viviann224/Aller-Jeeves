@@ -390,17 +390,20 @@ $(document).on('click', '.bookmark', function () {
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
       var newBkmkCards = dataSnapshot.val();
       for (var key in newBkmkCards) {
-        if (newBkmkCards.hasOwnProperty(key)) {
-          bookmarks.push(newBkmkCards[key].storeId)
+        if (newBkmkCards.hasOwnProperty(key) && bookmarks.includes(thisId)) {
+          dbRemove(key);
+          bookmarks.push(newBkmkCards[key].storeId);
+        }
+        else if (newBkmkCards.hasOwnProperty(key)) {
+          bookmarks.push(newBkmkCards[key].storeId);
         }
       }
     });
-    if (bookmarks.includes(thisId)) {
-      dbRemove(key);
-      return
-    } else {
+    // if (bookmarks.includes(thisId)) {
+      // return
+    // } else {
       bookmark(thisId, storeCard);
-    }
+    // }
 })
 
 function bookmark (thisId, storeCard) {
