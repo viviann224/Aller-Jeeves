@@ -387,7 +387,7 @@ $(document).on('click', '.bookmark', function () {
     var storeCard = actCards[this.dataset.cardno];
   if (lookBookmark){
     console.log(thisId)
-    database.ref("/users/" + actUser.uid).on('value', function(dataSnapshot){
+    database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
       var newBkmkCards = dataSnapshot.val();
       for (var key in newBkmkCards) {
         if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
