@@ -387,33 +387,24 @@ $('#signOut').click(function() {
 $(document).on('click', '.bookmark', function () {
   var thisId = this.dataset.id;
   var storeCard = actCards[this.dataset.cardno];
-  //signed in?
   if (!uSignIn) {
-    //you must be signed in to use bookmarks
     alert("You must be signed in to use bookmarks.")
   } else{
-  //looking at bookmarks
     if (!lookBookmark) {
-      //is it not already bookmarked?
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
         var newBkmkCards = dataSnapshot.val();
         for (var key in newBkmkCards) {
           if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-            //That's already bookmarked
             alert("That's already bookmarked.")
-            // dbRemove(key);
             return
-            //I might need to return or remove key
           };
         }
-        //add it to firebase
         database.ref("/users/" + actUser.uid).push({
           storeCard: storeCard,
           storeId: thisId
         });
       });
     } else {
-      //remove it
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
         var newBkmkCards = dataSnapshot.val();
         for (var key in newBkmkCards) {
@@ -421,46 +412,11 @@ $(document).on('click', '.bookmark', function () {
             dbRemove(key);
           }
         }
-        //reprint the page
         bmPrint();
       })
     }
   }
 });
-
-
-// var bookmarks = [];
-// bookmarking cards
-          // dbRemove(key);
-          // bookmarks.push(thisId00);
-//         else if (newBkmkCards.hasOwnProperty(key)) {
-//           bookmarks.push(newBkmkCards[key].storeId);
-//         }
-//       }
-//     });
-//     // if (bookmarks.includes(thisId)) {
-//       // return
-//     // } else {
-//       bookmark(thisId, storeCard);
-//     // }
-// })
-
-// function bookmark (thisId, storeCard) {
-//   bookmarks = [];
-//   if (lookBookmark){
-//     bmPrint();
-//   } else {
-//     if (uSignIn) {
-//       database.ref("/users/" + actUser.uid).push({
-//         storeCard: storeCard,
-//         storeId: thisId
-//       })
-//       alert("bookmarked!");
-//     } else {
-//       alert("Sign in to bookmark recipes!");
-//     }
-//   }
-// }
 
 $('#bkmkBtn').click(function(){
   lookBookmark = true;
