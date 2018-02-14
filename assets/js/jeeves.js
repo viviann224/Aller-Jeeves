@@ -34,16 +34,16 @@ var lookBookmark = false;
 bookmarkTimeline
   .add({
     targets: "#bkmkBtn",
-    duration: 500,
+    duration: 250,
     backgroundColor: "#CB4E61",
-    color: "#FEFBE0",
+    textColor: "#FEFBE0",
     easing
   })
   .add({
     targets: "#bkmkBtn",
-    duration: 500,
+    duration: 250,
     backgroundColor: "#FEFBE0",
-    color: "#CB4E61",
+    textColor: "#CB4E61",
     easing
   })
 
@@ -58,7 +58,6 @@ boxEnterTimeline
 boxExitTimeline
   .add({
     targets: "#initBox",
-    // width: 0,
     opacity: "0",
     translateX: 200,
     duration: 750,
@@ -68,7 +67,7 @@ boxExitTimeline
     targets: ".slate",
     duration: 1000,
     height: 0,
-    // opacity: 0,
+    offset: '-=800',
     easing
   }).add({
     targets: ".slate",
@@ -404,6 +403,7 @@ $('#signOut').click(function() {
 
 //user clicks a book mark
 $(document).on('click', '.bookmark', function () {
+  bookmarkTimeline.restart
   var thisId = this.dataset.id;
   var storeCard = actCards[this.dataset.cardno];
   if (!uSignIn) {
