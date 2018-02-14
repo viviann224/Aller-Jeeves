@@ -193,7 +193,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     console.log(userInput);
 
     //if the user input is not empty
-    if (userInput !== "") {
+    if (userInput != "") {
       //go ahead and clear out the results to have a new search query
       $(".outputArea").empty();
 
@@ -384,25 +384,25 @@ $('#signOut').click(function() {
 
 // bookmarking cards
 $(document).on('click', '.bookmark', function () {
-  var thisId = this.dataset.id;
-  database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
-    var newBkmkCards = dataSnapshot.val();
-    for (var key in newBkmkCards) {
-      if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-        dbRemove(key);
-      }
-    }
-  });
+    var thisId = this.dataset.id;
+    var storeCard = actCards[this.dataset.cardno];
+    // var storeId = idArray[this.dataset.cardno];
   if (lookBookmark){
     console.log(thisId)
+    database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
+      var newBkmkCards = dataSnapshot.val();
+      for (var key in newBkmkCards) {
+        if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
+          dbRemove(key);
+        }
+      }
+    });
     $('.outputArea').empty();
   } else {
-    var storeCard = actCards[this.dataset.cardno];
-    var storeId = idArray[this.dataset.cardno];
     if (uSignIn) {
       database.ref("/users/" + actUser.uid).push({
         storeCard: storeCard,
-        storeId: storeId
+        storeId: thisId
       })
       alert("bookmarked!");
     } else {
