@@ -35,13 +35,14 @@ bookmarkTimeline
   .add({
     targets: "#bkmkBtn",
     duration: 500,
-    height: 12,
+    opacity: "0",
     easing
   })
   .add({
     targets: "#bkmkBtn",
     duration: 500,
-    height: 24
+    opacity: "1",
+    easing: "easeInOutSine"
   })
 
 boxEnterTimeline
