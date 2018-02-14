@@ -24,6 +24,10 @@ var uSignIn;
 
 var actUser = {};
 
+var actCards = [];
+
+var lookBookmark = false;
+
 boxEnterTimeline
   .add({
     targets: "#title",
@@ -63,13 +67,10 @@ function convert(a, b, c) {
   console.log(a, b, c)
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   var builtString = "https://neutrinoapi.com/convert?from-value=" + a + "&from-type=" + b + "&to-type=" + c + "&userId=PMMIV&apiKey=lxAaqP7fkM6ZjKHg0fnvmkF192s1vmihtuGtY381Ls6xHsNs";
-  console.log(builtString);
   $.get(proxyUrl + builtString, function(response) {
-    console.log(response);
     var noOutput = response.result
     $('.results').text(a + " " + b + " = " + noOutput + " " + c);
   }).fail(function(error) {
-    console.log(error);
     $('.results').text("I'm sorry. We may have exceeded our conversion limit today.");
   })
 };
@@ -97,6 +98,7 @@ $('.convertSub').click(function(event) {
 // 387^Lacto-ovo vegetarian
 
 //creates an array of recipe id's that matches with the user input
+var idArray = [];
 var recipeArray = [];
 // create initial array for titles of recipes
 var titleArray = [];
@@ -148,9 +150,11 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
 {
   // prevent page refresh when submit is pressed
   event.preventDefault();
+  lookBookmark = false;
 
   // create initial array for recipe_ids
   recipeArray = [];
+  idArray = [];
   // create initial array for titles of recipes
   titleArray = [];
   // create initial array for image_urls
@@ -232,6 +236,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
         // initiate a for loop to store recipe_id property and image_url property into their arrays
         for (var i = 0; i < count; i++) {
           recipeArray.push(recipeSource + newObj[i].id);
+          idArray.push(newObj[i].id);
           imageArray.push(newObj[i].imageUrlsBySize[90]);
           ingredArray.push(newObj[i].ingredients);
           titleArray.push(newObj[i].recipeName);
@@ -274,7 +279,9 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
 
           cardBack.append(cardList);
 
-          cardBody.append("<button class='btn bookmark'><i class='fas fa-utensils'></i></button>");
+          cardBody.attr("data-id", idArray[i]);
+
+          cardBody.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+idArray[i]+"><i class='fas fa-utensils'></i></button>");
 
           cardTitle.text(titleArray[i]);
 
@@ -291,6 +298,8 @@ $("#inputBtn, .inputBtn2").on("click", function(event)
           newCard.append(cardBody);
 
           $(".outputArea").append(newCard);
+
+          actCards.push(newCard[0].outerHTML);
         }
         //once first iteration finishes check if both 
         //user input is empty if empty reset for new submission
@@ -362,10 +371,12 @@ initApp = function() {
     if (user) {
       // show sign out
       $('#signInBtn').css("display", "none");
+      $('#bkmkBtn').css("display", "inline");
       $('#signOut').css("display", "inline");
     } else {
       // show sign in
       $('#signOut').css("display", "none");
+      $('#bkmkBtn').css("display", "none");
       $('#signInBtn').css("display", "inline");
     }
     actUser = user;
@@ -406,14 +417,54 @@ $('#signOut').click(function() {
 })
 
 // bookmarking cards
-$(document).on('click', '.bookmark', function() {
-  // event.preventDefault();
-  if (uSignIn) {
-    database.ref("/users/" + actUser.uid).push({
-      success: "You successfully pushed something to an individual user's bookmark"
-    })
-    alert("bookmarked!");
+$(document).on('click', '.bookmark', function () {
+  if (lookBookmark){
+    var thisId = this.dataset.id;
+    console.log(thisId)
+    database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
+      var newBkmkCards = dataSnapshot.val();
+      for (var key in newBkmkCards) {
+        if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
+          dbRemove(key);
+        }
+      }
+    });
+    $('.outputArea').empty();
   } else {
-    alert("Sign in to bookmark recipes!");
+    var storeCard = actCards[this.dataset.cardno];
+    var storeId = idArray[this.dataset.cardno];
+    if (uSignIn) {
+      database.ref("/users/" + actUser.uid).push({
+        storeCard: storeCard,
+        storeId: storeId
+      })
+      alert("bookmarked!");
+    } else {
+      alert("Sign in to bookmark recipes!");
+    }
   }
 })
+
+$('#bkmkBtn').click(function(){
+  lookBookmark = true;
+  $('.outputArea').empty();
+  database.ref("/users/" + actUser.uid).on('value', function(dataSnapshot){
+  console.log(dataSnapshot.val());
+  var newBkmkCards = dataSnapshot.val();
+    for (var key in newBkmkCards) {
+        if (newBkmkCards.hasOwnProperty(key)) {
+            console.log(newBkmkCards[key].storeId);
+            
+            var newCard = $(newBkmkCards[key].storeCard);
+            // newCard.append("<button class='btn bookmarkRem' data-id="+newBkmkCards[key].storeId+"><i class='fas fa-times'></i></button>");
+            $(".outputArea").append(newCard);
+            $(".bookmark").html("<i class='fas fa-times'></i>");
+            // $(".bookmark").attr("data-id", newBkmkCards[key].storeId);
+        }
+    }
+  });  
+})
+
+function dbRemove (id) {
+  database.ref("/users/" + actUser.uid + "/"+ id).remove();
+}
