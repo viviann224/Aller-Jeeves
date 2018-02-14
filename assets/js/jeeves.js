@@ -19,7 +19,7 @@ var boxExitTimeline = anime.timeline({
   autoplay: false
 })
 var bookmarkTimeline = anime.timeline({
-  autoplay: false
+  autoplay: true
 })
 var easing = "linear";
 
