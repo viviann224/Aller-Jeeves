@@ -388,6 +388,8 @@ $(document).on('click', '.bookmark', function () {
   var storeCard = actCards[this.dataset.cardno];
   var storeId = idArray[this.dataset.cardno];
   if (lookBookmark){
+    //uhh?
+    $('.outputArea').empty();
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
       var newBkmkCards = dataSnapshot.val();
       for (var key in newBkmkCards) {
@@ -396,8 +398,8 @@ $(document).on('click', '.bookmark', function () {
         }
       }
     });
-  $('.outputArea').empty();
-  } else {
+  }
+  else {
     if (uSignIn) {
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
         var newBkmkCards = dataSnapshot.val();
