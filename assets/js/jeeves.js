@@ -401,6 +401,7 @@ $(document).on('click', '.bookmark', function () {
           if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
             //That's already bookmarked
             alert("That's already bookmarked.")
+            dbRemove(key);
             //I might need to return or remove key
           };
         }
