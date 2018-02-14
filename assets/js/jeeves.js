@@ -193,7 +193,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     console.log(userInput);
 
     //if the user input is not empty
-    if (userInput != "") {
+    if (userInput !== "") {
       //go ahead and clear out the results to have a new search query
       $(".outputArea").empty();
 
