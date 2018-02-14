@@ -328,7 +328,7 @@ var uiConfig = {
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 // The start method will wait until the DOM is loaded.
-ui.start('#firebaseui-auth-container', uiConfig);
+ui.start('.firebaseui-auth-container', uiConfig);
 
 initApp = function() {
   firebase.auth().onAuthStateChanged(function(user) {
@@ -376,7 +376,7 @@ window.addEventListener('load', function() {
 // sign out button
 $('#signOut').click(function() {
   firebase.auth().signOut().then(function() {
-    $('.modal-body').html("<div id='firebaseui-auth-container'></div>")
+    $('.modal-body').html("<div class='firebaseui-auth-container'></div>")
   }, function(error) {
     console.error('Sign Out Error', error);
   });
