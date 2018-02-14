@@ -18,6 +18,9 @@ var boxEnterTimeline = anime.timeline({
 var boxExitTimeline = anime.timeline({
   autoplay: false
 })
+var bookmarkTimeline = anime.timeline({
+  autoplay: true
+})
 var easing = "linear";
 
 var uSignIn;
@@ -27,6 +30,20 @@ var actUser = {};
 var actCards = [];
 
 var lookBookmark = false;
+
+bookmarkTimeline
+  .add({
+    targets: "#bkmkBtn",
+    duration: 400,
+    backgroundColor: "#CB4E61",
+    easing
+  })
+  .add({
+    targets: "#bkmkBtn",
+    duration: 400,
+    backgroundColor: "#FEFBE0",
+    easing
+  })
 
 boxEnterTimeline
   .add({
@@ -39,7 +56,6 @@ boxEnterTimeline
 boxExitTimeline
   .add({
     targets: "#initBox",
-    // width: 0,
     opacity: "0",
     translateX: 200,
     duration: 750,
@@ -49,7 +65,6 @@ boxExitTimeline
     targets: ".slate",
     duration: 1000,
     height: 0,
-    // opacity: 0,
     easing
   }).add({
     targets: ".slate",
@@ -304,7 +319,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 });
 
 $(".outputArea").on("click", ".card", function() {
-  console.log("flip it");
+  // console.log("flip it");
   $(this).toggleClass("flip");
 })
 
@@ -395,7 +410,6 @@ $(document).on('click', '.bookmark', function () {
         var newBkmkCards = dataSnapshot.val();
         for (var key in newBkmkCards) {
           if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-            alert("That's already bookmarked.")
             return
           };
         }
@@ -403,6 +417,7 @@ $(document).on('click', '.bookmark', function () {
           storeCard: storeCard,
           storeId: thisId
         });
+        bookmarkTimeline.restart();
       });
     } else {
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
@@ -424,6 +439,7 @@ $('#bkmkBtn').click(function(){
 })
 
 function bmPrint () {
+  bookmarkTimeline.restart();
   $('.outputArea').empty();
   database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
   var newBkmkCards = dataSnapshot.val();
