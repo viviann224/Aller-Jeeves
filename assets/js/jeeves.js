@@ -396,17 +396,8 @@ $(document).on('click', '.bookmark', function () {
         }
       }
     });
-    $('.outputArea').empty();
+  $('.outputArea').empty();
   } else {
-    database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
-      var newBkmkCards = dataSnapshot.val();
-      for (var key in newBkmkCards) {
-        if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-          console.log("return")
-          return
-          }
-        } 
-    })
     if (uSignIn) {
       database.ref("/users/" + actUser.uid).push({
         storeCard: storeCard,
@@ -416,6 +407,14 @@ $(document).on('click', '.bookmark', function () {
     } else {
       alert("Sign in to bookmark recipes!");
     }
+    database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
+      var newBkmkCards = dataSnapshot.val();
+      for (var key in newBkmkCards) {
+        if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
+          dbRemove(key);
+          }
+        } 
+    })
   }
 });
 
