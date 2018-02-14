@@ -376,7 +376,7 @@ window.addEventListener('load', function() {
 // sign out button
 $('#signOut').click(function() {
   firebase.auth().signOut().then(function() {
-    console.log('Signed Out');
+    $('.modal-body').html("<div id='firebaseui-auth-container'></div>")
   }, function(error) {
     console.error('Sign Out Error', error);
   });
