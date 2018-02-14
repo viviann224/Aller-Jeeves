@@ -321,7 +321,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 });
 
 $(".outputArea").on("click", ".card", function() {
-  console.log("flip it");
+  // console.log("flip it");
   $(this).toggleClass("flip");
 })
 
@@ -441,7 +441,8 @@ $('#bkmkBtn').click(function(){
 })
 
 function bmPrint () {
-  $('.outputArea').empty();
+  bookmarkTimeline.restart();
+  // $('.outputArea').empty();
   database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
   var newBkmkCards = dataSnapshot.val();
     for (var key in newBkmkCards) {
