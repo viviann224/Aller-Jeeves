@@ -384,12 +384,9 @@ $('#signOut').click(function() {
 
 // bookmarking cards
 $(document).on('click', '.bookmark', function () {
-  var thisId = this.dataset.id;
-  var storeCard = actCards[this.dataset.cardno];
-  var storeId = idArray[this.dataset.cardno];
   if (lookBookmark){
-    //uhh?
-    $('.outputArea').empty();
+    var thisId = this.dataset.id;
+    console.log(thisId)
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
       var newBkmkCards = dataSnapshot.val();
       for (var key in newBkmkCards) {
@@ -398,27 +395,30 @@ $(document).on('click', '.bookmark', function () {
         }
       }
     });
-  }
-  else {
-    if (uSignIn) {
-      database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
-        var newBkmkCards = dataSnapshot.val();
-        for (var key in newBkmkCards) {
-          if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-            dbRemove(key);
-            }
-          } 
-      });
+    $('.outputArea').empty();
+  } else {
+    var bookmarks = [];
+    var storeCard = actCards[this.dataset.cardno];
+    var storeId = idArray[this.dataset.cardno];
+    database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
+      var newBkmkCards = dataSnapshot.val();
+      for (var key in newBkmkCards) {
+        if (newBkmkCards.hasOwnProperty(key)) {
+          bookmarks.push(newBkmkCards[key].storeId);
+        }
+      }
+    });
+    if (uSignIn && !bookmarks.includes(storeId)) {
       database.ref("/users/" + actUser.uid).push({
         storeCard: storeCard,
         storeId: storeId
-      });
+      })
       alert("bookmarked!");
     } else {
       alert("Sign in to bookmark recipes!");
     }
   }
-});
+})
 
 $('#bkmkBtn').click(function(){
   lookBookmark = true;
