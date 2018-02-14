@@ -401,6 +401,7 @@ $(document).on('click', '.bookmark', function () {
       for (var key in newBkmkCards) {
         if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
           console.log("return")
+          }
         } else {
           var storeCard = actCards[this.dataset.cardno];
           var storeId = idArray[this.dataset.cardno];
@@ -414,7 +415,6 @@ $(document).on('click', '.bookmark', function () {
             alert("Sign in to bookmark recipes!");
           }
         }
-      }
     })
   }
 });
