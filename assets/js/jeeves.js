@@ -34,18 +34,18 @@ var lookBookmark = false;
 bookmarkTimeline
   .add({
     targets: "#bkmkBtn",
-    duration: 250,
+    duration: 300,
     backgroundColor: "#CB4E61",
     textColor: "#FEFBE0",
     easing
   })
-  .add({
-    targets: "#bkmkBtn",
-    duration: 250,
-    backgroundColor: "#FEFBE0",
-    textColor: "#CB4E61",
-    easing
-  })
+  // .add({
+  //   targets: "#bkmkBtn",
+  //   duration: 250,
+  //   backgroundColor: "#FEFBE0",
+  //   textColor: "#CB4E61",
+  //   easing
+  // })
 
 boxEnterTimeline
   .add({
@@ -419,9 +419,9 @@ $(document).on('click', '.bookmark', function () {
           storeCard: storeCard,
           storeId: thisId
         });
+        bookmarkTimeline.play();
+        bookmarkTimeline.reverse();
       });
-      bookmarkTimeline.play();
-      bookmarkTimeline.reverse();
     } else {
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
         var newBkmkCards = dataSnapshot.val();
