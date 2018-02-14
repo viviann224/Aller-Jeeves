@@ -420,7 +420,7 @@ $(document).on('click', '.bookmark', function () {
           storeId: thisId
         });
         bookmarkTimeline.play();
-        bookmarkTimeline.reverse();
+        bookmarkTimeline.restart();
       });
     } else {
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
