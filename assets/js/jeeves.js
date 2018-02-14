@@ -382,6 +382,7 @@ $('#signOut').click(function() {
   });
 })
 
+    var bookmarks = [];
 // bookmarking cards
 $(document).on('click', '.bookmark', function () {
   if (lookBookmark){
@@ -397,7 +398,6 @@ $(document).on('click', '.bookmark', function () {
     });
     $('.outputArea').empty();
   } else {
-    var bookmarks = [];
     var storeCard = actCards[this.dataset.cardno];
     var storeId = idArray[this.dataset.cardno];
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
