@@ -389,6 +389,7 @@ $(document).on('click', '.bookmark', function () {
     var storeCard = actCards[this.dataset.cardno];
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
       var newBkmkCards = dataSnapshot.val();
+      console.log()
       for (var key in newBkmkCards) {
         if (newBkmkCards.hasOwnProperty(key) && bookmarks.includes(thisId)) {
           dbRemove(key);
@@ -407,8 +408,8 @@ $(document).on('click', '.bookmark', function () {
 })
 
 function bookmark (thisId, storeCard) {
+  bookmarks = [];
   if (lookBookmark){
-    bookmarks = [];
     bmPrint();
   } else {
     if (uSignIn) {
