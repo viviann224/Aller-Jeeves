@@ -395,7 +395,7 @@ $(document).on('click', '.bookmark', function () {
         }
       }
     });
-    if bookmarks.contains(thisId) {
+    if (bookmarks.contains(thisId)) {
       dbRemove(key);
       return
     } else {
