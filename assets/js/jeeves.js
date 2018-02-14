@@ -98,7 +98,6 @@ $('.convertSub').click(function(event) {
 // 387^Lacto-ovo vegetarian
 
 //creates an array of recipe id's that matches with the user input
-var idArray = [];
 var recipeArray = [];
 // create initial array for titles of recipes
 var titleArray = [];
@@ -262,7 +261,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
           cardBack.append(cardList);
 
-          cardBody.attr("data-id", idArray[i]);
+          // cardBody.attr("data-id", idArray[i]);
 
           cardBody.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+idArray[i]+"><i class='fas fa-utensils'></i></button>");
 
@@ -386,7 +385,6 @@ $('#signOut').click(function() {
 $(document).on('click', '.bookmark', function () {
     var thisId = this.dataset.id;
     var storeCard = actCards[this.dataset.cardno];
-    // var storeId = idArray[this.dataset.cardno];
   if (lookBookmark){
     console.log(thisId)
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
