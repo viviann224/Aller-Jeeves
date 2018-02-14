@@ -415,7 +415,7 @@ $('#bkmkBtn').click(function(){
   bmPrint() 
 })
 
-function bmPrint {
+function bmPrint () {
   database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
   var newBkmkCards = dataSnapshot.val();
     for (var key in newBkmkCards) {
