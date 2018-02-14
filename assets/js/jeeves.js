@@ -419,7 +419,6 @@ $(document).on('click', '.bookmark', function () {
           storeCard: storeCard,
           storeId: thisId
         });
-        bookmarkTimeline.play();
         bookmarkTimeline.restart();
       });
     } else {
