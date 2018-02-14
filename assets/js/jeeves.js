@@ -398,23 +398,24 @@ $(document).on('click', '.bookmark', function () {
   } else {
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
       var newBkmkCards = dataSnapshot.val();
+      var bkmkCheck = [];
       for (var key in newBkmkCards) {
         if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
           console.log("return")
+          return
           }
-        } else {
-          var storeCard = actCards[this.dataset.cardno];
-          var storeId = idArray[this.dataset.cardno];
-          if (uSignIn) {
-            database.ref("/users/" + actUser.uid).push({
-              storeCard: storeCard,
-              storeId: storeId
-            })
-            alert("bookmarked!");
-          } else {
-            alert("Sign in to bookmark recipes!");
-          }
-        }
+        } 
+      var storeCard = actCards[this.dataset.cardno];
+      var storeId = idArray[this.dataset.cardno];
+      if (uSignIn) {
+        database.ref("/users/" + actUser.uid).push({
+          storeCard: storeCard,
+          storeId: storeId
+        })
+        alert("bookmarked!");
+      } else {
+        alert("Sign in to bookmark recipes!");
+      }
     })
   }
 });
