@@ -387,6 +387,8 @@ $(document).on('click', '.bookmark', function () {
   var thisId = this.dataset.id;
   if (lookBookmark){
     database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
+      var storeCard = actCards[this.dataset.cardno];
+      var storeId = idArray[this.dataset.cardno];
       var newBkmkCards = dataSnapshot.val();
       for (var key in newBkmkCards) {
         if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
@@ -405,8 +407,6 @@ $(document).on('click', '.bookmark', function () {
           return
           }
         } 
-      var storeCard = actCards[this.dataset.cardno];
-      var storeId = idArray[this.dataset.cardno];
       if (uSignIn) {
         database.ref("/users/" + actUser.uid).push({
           storeCard: storeCard,
