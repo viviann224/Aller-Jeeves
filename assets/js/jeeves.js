@@ -18,6 +18,9 @@ var boxEnterTimeline = anime.timeline({
 var boxExitTimeline = anime.timeline({
   autoplay: false
 })
+var bookmarkTimeline = anime.timeline({
+  autoplay: true
+})
 var easing = "linear";
 
 var uSignIn;
@@ -27,6 +30,20 @@ var actUser = {};
 var actCards = [];
 
 var lookBookmark = false;
+
+bookmarkTimeline
+  .add({
+    targets: "#bkmkBtn",
+    duration: 400,
+    backgroundColor: "#CB4E61",
+    easing
+  })
+  .add({
+    targets: "#bkmkBtn",
+    duration: 400,
+    backgroundColor: "#FEFBE0",
+    easing
+  })
 
 boxEnterTimeline
   .add({
@@ -39,7 +56,6 @@ boxEnterTimeline
 boxExitTimeline
   .add({
     targets: "#initBox",
-    // width: 0,
     opacity: "0",
     translateX: 200,
     duration: 750,
@@ -49,7 +65,6 @@ boxExitTimeline
     targets: ".slate",
     duration: 1000,
     height: 0,
-    // opacity: 0,
     easing
   }).add({
     targets: ".slate",
@@ -119,27 +134,93 @@ var allergyRequest = "";
 var dietRequest = "";
 var isUnClickedAll = false;
 var isUnClickedDiet = false;
-var recipeSource = "http://www.yummly.com/recipe/";
+var recipeSource = "https://www.yummly.com/recipe/";
+var isClicked=false;
 
-//went ahead and comment out v1 of the checkbox for the allergy and diet
-//got the checkbox for the submit button to work
 
-/*
-// when a check button is clicked and it has the allergy class, add to allergyRequest.
-$(".foodOptions").on("click", ".allergy", function()
-{
-$.each($("input:checked")
-  var restrict = $(this).val().trim();
-  allergyRequest += (restrictString + restrict);
-  console.log("allergy", allergyRequest);
-});
-// when a check button is clicked and it has the diet class, add to dietRequest.
-$(".foodOptions").on("click", ".diet", function(){
-  var restrict = $(this).val().trim();
-  dietRequest += (dietString + restrict);
-  console.log("diet", dietRequest);
-});
-*/
+//============== CHECK/UNCHECK BUTTON ===================
+
+$(".foodOptions").click(function(){
+  $(".allergy").prop("checked");
+  $(".diet").prop("checked");
+  console.log($(this).val());
+})
+
+//============== DIETARY FILTERS ========================
+
+var checkButtons = function(){
+  $(".diet").each(function(){
+    if ($(this).prop("checked")){
+      var restrict = $(this).val().trim();
+      dietRequest += (dietString + restrict);
+    }
+  })
+  $(".allergy").each(function(){
+    if ($(this).prop("checked")){
+      var restrict = $(this).val().trim();
+      allergyRequest += (restrictString + restrict);
+    }
+  })
+  console.log(allergyRequest);
+  console.log(dietRequest);
+}
+
+var cardCreation = function()
+{ 
+
+  for (var i = 0; i < imageArray.length; i++) {
+    var newCard = $("<div class='cardContainer'>");
+    var cardBody = $("<div class='card'>");
+
+    var cardFront = $("<div class='front'>");
+    var cardImage = $("<img class='cardImage'>");
+    var cardTitle = $("<h5 class='cardTitle'>");
+
+    var cardBack = $("<div class='back'>");
+    var recipeLink = $("<a target='_blank'><button class='btn outSource'>Instructions</button></a>");
+   // var recipeLink = $(“<a target=‘_blank’><button class=‘btn outSource’>Instructions</a>“);
+    var cardList = $("<ul class='ingredList'>");
+
+    ingredArray[i].forEach(function(item) {
+      recipeIngred.push(item);
+    });
+    recipeIngred.forEach(function(innerItem) {
+      cardList.append("<li class='listItem'>" + innerItem);
+      // console.log(i, innerItem);
+    })
+    recipeIngred=[];
+    recipeLink.attr("href", recipeSource + recipeArray[i]);
+
+    
+
+    cardBack.append(recipeLink);
+
+    cardBack.append(cardList);
+
+    cardBody.attr("data-id", recipeArray[i]);
+
+    cardBody.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+recipeArray[i]+"><i class='fas fa-utensils'></i></button>");
+
+    cardTitle.text(titleArray[i]);
+
+    cardImage.attr("src", imageArray[i]);
+
+    cardFront.append(cardImage);
+
+    cardFront.append(cardTitle);
+
+    cardBody.append(cardFront);
+
+    cardBody.append(cardBack);
+
+    newCard.append(cardBody);
+
+    $(".outputArea").append(newCard);
+    //recipeLink.text("Instructions");
+
+    actCards.push(newCard[0].outerHTML);
+  }
+}
 
 // call function when submit button is pressed
 $("#inputBtn, .inputBtn2").on("click", function(event) {
@@ -149,8 +230,10 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
   // create initial array for recipe_ids
   recipeArray = [];
-  idArray = [];
-  actCards = [];
+
+  //idArray = [];
+  //actCards = [];
+
   // create initial array for titles of recipes
   titleArray = [];
   // create initial array for image_urls
@@ -160,24 +243,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
   // create a varaible to store the amount of recipes returned from api
   count = 0;
 
-  //version 2 of the checkbox
-  //this is to create the filter for the specific diet
-  $("input[class=diet]:checked").each(function() {
-    //once the user clicks on the submit button, go ahead and check what
-    //input has been clicked and concat each diet together
-    var restrict = $(this).val().trim();
-    dietRequest += (dietString + restrict);
-    console.log("diet", dietRequest);
-  });
-
-  //this is to create the filter for the specific allergy
-  $("input[class=allergy]:checked").each(function() {
-    //once the user clicks on the submit button, go ahead and check what
-    //input has been clicked and concat each allergy together
-    var restrict = $(this).val().trim();
-    allergyRequest += (restrictString + restrict);
-    console.log("allergy", allergyRequest);
-  });
+  checkButtons();
 
   //for each food search user input
   $("input[id=foodSearch]:input").each(function() {
@@ -190,6 +256,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     var userInput = $(this).val().trim();
     //clears out click option of food search
     console.log(userInput);
+    $(".slate").empty();
 
     //if the user input is not empty
     if (userInput != "") {
@@ -217,8 +284,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
         // initiate a for loop to store recipe_id property and image_url property into their arrays
         for (var i = 0; i < count; i++) {
-          recipeArray.push(recipeSource + newObj[i].id);
-          idArray.push(newObj[i].id);
+          recipeArray.push(newObj[i].id);
           imageArray.push(newObj[i].imageUrlsBySize[90]);
           ingredArray.push(newObj[i].ingredients);
           titleArray.push(newObj[i].recipeName);
@@ -229,60 +295,8 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
         for (var j = 0; j < imageArray.length; j++) {
           imageArray[j] = imageArray[j].toString().replace("s90", "s500");
         }
+        cardCreation();
 
-        console.log(imageArray);
-        // $("#outputArea").on("click", "front")
-        // initiate another for loop to display image properties
-        for (var i = 0; i < imageArray.length; i++) {
-          var newCard = $("<div class='cardContainer'>");
-          var cardBody = $("<div class='card'>");
-
-          var cardFront = $("<div class='front'>");
-          var cardImage = $("<img class='cardImage'>");
-          var cardTitle = $("<h5 class='cardTitle'>");
-
-          var cardBack = $("<div class='back'>");
-          var recipeLink = $("<a type='button' target='_blank' class='btn outSource'>");
-          var cardList = $("<ul class='ingredList'>");
-
-          ingredArray[i].forEach(function(item) {
-            recipeIngred.push(item);
-          });
-          recipeIngred.forEach(function(innerItem) {
-            cardList.append("<li class='listItem'>" + innerItem);
-            // console.log(i, innerItem);
-          })
-
-          recipeLink.attr("href", recipeArray[i]);
-
-          recipeLink.text("Click Me For Full List n' Intructions");
-
-          cardBack.append(recipeLink);
-
-          cardBack.append(cardList);
-
-          // cardBody.attr("data-id", idArray[i]);
-
-          cardBody.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+idArray[i]+"><i class='fas fa-utensils'></i></button>");
-
-          cardTitle.text(titleArray[i]);
-
-          cardImage.attr("src", imageArray[i]);
-
-          cardFront.append(cardImage);
-
-          cardFront.append(cardTitle);
-
-          cardBody.append(cardFront);
-
-          cardBody.append(cardBack);
-
-          newCard.append(cardBody);
-
-          $(".outputArea").append(newCard);
-
-          actCards.push(newCard[0].outerHTML);
-        }
 
         console.log("finished iteration");
 
@@ -295,16 +309,13 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     $(".foodSearch").val('');
     //clears out first userinput
     $("#foodSearch").val('');
-    //need code to reset the checkbox / radio box
-    //$("input[class=diet]:checkbox").reset();
-    //$("input[class=allergy]:checkbox").reset();
-    //$("input[class=allergy]:checkbox").removeAttr("checked");
-  }); // $("input[class=diet]:checkbox").removeAttr("checked");
+   
+  });
 
 });
 
 $(".outputArea").on("click", ".card", function() {
-  console.log("flip it");
+  // console.log("flip it");
   $(this).toggleClass("flip");
 })
 
@@ -395,7 +406,6 @@ $(document).on('click', '.bookmark', function () {
         var newBkmkCards = dataSnapshot.val();
         for (var key in newBkmkCards) {
           if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-            alert("That's already bookmarked.")
             return
           };
         }
@@ -403,6 +413,7 @@ $(document).on('click', '.bookmark', function () {
           storeCard: storeCard,
           storeId: thisId
         });
+        bookmarkTimeline.restart();
       });
     } else {
       database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
@@ -424,6 +435,7 @@ $('#bkmkBtn').click(function(){
 })
 
 function bmPrint () {
+  bookmarkTimeline.restart();
   $('.outputArea').empty();
   database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
   var newBkmkCards = dataSnapshot.val();
