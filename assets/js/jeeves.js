@@ -122,6 +122,7 @@ var dietRequest = "";
 var isUnClickedAll = false;
 var isUnClickedDiet = false;
 var recipeSource = "https://www.yummly.com/recipe/";
+var isClicked=false;
 
 
 //============== CHECK/UNCHECK BUTTON ===================
@@ -151,7 +152,8 @@ var checkButtons = function(){
   console.log(dietRequest);
 }
 
-var cardCreation = function{ 
+var cardCreation = function()
+{ 
 
   for (var i = 0; i < imageArray.length; i++) {
     var newCard = $("<div class='cardContainer'>");
@@ -162,7 +164,8 @@ var cardCreation = function{
     var cardTitle = $("<h5 class='cardTitle'>");
 
     var cardBack = $("<div class='back'>");
-    var recipeLink = $("<a type='button' target='_blank' class='btn outSource'>");
+    var recipeLink = $("<a target='_blank'><button class='btn outSource'>Instructions</button></a>");
+   // var recipeLink = $(“<a target=‘_blank’><button class=‘btn outSource’>Instructions</a>“);
     var cardList = $("<ul class='ingredList'>");
 
     ingredArray[i].forEach(function(item) {
@@ -172,10 +175,10 @@ var cardCreation = function{
       cardList.append("<li class='listItem'>" + innerItem);
       // console.log(i, innerItem);
     })
-
+    recipeIngred=[];
     recipeLink.attr("href", recipeSource + recipeArray[i]);
 
-    recipeLink.text("Click Me For Full List n' Intructions");
+    
 
     cardBack.append(recipeLink);
 
@@ -200,6 +203,7 @@ var cardCreation = function{
     newCard.append(cardBody);
 
     $(".outputArea").append(newCard);
+    //recipeLink.text("Instructions");
 
     actCards.push(newCard[0].outerHTML);
   }
@@ -212,7 +216,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
   lookBookmark = false;
 
   // create initial array for recipe_ids
-  recipeArray = [];
   recipeArray = [];
   // create initial array for titles of recipes
   titleArray = [];
