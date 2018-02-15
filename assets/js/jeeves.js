@@ -189,9 +189,7 @@ var cardCreation = function()
       // console.log(i, innerItem);
     })
     recipeIngred=[];
-    recipeLink.attr("href", recipeSource + recipeArray[i]);
-
-    
+    recipeLink.attr("href", recipeSource + recipeArray[i]);    
 
     cardBack.append(recipeLink);
 
@@ -199,7 +197,7 @@ var cardCreation = function()
 
     cardBody.attr("data-id", recipeArray[i]);
 
-    cardBody.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+recipeArray[i]+"><i class='fas fa-utensils'></i></button>");
+    cardFront.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+recipeArray[i]+"><i class='fas fa-utensils'></i></button>");
 
     cardTitle.text(titleArray[i]);
 
@@ -232,7 +230,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
   recipeArray = [];
 
   //idArray = [];
-  //actCards = [];
+  // actCards = [];
 
   // create initial array for titles of recipes
   titleArray = [];
@@ -256,7 +254,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     var userInput = $(this).val().trim();
     //clears out click option of food search
     console.log(userInput);
-    $(".slate").empty();
 
     //if the user input is not empty
     if (userInput != "") {
@@ -367,13 +364,13 @@ initApp = function() {
       var uid = user.uid;
       var phoneNumber = user.phoneNumber;
       var providerData = user.providerData;
-      user.getIdToken().then(function(accessToken) {
-        document.getElementById('sign-in-status').textContent = 'Signed in';
-      });
+      // user.getIdToken().then(function(accessToken) {
+      //   document.getElementById('sign-in-status').textContent = 'Signed in';
+      // });
     } else {
       // User is signed out.
       uSignIn = false;
-      document.getElementById('sign-in-status').textContent = 'Signed out';
+      // document.getElementById('sign-in-status').textContent = 'Signed out';
     }
   }, function(error) {
     console.log(error);
@@ -399,6 +396,7 @@ $(document).on('click', '.bookmark', function () {
   var thisId = this.dataset.id;
   var storeCard = actCards[this.dataset.cardno];
   if (!uSignIn) {
+    //needs to be fixed
     alert("You must be signed in to use bookmarks.")
   } else{
     if (!lookBookmark) {
