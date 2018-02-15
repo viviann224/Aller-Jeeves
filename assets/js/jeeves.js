@@ -18,6 +18,9 @@ var boxEnterTimeline = anime.timeline({
 var boxExitTimeline = anime.timeline({
   autoplay: false
 })
+var bookmarkTimeline = anime.timeline({
+  autoplay: true
+})
 var easing = "linear";
 
 var uSignIn;
@@ -27,6 +30,20 @@ var actUser = {};
 var actCards = [];
 
 var lookBookmark = false;
+
+bookmarkTimeline
+  .add({
+    targets: "#bkmkBtn",
+    duration: 400,
+    backgroundColor: "#CB4E61",
+    easing
+  })
+  .add({
+    targets: "#bkmkBtn",
+    duration: 400,
+    backgroundColor: "#FEFBE0",
+    easing
+  })
 
 boxEnterTimeline
   .add({
@@ -39,7 +56,6 @@ boxEnterTimeline
 boxExitTimeline
   .add({
     targets: "#initBox",
-    // width: 0,
     opacity: "0",
     translateX: 200,
     duration: 750,
@@ -49,7 +65,6 @@ boxExitTimeline
     targets: ".slate",
     duration: 1000,
     height: 0,
-    // opacity: 0,
     easing
   }).add({
     targets: ".slate",
@@ -99,12 +114,10 @@ $('.convertSub').click(function(event) {
 
 //creates an array of recipe id's that matches with the user input
 var recipeArray = [];
-var recipeArray = [];
 // create initial array for titles of recipes
 var titleArray = [];
 // create initial array for image_urls
 var imageArray = [];
-
 var ingredArray = [];
 
 var recipeIngred = [];
@@ -217,6 +230,10 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
   // create initial array for recipe_ids
   recipeArray = [];
+
+  //idArray = [];
+  //actCards = [];
+
   // create initial array for titles of recipes
   titleArray = [];
   // create initial array for image_urls
@@ -239,6 +256,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     var userInput = $(this).val().trim();
     //clears out click option of food search
     console.log(userInput);
+    $(".slate").empty();
 
     //if the user input is not empty
     if (userInput != "") {
@@ -297,7 +315,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 });
 
 $(".outputArea").on("click", ".card", function() {
-  console.log("flip it");
+  // console.log("flip it");
   $(this).toggleClass("flip");
 })
 
@@ -331,6 +349,7 @@ initApp = function() {
       $('#signInBtn').css("display", "none");
       $('#bkmkBtn').css("display", "inline");
       $('#signOut').css("display", "inline");
+      $('.modal-body').html("<p>You're signed in!</p>")
     } else {
       // show sign in
       $('#signOut').css("display", "none");
@@ -368,60 +387,67 @@ window.addEventListener('load', function() {
 // sign out button
 $('#signOut').click(function() {
   firebase.auth().signOut().then(function() {
-    console.log('Signed Out');
+    location.reload();
   }, function(error) {
     console.error('Sign Out Error', error);
   });
 })
 
-// bookmarking cards
+
+//user clicks a book mark
 $(document).on('click', '.bookmark', function () {
-  if (lookBookmark){
-    var thisId = this.dataset.id;
-    console.log(thisId)
-    database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
-      var newBkmkCards = dataSnapshot.val();
-      for (var key in newBkmkCards) {
-        if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
-          dbRemove(key);
+  var thisId = this.dataset.id;
+  var storeCard = actCards[this.dataset.cardno];
+  if (!uSignIn) {
+    alert("You must be signed in to use bookmarks.")
+  } else{
+    if (!lookBookmark) {
+      database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
+        var newBkmkCards = dataSnapshot.val();
+        for (var key in newBkmkCards) {
+          if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId) {
+            return
+          };
         }
-      }
-    });
-    $('.outputArea').empty();
-  } else {
-    var storeCard = actCards[this.dataset.cardno];
-    var storeId = recipeArray[this.dataset.cardno];
-    if (uSignIn) {
-      database.ref("/users/" + actUser.uid).push({
-        storeCard: storeCard,
-        storeId: storeId
-      })
-      alert("bookmarked!");
+        database.ref("/users/" + actUser.uid).push({
+          storeCard: storeCard,
+          storeId: thisId
+        });
+        bookmarkTimeline.restart();
+      });
     } else {
-      alert("Sign in to bookmark recipes!");
+      database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
+        var newBkmkCards = dataSnapshot.val();
+        for (var key in newBkmkCards) {
+          if (newBkmkCards.hasOwnProperty(key) && newBkmkCards[key].storeId == thisId){
+            dbRemove(key);
+          }
+        }
+        bmPrint();
+      })
     }
   }
-})
+});
 
 $('#bkmkBtn').click(function(){
   lookBookmark = true;
+  bmPrint() 
+})
+
+function bmPrint () {
+  bookmarkTimeline.restart();
   $('.outputArea').empty();
-  database.ref("/users/" + actUser.uid).on('value', function(dataSnapshot){
-  console.log(dataSnapshot.val());
+  database.ref("/users/" + actUser.uid).once('value').then(function(dataSnapshot){
   var newBkmkCards = dataSnapshot.val();
     for (var key in newBkmkCards) {
         if (newBkmkCards.hasOwnProperty(key)) {
-            console.log(newBkmkCards[key].storeId);
-            
             var newCard = $(newBkmkCards[key].storeCard);
-            // newCard.append("<button class='btn bookmarkRem' data-id="+newBkmkCards[key].storeId+"><i class='fas fa-times'></i></button>");
             $(".outputArea").append(newCard);
             $(".bookmark").html("<i class='fas fa-times'></i>");
-            // $(".bookmark").attr("data-id", newBkmkCards[key].storeId);
         }
     }
-  });  
-})
+  }); 
+}
 
 function dbRemove (id) {
   database.ref("/users/" + actUser.uid + "/"+ id).remove();
