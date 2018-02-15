@@ -169,7 +169,7 @@ var cardCreation = function()
 { 
 
   for (var i = 0; i < imageArray.length; i++) {
-    var newCard = $("<div class='cardContainer'>");
+    // var newCard = $("<div class='cardContainer'>");
     var cardBody = $("<div class='card'>");
 
     var cardFront = $("<div class='front'>");
@@ -211,9 +211,9 @@ var cardCreation = function()
 
     cardBody.append(cardBack);
 
-    newCard.append(cardBody);
+    // newCard.append(cardBody);
 
-    $(".outputArea").append(newCard);
+    $(".outputArea").append(cardBody);
     //recipeLink.text("Instructions");
 
     actCards.push(newCard[0].outerHTML);
