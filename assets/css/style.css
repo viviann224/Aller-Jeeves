@@ -111,6 +111,13 @@ p {
 	border: 13px double #CFB7A1;
 }
 
+.firstSearch {
+	padding: 5px 3px;
+	width: 40% !important;
+    border: 1.5px solid #CB4E61;
+    border-radius: 5px;
+    height: 100%;
+}
 
 #foodSearch {
 	padding: 5px 3px;
@@ -120,13 +127,6 @@ p {
     height: 100%;
 }
 
-#mainSearch {
-	padding: 5px 3px;
-	width: 40%;
-    border: 1.5px solid #CB4E61;
-    border-radius: 5px;
-    height: 100%;
-}
 
 .foodOptions {
 	margin: 5px 375px;
@@ -207,7 +207,7 @@ p.listItem{
 	height: 100%;
 	color: #FEFBE0;
 	text-align: center;
-	/* backface-visibility: hidden; */
+/*	backface-visibility: hidden;*/ 
 	border-radius: 1px;
 }
 
@@ -273,7 +273,7 @@ input[type=checkbox]
 	position: absolute;
 	max-height: 100%;
 	max-width: 100%;
-	overflow: scroll;
+	overflow: hidden;
 	text-align: left;
 	backface-visibility: hidden;
 }
