@@ -169,7 +169,7 @@ var cardCreation = function()
 { 
 
   for (var i = 0; i < imageArray.length; i++) {
-    // var newCard = $("<div class='cardContainer'>");
+    var newCard = $("<div class='cardContainer'>");
     var cardBody = $("<div class='card'>");
 
     var cardFront = $("<div class='front'>");
@@ -197,7 +197,6 @@ var cardCreation = function()
 
     cardBody.attr("data-id", recipeArray[i]);
 
-    cardFront.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+recipeArray[i]+"><i class='fas fa-utensils'></i></button>");
 
     cardTitle.text(titleArray[i]);
 
@@ -211,9 +210,11 @@ var cardCreation = function()
 
     cardBody.append(cardBack);
 
-    // newCard.append(cardBody);
+    newCard.append(cardBody);
+    
+    newCard.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+recipeArray[i]+"><i class='fas fa-utensils'></i></button>");
 
-    $(".outputArea").append(cardBody);
+    $(".outputArea").append(newCard);
     //recipeLink.text("Instructions");
 
     actCards.push(newCard[0].outerHTML);
