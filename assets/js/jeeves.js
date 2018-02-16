@@ -118,109 +118,23 @@ var recipeArray = [];
 var titleArray = [];
 // create initial array for image_urls
 var imageArray = [];
+// create initial array to hold ingredient list
 var ingredArray = [];
-
+//create initial array to hold each ingredient item for each recipe
 var recipeIngred = [];
 
 // create a varaible to store the amount of recipes returned from api
 var count = 0;
-
+//starting format for concatination for allergy restrictions
 var restrictString = "&allowedAllergy[]=";
-
+//starting format for concatination for diret restrictions
 var dietString = "&allowedDiet[]=";
-
+//intital string for allergy
 var allergyRequest = "";
-
+//intital string for diet
 var dietRequest = "";
-var isUnClickedAll = false;
-var isUnClickedDiet = false;
-var recipeSource = "https://www.yummly.com/recipe/";
-var isClicked=false;
-
-
-//============== CHECK/UNCHECK BUTTON ===================
-
-$(".foodOptions").click(function(){
-  $(".allergy").prop("checked");
-  $(".diet").prop("checked");
-  console.log($(this).val());
-})
-
-//============== DIETARY FILTERS ========================
-
-var checkButtons = function(){
-  $(".diet").each(function(){
-    if ($(this).prop("checked")){
-      var restrict = $(this).val().trim();
-      dietRequest += (dietString + restrict);
-    }
-  })
-  $(".allergy").each(function(){
-    if ($(this).prop("checked")){
-      var restrict = $(this).val().trim();
-      allergyRequest += (restrictString + restrict);
-    }
-  })
-  console.log(allergyRequest);
-  console.log(dietRequest);
-}
-
-var cardCreation = function()
-{ 
-
-  for (var i = 0; i < imageArray.length; i++) {
-    var newCard = $("<div class='cardContainer'>");
-    var cardBody = $("<div class='card'>");
-
-    var cardFront = $("<div class='front'>");
-    var cardImage = $("<img class='cardImage'>");
-    var cardTitle = $("<h5 class='cardTitle'>");
-
-    var cardBack = $("<div class='back'>");
-    var recipeLink = $("<a target='_blank'><button class='btn outSource'>Instructions</button></a>");
-   // var recipeLink = $(“<a target=‘_blank’><button class=‘btn outSource’>Instructions</a>“);
-    var cardList = $("<ul class='ingredList'>");
-
-    ingredArray[i].forEach(function(item) {
-      recipeIngred.push(item);
-    });
-    recipeIngred.forEach(function(innerItem) {
-      cardList.append("<li class='listItem'>" + innerItem);
-      // console.log(i, innerItem);
-    })
-    recipeIngred=[];
-    recipeLink.attr("href", recipeSource + recipeArray[i]);
-
-    
-
-    cardBack.append(recipeLink);
-
-    cardBack.append(cardList);
-
-    cardBody.attr("data-id", recipeArray[i]);
-
-    cardBody.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+recipeArray[i]+"><i class='fas fa-utensils'></i></button>");
-
-    cardTitle.text(titleArray[i]);
-
-    cardImage.attr("src", imageArray[i]);
-
-    cardFront.append(cardImage);
-
-    cardFront.append(cardTitle);
-
-    cardBody.append(cardFront);
-
-    cardBody.append(cardBack);
-
-    newCard.append(cardBody);
-
-    $(".outputArea").append(newCard);
-    //recipeLink.text("Instructions");
-
-    actCards.push(newCard[0].outerHTML);
-  }
-}
+//start external url for the recipe
+var recipeSource = "http://www.yummly.com/recipe/";
 
 // call function when submit button is pressed
 $("#inputBtn, .inputBtn2").on("click", function(event) {
@@ -230,20 +144,34 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
   // create initial array for recipe_ids
   recipeArray = [];
-
-  //idArray = [];
-  //actCards = [];
-
+  //create an initial array to create external link for each recipe
+  idArray = [];
+  //array to help create animation
+  actCards = [];
   // create initial array for titles of recipes
   titleArray = [];
   // create initial array for image_urls
   imageArray = [];
-
+  //array to store all the ingredients for each recipe
   ingredArray = [];
   // create a varaible to store the amount of recipes returned from api
   count = 0;
 
-  checkButtons();
+  //this is to create the filter for the specific diet
+  $("input[class=diet]:checked").each(function() {
+    //once the user clicks on the submit button, go ahead and check what
+    //input has been clicked and concat each diet together
+    var restrict = $(this).val().trim();
+    dietRequest += (dietString + restrict);
+  });
+
+  //this is to create the filter for the specific allergy
+  $("input[class=allergy]:checked").each(function() {
+    //once the user clicks on the submit button, go ahead and check what
+    //input has been clicked and concat each allergy together
+    var restrict = $(this).val().trim();
+    allergyRequest += (restrictString + restrict);
+  });
 
   //for each food search user input
   $("input[id=foodSearch]:input").each(function() {
@@ -251,12 +179,9 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     $(".foodSearch").val('');
     //clears out each search
     $(".card").empty();
-    console.log("emptying out the card");
     // grab user's input value and store in new variable
     var userInput = $(this).val().trim();
     //clears out click option of food search
-    console.log(userInput);
-    $(".slate").empty();
 
     //if the user input is not empty
     if (userInput != "") {
@@ -265,8 +190,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
       // website url for ajax to pull from
       var myURL = "https://api.yummly.com/v1/api/recipes?_app_id=87e47442&_app_key=11e4aadcc3dddb10fa26ae2968e1ce03&q=" + userInput + allergyRequest + dietRequest + "&maxResult=12";
-
-      console.log(myURL);
 
       //calling the ajax class to pass the url, and the
       //GET method to return the myObj object
@@ -277,31 +200,73 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
       }).then(function(myObj) {
 
         var newObj = myObj.matches;
-        console.log(newObj);
+        //console.log(newObj);
 
         // set the count value to the count property in the object
         count = newObj.length;
 
         // initiate a for loop to store recipe_id property and image_url property into their arrays
         for (var i = 0; i < count; i++) {
-          recipeArray.push(newObj[i].id);
+          recipeArray.push(recipeSource + newObj[i].id);
+          idArray.push(newObj[i].id);
           imageArray.push(newObj[i].imageUrlsBySize[90]);
           ingredArray.push(newObj[i].ingredients);
           titleArray.push(newObj[i].recipeName);
         }
-        console.log(ingredArray);
 
         // create a for-loop to pull, resize, and reassign photos in the image array
         for (var j = 0; j < imageArray.length; j++) {
           imageArray[j] = imageArray[j].toString().replace("s90", "s500");
         }
-        cardCreation();
+        // initiate another for loop to create and display image properties for each recipe card
+        for (var i = 0; i < imageArray.length; i++) {
+          var newCard = $("<div class='cardContainer'>");
+          var cardBody = $("<div class='card'>");
 
+          var cardFront = $("<div class='front'>");
+          var cardImage = $("<img class='cardImage'>");
+          var cardTitle = $("<h5 class='cardTitle'>");
 
-        console.log("finished iteration");
+          var cardBack = $("<div class='back'>");
+          var recipeLink = $("<a type='button' target='_blank' class='btn outSource'>");
+          var cardList = $("<ul class='ingredList'>");
 
+          ingredArray[i].forEach(function(item) {
+            recipeIngred.push(item);
+          });
+          recipeIngred.forEach(function(innerItem) {
+            cardList.append("<li class='listItem'>" + innerItem);
+          })
+
+          recipeLink.attr("href", recipeArray[i]);
+
+          recipeLink.text("View More");
+
+          cardBack.append(recipeLink);
+
+          cardBack.append(cardList);
+
+          cardBody.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+idArray[i]+"><i class='fas fa-utensils'></i></button>");
+
+          cardTitle.text(titleArray[i]);
+
+          cardImage.attr("src", imageArray[i]);
+
+          cardFront.append(cardImage);
+
+          cardFront.append(cardTitle);
+
+          cardBody.append(cardFront);
+
+          cardBody.append(cardBack);
+
+          newCard.append(cardBody);
+
+          $(".outputArea").append(newCard);
+
+          actCards.push(newCard[0].outerHTML);
+        }
       });
-      console.log("end of input");
     }
     //clears out the user input
     $(".outputArea").empty();
@@ -309,8 +274,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     $(".foodSearch").val('');
     //clears out first userinput
     $("#foodSearch").val('');
-   
-  });
+  }); 
 
 });
 

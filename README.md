@@ -5,11 +5,11 @@ The program should run automatically.
 If the program is not running automatically, please make sure you have all the prerequisites listed below.
 
 **STATEMENT OF PURPOSE**:
-Aller-Jeeves is a food application for people who have dietary and or allergy restrictions and still want to enjoy making food.
+Aller-Jeeves is a food application created to help alleviate the stress felt by individuals and families with dietary and/or allergy restrictions. Whether it is to find something new and delicious or wanting to find recipes for everyone to enjoy together. Next time someone ask what can you eat, introduce them to Aller-Jeeves, where our recipes will meet your needs.
 
-Aller-Jeeves was created to showcases the use of APIs from Yummly and Neutrino by pulling AJAX requests to create Aller-Jeeves. Learning to use JavaScript Animation, Anime Js, and deploying from Firebase Database. Aller-Jeeves is a group effort to provide a polished UI and specific seach options for the user.
+Aller-Jeeves was created to showcases the use of APIs from Yummly and Neutrino by pulling AJAX requests to create Aller-Jeeves. Learning to use JavaScript Animation, Anime JS, and deploying from Firebase Database. Aller-Jeeves is a group effort to provide a polished UI and specific search options for the user.
 
-Aller-Jeeves contains recipe cards which contains the recipes, a picture of the recipe, and a book marking options (when the user logs in) on the front of the card. When the user clicks on the recipe the card flips over to the back side to display ingredient list and a link to the recipe.
+Aller-Jeeves contains recipe cards with the recipes, a picture of the dish, and a bookmarking options (when the user logs in) on the front of the card. When the user clicks on the recipe the card flips over to the back to display a list of ingredients and a button linked to the recipe.
 
 **PREREQUISITES**:
 - Google Chrome Internet Browser
@@ -22,12 +22,17 @@ Aller-Jeeves contains recipe cards which contains the recipes, a picture of the 
 - CDN support on Bootstrap
 - Perfered viewing in English language :us:
 
-**HOW TO PLAY**:
-Once pages loads, the user will input a search for a specific recipe or ingredient and will have an option to narrow down the search based on allergy and or dietary restrictions.
+**HOW TO USE**:
+Once pages loads, the user is able to search for recipes by the name of a specific recipe or recipes containing a certain ingredient. The user also has the ability to further narrow down the search by checking the optional checkboxes based on any allergy and/or dietary restrictions.
 
-The page will load  the front of the recipe cards with the name of the recipe, the image of the recipe, and a bookmarking option once the user logs in. Once the user clicks on the front of the recipe card, the card will flip to the back displaying an ingredient list and a link to the recipe.
+The results are then displayed on cards with the name of the recipe, an image of the recipe dish, and a bookmark button option once the user logs in. Once the user clicks on the recipe card, the card will flip over to the back where a list of the ingredients are displayed with a button.
 
-If the user wants to look for a new search, there is a search input followed by a drop down for the restrictions, and a submission button to create a new search.
+If the user clicks the button on the back of the card, a new tab will open and take the user to the  original source of the recipe where a detailed set of cooking instructions are available to the user.
+
+If the user logs into Gmail, they will have the ability to save specific recipe cards by clicking on the fork and knife icon. Those cards are stored in their bookmarks and can be reviewed at another time by clicking on the bookmark button at the top of the page.
+In addition to the amazing recipes, in the top right of the page, there is a "Conversion Table"! This allows the user to further customize their cooking experience by modifying ingredient amounts, with respect to volume and mass, for precise measurements that meet their needs.
+
+If the user wants to search for a different recipe, there is a search box, followed by a dropdown menu for the dietary/allergy restrictions, and a submission button to initiate a new search. This will become the main page for the user's interaction for recipe requests after the first search request is complete.
 
 **BUILT WITH**:
 - Sublime Text
@@ -53,7 +58,3 @@ This project is licensed under GitHub.
 **ACKNOWLEDGMENTS**:
 All rights are reserved to Matthew Steward, Kyle Carter, PM Milam IV, Vivian Tuong Nguyen. Do not alter or manipulate content and images from the authors listed above.
 Copyright   :copyright: 2018
-
-
-
-
