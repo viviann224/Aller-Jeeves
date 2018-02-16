@@ -131,8 +131,6 @@ var allergyRequest = "";
 var dietRequest = "";
 //start external url for the recipe
 var recipeSource = "https://www.yummly.com/recipe/";
-<<<<<<< HEAD
-=======
 var isClicked=false;
 
 
