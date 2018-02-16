@@ -131,6 +131,93 @@ var allergyRequest = "";
 var dietRequest = "";
 //start external url for the recipe
 var recipeSource = "https://www.yummly.com/recipe/";
+<<<<<<< HEAD
+=======
+var isClicked=false;
+
+
+//============== CHECK/UNCHECK BUTTON ===================
+
+$(".foodOptions").click(function(){
+  $(".allergy").prop("checked");
+  $(".diet").prop("checked");
+  console.log($(this).val());
+})
+
+//============== DIETARY FILTERS ========================
+
+var checkButtons = function(){
+  $(".diet").each(function(){
+    if ($(this).prop("checked")){
+      var restrict = $(this).val().trim();
+      dietRequest += (dietString + restrict);
+    }
+  })
+  $(".allergy").each(function(){
+    if ($(this).prop("checked")){
+      var restrict = $(this).val().trim();
+      allergyRequest += (restrictString + restrict);
+    }
+  })
+  console.log(allergyRequest);
+  console.log(dietRequest);
+}
+
+var cardCreation = function()
+{ 
+
+  for (var i = 0; i < imageArray.length; i++) {
+    var newCard = $("<div class='cardContainer'>");
+    var cardBody = $("<div class='card'>");
+
+    var cardFront = $("<div class='front'>");
+    var cardImage = $("<img class='cardImage'>");
+    var cardTitle = $("<h5 class='cardTitle'>");
+
+    var cardBack = $("<div class='back'>");
+    var recipeLink = $("<a target='_blank'><button class='btn outSource'>Instructions</button></a>");
+   // var recipeLink = $(“<a target=‘_blank’><button class=‘btn outSource’>Instructions</a>“);
+    var cardList = $("<ul class='ingredList'>");
+
+    ingredArray[i].forEach(function(item) {
+      recipeIngred.push(item);
+    });
+    recipeIngred.forEach(function(innerItem) {
+      cardList.append("<li class='listItem'>" + innerItem);
+      // console.log(i, innerItem);
+    })
+    recipeIngred=[];
+    recipeLink.attr("href", recipeSource + recipeArray[i]);    
+
+    cardBack.append(recipeLink);
+
+    cardBack.append(cardList);
+
+    cardBody.attr("data-id", recipeArray[i]);
+
+
+    cardTitle.text(titleArray[i]);
+
+    cardImage.attr("src", imageArray[i]);
+
+    cardFront.append(cardImage);
+
+    cardFront.append(cardTitle);
+
+    cardBody.append(cardFront);
+
+    cardBody.append(cardBack);
+
+    newCard.append(cardBody);
+    
+    newCard.append("<button class='btn bookmark' data-cardNo="+i+" data-id="+recipeArray[i]+"><i class='fas fa-utensils'></i></button>");
+
+    $(".outputArea").append(newCard);
+    //recipeLink.text("Instructions");
+
+    actCards.push(newCard[0].outerHTML);
+  }
+}
 
 // call function when submit button is pressed
 $("#inputBtn, .inputBtn2").on("click", function(event) {
@@ -357,6 +444,7 @@ $(document).on('click', '.bookmark', function () {
   var thisId = this.dataset.id;
   var storeCard = actCards[this.dataset.cardno];
   if (!uSignIn) {
+    //needs to be fixed
     alert("You must be signed in to use bookmarks.")
   } else{
     if (!lookBookmark) {
