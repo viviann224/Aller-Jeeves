@@ -497,4 +497,4 @@ function bmPrint () {
 
 function dbRemove (id) {
   database.ref("/users/" + actUser.uid + "/"+ id).remove();
-}
+};
