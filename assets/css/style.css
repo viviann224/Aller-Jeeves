@@ -111,9 +111,9 @@ p {
 	border: 13px double #CFB7A1;
 }
 
-.firstSearch {
+
+#foodSearch {
 	padding: 5px 3px;
-<<<<<<< HEAD
 	width: 234px;
   border: 1.5px solid #CB4E61;
   border-radius: 5px;
@@ -126,22 +126,7 @@ p {
   border: 1.5px solid #CB4E61;
   border-radius: 5px;
   height: 100%;
-=======
-	width: 40% !important;
-    border: 1.5px solid #CB4E61;
-    border-radius: 5px;
-    height: 100%;
 }
-
-#foodSearch {
-	padding: 5px 3px;
-	width: 234px;
-    border: 1.5px solid #CB4E61;
-    border-radius: 5px;
-    height: 100%;
->>>>>>> 8957c7b9a6833886c68859fc24da13b53d39b59f
-}
-
 
 .foodOptions {
 	margin: 5px 375px;
@@ -215,10 +200,6 @@ p {
 	height: 100%;
 	color: #FEFBE0;
 	text-align: center;
-<<<<<<< HEAD
-=======
-/*	backface-visibility: hidden;*/ 
->>>>>>> 8957c7b9a6833886c68859fc24da13b53d39b59f
 	border-radius: 1px;
 }
 
@@ -293,4 +274,3 @@ input[type=checkbox] {
 	background: #fff;
 	color: #CB4E61;
 }
-
