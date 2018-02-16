@@ -330,13 +330,9 @@ initApp = function() {
       var uid = user.uid;
       var phoneNumber = user.phoneNumber;
       var providerData = user.providerData;
-      user.getIdToken().then(function(accessToken) {
-        document.getElementById('sign-in-status').textContent = 'Signed in';
-      });
     } else {
       // User is signed out.
       uSignIn = false;
-      document.getElementById('sign-in-status').textContent = 'Signed out';
     }
   }, function(error) {
     console.log(error);
