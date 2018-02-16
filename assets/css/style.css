@@ -115,23 +115,17 @@ p {
 #foodSearch {
 	padding: 5px 3px;
 	width: 234px;
-    border: 1.5px solid #CB4E61;
-    border-radius: 5px;
-    height: 100%;
+  border: 1.5px solid #CB4E61;
+  border-radius: 5px;
+  height: 100%;
 }
 
 .mainSearch {
 	padding: 5px 3px;
 	width: 40% !important;
-<<<<<<< HEAD
-    border: 1.5px solid #CB4E61;
-    border-radius: 5px;
-    height: 100%;
-=======
   border: 1.5px solid #CB4E61;
   border-radius: 5px;
   height: 100%;
->>>>>>> workingBranch
 }
 
 .foodOptions {
@@ -170,24 +164,8 @@ p {
 .btn.outSource{
 	border-color: #CB4E61;
 	color: #CB4E61;
-<<<<<<< HEAD
-	border-radius: 1px;
-	margin-top: 10px;
-}
-
-
-.cardContainer{
-	/*
-	//comment out to preserve the back card from flip
-	perspective: 700px;
-	-webkit-perspective: 700px;
-	-moz-perspective: 700px;
-	*/
-
-=======
 	border-radius: 5px;
 	margin: 10px;
->>>>>>> workingBranch
 }
 
 .card {
@@ -292,7 +270,6 @@ input[type=checkbox] {
 	background: #fff;
 	color: #CB4E61;
 }
-<<<<<<< HEAD
 
 .ingredList{
 	position: absolute;
@@ -308,5 +285,3 @@ input[type=checkbox] {
 	padding-left: 5px;
 	text-transform: capitalize;
 }
-=======
->>>>>>> workingBranch

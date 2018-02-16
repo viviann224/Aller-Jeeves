@@ -120,12 +120,6 @@ var titleArray = [];
 var imageArray = [];
 // create initial array to hold ingredient list
 var ingredArray = [];
-<<<<<<< HEAD
-//create initial array to hold each ingredient item for each recipe
-var recipeIngred = [];
-
-=======
->>>>>>> workingBranch
 // create a varaible to store the amount of recipes returned from api
 var count = 0;
 //starting format for concatination for allergy restrictions
@@ -137,11 +131,7 @@ var allergyRequest = "";
 //intital string for diet
 var dietRequest = "";
 //start external url for the recipe
-<<<<<<< HEAD
-var recipeSource = "http://www.yummly.com/recipe/";
-=======
 var recipeSource = "https://www.yummly.com/recipe/";
->>>>>>> workingBranch
 
 // call function when submit button is pressed
 $("#inputBtn, .inputBtn2").on("click", function(event) {
@@ -152,25 +142,15 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
   // empty initial array for recipe_ids
   recipeArray = [];
-<<<<<<< HEAD
-  //create an initial array to create external link for each recipe
+  // empty an initial array to create external link for each recipe
   idArray = [];
-  //array to help create animation
-=======
-
-  idArray = [];
-  
->>>>>>> workingBranch
+  // array to help create animation
   actCards = [];
   // empty initial array for titles of recipes
   titleArray = [];
   // empty initial array for image_urls
   imageArray = [];
-<<<<<<< HEAD
-  //array to store all the ingredients for each recipe
-=======
   // empty array for the ingredients
->>>>>>> workingBranch
   ingredArray = [];
   // create a varaible to store the amount of recipes returned from api
   count = 0;
@@ -181,11 +161,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     //input has been clicked and concat each diet together
     var restrict = $(this).val().trim();
     dietRequest += (dietString + restrict);
-<<<<<<< HEAD
-=======
-    //console.log("diet", dietRequest);
->>>>>>> workingBranch
-  });
 
   //this is to create the filter for the specific allergy
   $("input[class=allergy]:checked").each(function() {
@@ -193,10 +168,6 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     //input has been clicked and concat each allergy together
     var restrict = $(this).val().trim();
     allergyRequest += (restrictString + restrict);
-<<<<<<< HEAD
-=======
-    //console.log("allergy", allergyRequest);
->>>>>>> workingBranch
   });
 
   //for each food search user input
@@ -205,10 +176,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     $(".foodSearch").val('');
     //clears out each search
     $(".card").empty();
-<<<<<<< HEAD
-=======
-    //console.log("emptying out the card");
->>>>>>> workingBranch
+
     // grab user's input value and store in new variable
     var userInput = $(this).val().trim();
     //clears out click option of food search
@@ -221,10 +189,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
       // website url for ajax to pull from
       var myURL = "https://api.yummly.com/v1/api/recipes?_app_id=87e47442&_app_key=11e4aadcc3dddb10fa26ae2968e1ce03&q=" + userInput + allergyRequest + dietRequest + "&maxResult=12";
 
-<<<<<<< HEAD
-=======
 
->>>>>>> workingBranch
       //calling the ajax class to pass the url, and the
       //GET method to return the myObj object
       $.ajax({
@@ -247,22 +212,14 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
           ingredArray.push(newObj[i].ingredients);
           titleArray.push(newObj[i].recipeName);
         }
-<<<<<<< HEAD
-=======
-        //console.log(ingredArray);
->>>>>>> workingBranch
 
         // create a for-loop to pull, resize, and reassign photos back into the imageArray followed by another interation to replace all http with https...so they all match through out page.
         for (var j = 0; j < imageArray.length; j++) {
           imageArray[j] = imageArray[j].toString().replace("s90", "s500");
           imageArray[j] = imageArray[j].toString().replace("http://", "https://");
         }
-<<<<<<< HEAD
-        // initiate another for loop to create and display image properties for each recipe card
-=======
 
-        // initiate another for loop to display image properties
->>>>>>> workingBranch
+        // initiate another for loop to create dynamic elements to display properties for each recipe card
         for (var i = 0; i < imageArray.length; i++) {
           // creates the card 
           var cardBody = $("<div class='card'>");
@@ -282,20 +239,9 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
           ingredArray[i].forEach(function(item) {
             cardList.append("<li class='listItem'>" + item);
           });
-<<<<<<< HEAD
-          recipeIngred.forEach(function(innerItem) {
-            cardList.append("<li class='listItem'>" + innerItem);
-          })
-
-          recipeLink.attr("href", recipeArray[i]);
-
-          recipeLink.text("View More");
-
-=======
           // attaches the link to the button
           recipeLink.attr("href", recipeArray[i]);
           // attaches button to back of card
->>>>>>> workingBranch
           cardBack.append(recipeLink);
           // attaches unorder list to back of card
           cardBack.append(cardList);
@@ -318,10 +264,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
 
           actCards.push(cardBody[0].outerHTML);
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> workingBranch
       });
     }
     //clears out the user input
@@ -330,12 +273,8 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     $(".foodSearch").val('');
     //clears out first userinput
     $("#foodSearch").val('');
-<<<<<<< HEAD
+
   }); 
-=======
-   
-  });
->>>>>>> workingBranch
 
 });
 //Event listener in the card area that listens for a click on the card to adds/removes the flip class that has a CSS attribute that cause the card to flip.
