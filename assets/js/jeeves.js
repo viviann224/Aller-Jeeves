@@ -161,7 +161,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     //input has been clicked and concat each diet together
     var restrict = $(this).val().trim();
     dietRequest += (dietString + restrict);
-
+  });
   //this is to create the filter for the specific allergy
   $("input[class=allergy]:checked").each(function() {
     //once the user clicks on the submit button, go ahead and check what
@@ -414,4 +414,4 @@ function bmPrint () {
 
 function dbRemove (id) {
   database.ref("/users/" + actUser.uid + "/"+ id).remove();
-}
+};
