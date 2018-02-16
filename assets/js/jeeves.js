@@ -14,13 +14,13 @@ var database = firebase.database();
 //=======anime animation====
 var boxEnterTimeline = anime.timeline({
   autoplay: true
-})
+});
 var boxExitTimeline = anime.timeline({
   autoplay: false
-})
+});
 var bookmarkTimeline = anime.timeline({
   autoplay: true
-})
+});
 var easing = "linear";
 
 var uSignIn;
@@ -43,7 +43,7 @@ bookmarkTimeline
     duration: 400,
     backgroundColor: "#FEFBE0",
     easing
-  })
+  });
 
 boxEnterTimeline
   .add({
@@ -51,7 +51,7 @@ boxEnterTimeline
     duration: 1000,
     opacity: "1",
     easing
-  })
+  });
 
 boxExitTimeline
   .add({
@@ -75,11 +75,10 @@ boxExitTimeline
 $(".initSub").click(function(event) {
   event.preventDefault();
   boxExitTimeline.play();
-})
+});
 
 // ========conversion table logic====
 function convert(a, b, c) {
-  console.log(a, b, c)
   var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   var builtString = "https://neutrinoapi.com/convert?from-value=" + a + "&from-type=" + b + "&to-type=" + c + "&userId=PMMIV&apiKey=lxAaqP7fkM6ZjKHg0fnvmkF192s1vmihtuGtY381Ls6xHsNs";
   $.get(proxyUrl + builtString, function(response) {
@@ -87,8 +86,8 @@ function convert(a, b, c) {
     $('.results').text(a + " " + b + " = " + noOutput + " " + c);
   }).fail(function(error) {
     $('.results').text("I'm sorry. We may have exceeded our conversion limit today.");
-  })
-};
+  });
+}
 
 $('.convertSub').click(function(event) {
   event.preventDefault();
@@ -161,7 +160,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
     //input has been clicked and concat each diet together
     var restrict = $(this).val().trim();
     dietRequest += (dietString + restrict);
-
+  });
   //this is to create the filter for the specific allergy
   $("input[class=allergy]:checked").each(function() {
     //once the user clicks on the submit button, go ahead and check what
