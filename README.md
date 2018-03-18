@@ -50,10 +50,10 @@ This is the first version of Aller-Jeeves
 This project is licensed under GitHub.
 
 **AUTHOR**:
--Matthew Steward - Initial work
--PM Milam IV - Initial work
--Vivian Tuong Nguyen - Initial work
--Kyle Carter - Initial work
+- Matthew Steward - Initial work
+- PM Milam IV - Initial work
+- Vivian Tuong Nguyen - Initial work
+- Kyle Carter - Initial work
 
 
 **ACKNOWLEDGMENTS**:
