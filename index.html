@@ -11,11 +11,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <!--_______________________Google Fonts______________________________-->
-	<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Catamaran" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lora:700" rel="stylesheet">
 <!--_______________________CSS______________________________-->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<!--____________________Font Awesome________________________-->
-	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+
 
 
 </head>
@@ -26,13 +26,16 @@
 				<h1 class="display-4" id="title">Aller-Jeeves</h1>
 				<hr class="my-4">
 				<h4>Can I help you find a recipe?</h4>
+				<div class="searchArea">
 				<input type="text" id="foodSearch" class="mainSearch" name="search" placeholder="I'll be having...">
 
 				<button class="btn btn-outline-secondary initSub"  id="inputBtn" class="inputBtn1" type="submit">Search</button>
+				</div>
 				<fieldset class="foodOptions">
 					<legend>Do you have any dietary restrictions?</legend>
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-3">
 							<div>
 								<input class="allergy" type="checkbox" id="dairy" name="interest" value="396^Dairy-Free">
 								<label for="dairy">Dairy-Free</label>
@@ -58,7 +61,7 @@
 								<label for="soy">Soy-Free</label>
 							</div>
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-3">
 							<div>
 								<input class="allergy" type="checkbox" id="egg" name="interest" value="397^Egg-Free">
 								<label for="egg">Egg-Free</label>
@@ -80,6 +83,7 @@
 								<label for="paleo">Paleo</label>
 							</div>
 						</div>
+						<div class="col-sm-3"></div>
 	 				</div>
 				</fieldset>
 			</div>
