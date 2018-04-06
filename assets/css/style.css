@@ -238,7 +238,7 @@ p {
 
 .ingredList{
 	/*position: absolute;*/
-	max-height: 265px;
+	max-height: 260px;
 	max-width: 225px;
 	overflow-y: auto;
 	text-align: left;
@@ -246,8 +246,10 @@ p {
 	margin: 5px auto;
 }
 
-.listItem {
-	padding-top: 10px;
+.listItem 
+{
+	color:#666666;
+	padding-top: 3px;
 	padding-left: 5px;
 	text-transform: capitalize;
 }
@@ -290,10 +292,18 @@ input[type=checkbox]
 
 .dropdown-toggle {
 	width: 157px;
+	margin:3px;
+}
+
+.form-inline
+{
+	margin:; 5px;
+	padding:3px;
 }
 
 .bookmark {
 	margin-top: 5px;
+	margin-right: 3px;
 	padding: 4px 6px 1px 6px;
 	position: absolute;
 	right: 5px;
