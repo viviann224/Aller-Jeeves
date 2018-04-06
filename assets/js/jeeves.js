@@ -234,7 +234,7 @@ $("#inputBtn, .inputBtn2").on("click", function(event) {
           // creates the button for the full recipe
           var recipeLink = $("<a type='button' target='_blank' class='btn outSource'>View More</a>");
           // creates an unorder list
-          var cardList = $("<br><strong>Ingredients:</strong><br><ul class='ingredList'>");
+          var cardList = $("<ul class='ingredList'>");
           // creates an list item for each ingredient in property array and appends to the unorder list
           ingredArray[i].forEach(function(item) 
           {
