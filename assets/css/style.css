@@ -21,6 +21,22 @@ hr {
 	border: 0.5px solid #768b99;
 	width:70%;
 }
+element.style
+{
+	background-color: #f6f7fa !important;
+}
+
+a:active, a:visited, a:link
+{
+	color:#34729a !important;
+	font-weight: none;
+}
+
+a:hover
+{
+	color:#ffff;
+	font-weight: none;
+}
 
 .navbar>.container, .navbar >.container-fluid
 {
@@ -43,7 +59,7 @@ hr {
 
 
 .btn:active, .btn-outline-secondary:hover, .btn-secondary:hover, .btn-outline-secondary:active, .btn-secondary:active,
-.inputBtn2:hover,  
+.inputBtn2:hover, element.style: hover, 
 {
     color: #f6f7fa;
     background-color: #34729a;
